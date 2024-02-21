@@ -1,0 +1,6 @@
+@BeldYazilim.WebApi_HostAddress = http://localhost:5053
+
+GET {{BeldYazilim.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
