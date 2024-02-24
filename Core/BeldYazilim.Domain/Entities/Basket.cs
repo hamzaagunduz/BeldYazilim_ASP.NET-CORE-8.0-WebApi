@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class ArticleAuthor
+    public class Basket
     {
-        public int ArticleAuthorID{ get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public int ArticleID { get; set; }
-        public List<Article> Articles { get; set; }
+        public int BasketID { get; set; }
+        
+        public List<BasketItem> BasketItems { get; set; }
 
         public int AppUserID { get; set; }
         public AppUser AppUser { get; set; }
-
     }
 }

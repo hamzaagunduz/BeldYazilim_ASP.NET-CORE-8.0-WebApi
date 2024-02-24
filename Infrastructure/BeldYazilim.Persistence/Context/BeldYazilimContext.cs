@@ -12,12 +12,20 @@ namespace BeldYazilim.Persistence.Context
     public class BeldYazilimContext:IdentityDbContext<AppUser,AppRole,int>
     {
         public DbSet<Article> Articles { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<ArticleComment> ArticleComments { get; set; }
+        public DbSet<ArticleParentCategory> ArticleParentCategories { get; set; }
         public DbSet<ArticleImage> ArticleImages { get; set; }
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
         public DbSet<ArticleAuthor> ArticleAuthors { get; set; }
-        public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductSeller> ProductSellers { get; set; }
+        public DbSet<ProductShop> ProductShops { get; set; }
+        public DbSet<Basket> Baskets{ get; set; }
+        public DbSet<BasketItem> BasketItems{ get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-O82KITD;initial Catalog=BeldYazilimDb;integrated Security=true; TrustServerCertificate=True");

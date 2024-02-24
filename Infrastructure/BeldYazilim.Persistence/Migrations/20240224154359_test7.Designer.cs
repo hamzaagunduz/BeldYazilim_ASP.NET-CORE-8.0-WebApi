@@ -4,6 +4,7 @@ using BeldYazilim.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeldYazilim.Persistence.Migrations
 {
     [DbContext(typeof(BeldYazilimContext))]
-    partial class BeldYazilimContextModelSnapshot : ModelSnapshot
+    [Migration("20240224154359_test7")]
+    partial class test7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -312,53 +315,7 @@ namespace BeldYazilim.Persistence.Migrations
 
                     b.HasKey("ArticleParentCategoryID");
 
-                    b.ToTable("ArticleParentCategories");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.Basket", b =>
-                {
-                    b.Property<int>("BasketID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BasketID"));
-
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BasketID");
-
-                    b.HasIndex("AppUserID")
-                        .IsUnique();
-
-                    b.ToTable("Baskets");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.BasketItem", b =>
-                {
-                    b.Property<int>("BasketItemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BasketItemID"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BasketID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BasketItemID");
-
-                    b.HasIndex("BasketID");
-
-                    b.HasIndex("ProductID")
-                        .IsUnique();
-
-                    b.ToTable("BasketItems");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Product", b =>
@@ -622,13 +579,13 @@ namespace BeldYazilim.Persistence.Migrations
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleAuthor", b =>
                 {
-                    b.HasOne("BeldYazilim.Domain.Entities.AppUser", "AppUser")
+                    b.HasOne("BeldYazilim.Domain.Entities.AppUser", "User")
                         .WithOne("ArticleAuthors")
                         .HasForeignKey("BeldYazilim.Domain.Entities.ArticleAuthor", "AppUserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleCategory", b =>
@@ -648,36 +605,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Navigation("Article");
 
                     b.Navigation("ArticleParentCategory");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.Basket", b =>
-                {
-                    b.HasOne("BeldYazilim.Domain.Entities.AppUser", "AppUser")
-                        .WithOne("Baskets")
-                        .HasForeignKey("BeldYazilim.Domain.Entities.Basket", "AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.BasketItem", b =>
-                {
-                    b.HasOne("BeldYazilim.Domain.Entities.Basket", "Basket")
-                        .WithMany("BasketItems")
-                        .HasForeignKey("BasketID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeldYazilim.Domain.Entities.Product", "Product")
-                        .WithOne("BasketItem")
-                        .HasForeignKey("BeldYazilim.Domain.Entities.BasketItem", "ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Basket");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Product", b =>
@@ -785,9 +712,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Navigation("ArticleAuthors")
                         .IsRequired();
 
-                    b.Navigation("Baskets")
-                        .IsRequired();
-
                     b.Navigation("ProductSeller")
                         .IsRequired();
                 });
@@ -817,16 +741,8 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Navigation("ArticleCategories");
                 });
 
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.Basket", b =>
-                {
-                    b.Navigation("BasketItems");
-                });
-
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Product", b =>
                 {
-                    b.Navigation("BasketItem")
-                        .IsRequired();
-
                     b.Navigation("ProductCategories");
                 });
 

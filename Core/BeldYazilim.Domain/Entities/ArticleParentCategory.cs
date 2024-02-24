@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class Category
+    public class ArticleParentCategory
     {
-        public int CategoryID { get; set; }
+        public int ArticleParentCategoryID { get; set; }
         public string Name { get; set; }
 
         public List<ArticleCategory> ArticleCategories { get; set; }

@@ -22,5 +22,10 @@ namespace BeldYazilim.Domain.Entities
 
         public ArticleAuthor ArticleAuthors { get; set; }
 
+        public ProductSeller ProductSeller { get; set; }
+        public Basket Baskets { get; set; }
+
+
+
     }
 }
