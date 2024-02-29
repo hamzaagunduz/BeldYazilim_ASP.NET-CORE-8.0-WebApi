@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Features\Mediator\Commands\" />
     <Folder Include="Features\Mediator\Handlers\" />
-    <Folder Include="Features\Mediator\Results\" />
     <Folder Include="Features\Mediator\Queries\" />
   </ItemGroup>
 

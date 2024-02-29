@@ -9,6 +9,7 @@ namespace BeldYazilim.Domain.Entities
     public  class ArticleCategory
     {
         public int ArticleCategoryID { get; set; }
+        public int CategoryName { get; set; }
         public string? ImageUrl { get; set; }
         public string Title { get; set; }
         public int ArticleID { get; set; }

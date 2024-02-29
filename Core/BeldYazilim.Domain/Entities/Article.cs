@@ -19,7 +19,7 @@ namespace BeldYazilim.Domain.Entities
         public List<ArticleCategory> ArticleCategorys { get; set;}
         public int ArticleAuthorID { get; set; }
         public ArticleAuthor ArticleAuthors { get; set;}
-        public int CommentID { get; set; }
+        public int ArticleCommentID { get; set; }
         public ArticleComment ArticleComments { get; set; }
 
         public int ArticleImageID { get; set; }
