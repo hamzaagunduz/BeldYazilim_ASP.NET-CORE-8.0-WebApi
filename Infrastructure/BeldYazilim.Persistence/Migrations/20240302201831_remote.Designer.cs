@@ -4,6 +4,7 @@ using BeldYazilim.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeldYazilim.Persistence.Migrations
 {
     [DbContext(typeof(BeldYazilimContext))]
-    partial class BeldYazilimContextModelSnapshot : ModelSnapshot
+    [Migration("20240302201831_remote")]
+    partial class remote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,28 +194,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.ToTable("ArticleComments");
                 });
 
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleImage", b =>
-                {
-                    b.Property<int>("ArticleImageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleImageID"));
-
-                    b.Property<int>("ArticleID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ArticleImageID");
-
-                    b.HasIndex("ArticleID");
-
-                    b.ToTable("ArticleImages");
-                });
-
             modelBuilder.Entity("BeldYazilim.Domain.Entities.MainCategory", b =>
                 {
                     b.Property<int>("MainCategoryID")
@@ -238,9 +219,6 @@ namespace BeldYazilim.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductSellerID"));
 
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Profit")
                         .HasColumnType("int");
 
@@ -248,9 +226,6 @@ namespace BeldYazilim.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductSellerID");
-
-                    b.HasIndex("AppUserID")
-                        .IsUnique();
 
                     b.ToTable("ProductSellers");
                 });
@@ -263,17 +238,11 @@ namespace BeldYazilim.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductShopID"));
 
-                    b.Property<int>("ProductSellerID")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProducyShopName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductShopID");
-
-                    b.HasIndex("ProductSellerID")
-                        .IsUnique();
 
                     b.ToTable("ProductShops");
                 });
@@ -369,39 +338,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Navigation("CommentedBy");
                 });
 
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleImage", b =>
-                {
-                    b.HasOne("BeldYazilim.Domain.Entities.Article", "Article")
-                        .WithMany("Images")
-                        .HasForeignKey("ArticleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Article");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.ProductSeller", b =>
-                {
-                    b.HasOne("BeldYazilim.Domain.Entities.AppUser", "AppUser")
-                        .WithOne("ProductSeller")
-                        .HasForeignKey("BeldYazilim.Domain.Entities.ProductSeller", "AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.ProductShop", b =>
-                {
-                    b.HasOne("BeldYazilim.Domain.Entities.ProductSeller", "ProductSeller")
-                        .WithOne("ProductShop")
-                        .HasForeignKey("BeldYazilim.Domain.Entities.ProductShop", "ProductSellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductSeller");
-                });
-
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Subcategory", b =>
                 {
                     b.HasOne("BeldYazilim.Domain.Entities.MainCategory", "MainCategory")
@@ -419,9 +355,6 @@ namespace BeldYazilim.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Comments");
-
-                    b.Navigation("ProductSeller")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Article", b =>
@@ -429,8 +362,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Navigation("ArticleCategoryLinks");
 
                     b.Navigation("ArticleComments");
-
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleAuthor", b =>
@@ -441,12 +372,6 @@ namespace BeldYazilim.Persistence.Migrations
             modelBuilder.Entity("BeldYazilim.Domain.Entities.MainCategory", b =>
                 {
                     b.Navigation("ArticleCategoryLinks");
-                });
-
-            modelBuilder.Entity("BeldYazilim.Domain.Entities.ProductSeller", b =>
-                {
-                    b.Navigation("ProductShop")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Subcategory", b =>

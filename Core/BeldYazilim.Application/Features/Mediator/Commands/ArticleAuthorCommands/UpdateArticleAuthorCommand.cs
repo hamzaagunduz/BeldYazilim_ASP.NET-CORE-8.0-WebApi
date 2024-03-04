@@ -1,21 +1,19 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeldYazilim.Domain.Entities
+namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleAuthorCommands
 {
-    public class ArticleAuthor
+    public class UpdateArticleAuthorCommand:IRequest
     {
-        public int ArticleAuthorID{ get; set; }
+        public int ArticleAuthorID { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
         public int ArticleID { get; set; }
-        public List<Article> Articles { get; set; }
-        // Birebir ilişki
         public int AppUserID { get; set; }
-        public AppUser AppUser { get; set; }
 
     }
 }

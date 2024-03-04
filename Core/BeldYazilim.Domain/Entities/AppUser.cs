@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class AppUser : IdentityUser<int>
+    public class AppUser /*: IdentityUser<int>*/
     {
         public int AppUserID { get; set; }
         public string Name { get; set; }
@@ -21,10 +21,14 @@ namespace BeldYazilim.Domain.Entities
         public string City { get; set; }
         public string ImageUrl { get; set; }
         public int ConfirmCode { get; set; }
-        public ArticleAuthor ArticleAuthors { get; set; }
+        public ArticleAuthor ArticleAuthor { get; set; }
+
+        public List<ArticleComment> Comments { get; set; }
+
         public ProductSeller ProductSeller { get; set; }
-        public Basket Baskets { get; set; }
-        public UserInterest UserInterest { get; set; }
+
+        //public Basket Baskets { get; set; }
+        //public UserInterest UserInterest { get; set; }
 
 
 

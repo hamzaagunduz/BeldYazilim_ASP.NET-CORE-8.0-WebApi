@@ -11,6 +11,7 @@ namespace BeldYazilim.Domain.Entities
         public int ArticleImageID { get; set; }
         public string ImageUrl { get; set; }
 
-        public List<Article> Articles { get; set; }
+        public int ArticleID { get; set; }
+        public Article Article { get; set; }
     }
 }

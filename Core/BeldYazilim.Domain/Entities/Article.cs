@@ -15,15 +15,13 @@ namespace BeldYazilim.Domain.Entities
         public int ClickCount { get; set; }
         public string BigImageUrl { get; set; }
         public int? Rating { get; set; }
-
-        public List<ArticleCategory> ArticleCategorys { get; set;}
+        public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
         public int ArticleAuthorID { get; set; }
-        public ArticleAuthor ArticleAuthors { get; set;}
-        public int ArticleCommentID { get; set; }
-        public ArticleComment ArticleComments { get; set; }
+        public ArticleAuthor ArticleAuthor { get; set; }
 
-        public int ArticleImageID { get; set; }
-        public  ArticleImage ArticleImages { get; set; }
+        public List<ArticleComment> ArticleComments { get; set; }
+
+        public List<ArticleImage> Images { get; set; }
 
     }
 }

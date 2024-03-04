@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class AppRole : IdentityRole<int>
+    public class AppRole/* : IdentityRole<int>*/
     {
         public const string Admin = "Admin";
         public const string Author = "Author";

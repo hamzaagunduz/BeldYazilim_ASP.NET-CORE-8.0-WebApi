@@ -10,13 +10,12 @@ namespace BeldYazilim.Domain.Entities
     {
         public int ProductSellerID { get; set; }
         public int Profit { get; set; }
-        public string TaxNumber { get; set; }
+        public int TaxNumber { get; set; }
 
 
         public int AppUserID { get; set; }
         public AppUser AppUser { get; set; }
 
-        public int ProductShopID { get; set; }
         public ProductShop ProductShop { get; set; }
     }
 }
