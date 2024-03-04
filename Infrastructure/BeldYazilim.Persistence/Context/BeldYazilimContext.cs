@@ -27,12 +27,13 @@ namespace BeldYazilim.Persistence.Context
         public DbSet<ProductShop> ProductShops { get; set; }
 
 
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<ProductCategory> ProductCategories { get; set; }
-        //public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
 
-        //public DbSet<Basket> Baskets { get; set; }
-        //public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<ProductCategoryLink> ProductCategoryLinks { get; set; }
 
 
 
@@ -72,7 +73,11 @@ namespace BeldYazilim.Persistence.Context
                 .WithOne(aa => aa.AppUser)
                 .HasForeignKey<ArticleAuthor>(aa => aa.AppUserID);
 
-
+            modelBuilder.Entity<BasketItem>()
+                .HasOne(bi => bi.Product)
+                .WithMany(p => p.BasketItems)
+                .HasForeignKey(bi => bi.ProductID)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
 

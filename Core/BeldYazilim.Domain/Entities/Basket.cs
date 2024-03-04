@@ -8,11 +8,11 @@ namespace BeldYazilim.Domain.Entities
 {
     public class Basket
     {
-        //public int BasketID { get; set; }
-        
-        //public List<BasketItem> BasketItems { get; set; }
+        public int BasketID { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
+        // Diğer özellikler...
 
-        //public int AppUserID { get; set; }
-        //public User AppUser { get; set; }
+        public int AppUserID { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

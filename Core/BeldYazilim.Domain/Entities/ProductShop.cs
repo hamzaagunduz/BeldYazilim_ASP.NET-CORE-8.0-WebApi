@@ -14,5 +14,8 @@ namespace BeldYazilim.Domain.Entities
         //public List<Product> Products { get; set; }
         public int ProductSellerID { get; set; }
         public ProductSeller ProductSeller { get; set; }
+
+        public List<Product> Products { get; set; }
+
     }
 }

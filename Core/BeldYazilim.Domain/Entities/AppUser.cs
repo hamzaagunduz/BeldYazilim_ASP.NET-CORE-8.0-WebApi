@@ -27,7 +27,8 @@ namespace BeldYazilim.Domain.Entities
 
         public ProductSeller ProductSeller { get; set; }
 
-        //public Basket Baskets { get; set; }
+        public Basket Basket { get; set; }
+
         //public UserInterest UserInterest { get; set; }
 
 

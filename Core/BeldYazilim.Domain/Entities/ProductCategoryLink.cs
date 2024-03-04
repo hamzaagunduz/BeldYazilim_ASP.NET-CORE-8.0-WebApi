@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class ProductImage
+    public class ProductCategoryLink
     {
-        public int ProductImageID { get; set; }
-        public string ImageUrl { get; set; }
-        // Diğer özellikler...
+        public int ProductCategoryLinkID { get; set; }
 
         public int ProductID { get; set; }
         public Product Product { get; set; }
+
+        public int ProductCategoryID { get; set; }
+        public ProductCategory ProductCategory { get; set; }
     }
+
 }
