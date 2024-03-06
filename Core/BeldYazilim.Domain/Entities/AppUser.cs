@@ -13,7 +13,7 @@ namespace BeldYazilim.Domain.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Password { get; set; }
+        public string Password { get; set; } 
         public string District { get; set; }
         public string? About { get; set; }      
         public DateTime RegistrationDate { get; set; }
