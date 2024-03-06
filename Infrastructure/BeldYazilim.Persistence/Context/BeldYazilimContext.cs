@@ -1,10 +1,12 @@
 ﻿using BeldYazilim.Domain.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace BeldYazilim.Persistence.Context
 {
-    public class BeldYazilimContext:DbContext/*IdentityDbContext<AppUser,AppRole,int>*/
+    public class BeldYazilimContext: IdentityDbContext<AppUser,AppRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -67,6 +69,7 @@ namespace BeldYazilim.Persistence.Context
                 .WithMany(aa => aa.Articles)
                 .HasForeignKey(a => a.ArticleAuthorID)
                 .OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<AppUser>()
                 .HasOne(u => u.ArticleAuthor)

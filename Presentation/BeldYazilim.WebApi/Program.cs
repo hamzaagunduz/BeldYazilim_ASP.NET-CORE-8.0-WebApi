@@ -3,13 +3,23 @@ using BeldYazilim.Application.Services;
 using BeldYazilim.Domain.Entities;
 using BeldYazilim.Persistence.Context;
 using BeldYazilim.Persistence.Repositories;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<BeldYazilimContext>();
-//builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
+
+
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+    
+
+
 
 builder.Services.AddApplicationService(builder.Configuration);
 

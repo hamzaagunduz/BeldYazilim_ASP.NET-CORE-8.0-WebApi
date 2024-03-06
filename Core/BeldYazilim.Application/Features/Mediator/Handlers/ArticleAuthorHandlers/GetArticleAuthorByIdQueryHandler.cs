@@ -26,7 +26,6 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleAuthorHandle
             {
                 AppUserID = values.AppUserID,
                 ArticleAuthorID = values.ArticleAuthorID,
-                ArticleID = values.ArticleID,
                 Name = values.Name,
                 Role = values.Role,
             };

@@ -24,7 +24,6 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleAuthorHandle
             var values = await _repository.GetByIdAsync(request.ArticleAuthorID);
             values.Name = request.Name;
             values.Role=request.Role;
-            values.ArticleID = request.ArticleID;
             values.AppUserID=request.AppUserID;
             await _repository.UpdateAsync(values);
         }

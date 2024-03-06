@@ -13,6 +13,7 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor
         public string Surname { get; set; }
         public string District { get; set; }
         public string? About { get; set; }
+        public string? Password { get; set; }
 
         public DateTime RegistrationDate { get; set; }
         public string City { get; set; }
