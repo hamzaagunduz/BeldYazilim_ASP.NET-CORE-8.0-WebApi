@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeldYazilim.Persistence.Migrations
 {
     [DbContext(typeof(BeldYazilimContext))]
-    [Migration("20240305160555_PasswordAdd")]
-    partial class PasswordAdd
+    [Migration("20240306184301_Test")]
+    partial class Test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -164,7 +164,7 @@ namespace BeldYazilim.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleID"));
 
-                    b.Property<int>("ArticleAuthorID")
+                    b.Property<int?>("ArticleAuthorID")
                         .HasColumnType("int");
 
                     b.Property<string>("BigImageUrl")
@@ -204,9 +204,6 @@ namespace BeldYazilim.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleAuthorID"));
 
                     b.Property<int>("AppUserID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArticleID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -643,8 +640,7 @@ namespace BeldYazilim.Persistence.Migrations
                     b.HasOne("BeldYazilim.Domain.Entities.ArticleAuthor", "ArticleAuthor")
                         .WithMany("Articles")
                         .HasForeignKey("ArticleAuthorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ArticleAuthor");
                 });

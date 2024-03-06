@@ -203,9 +203,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Property<int>("AppUserID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ArticleID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

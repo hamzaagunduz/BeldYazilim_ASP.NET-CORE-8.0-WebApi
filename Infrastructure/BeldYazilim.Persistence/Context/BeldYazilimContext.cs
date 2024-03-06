@@ -70,6 +70,7 @@ namespace BeldYazilim.Persistence.Context
                 .HasForeignKey(a => a.ArticleAuthorID)
                 .OnDelete(DeleteBehavior.Cascade);
 
+
             modelBuilder.Entity<AppUser>()
                 .HasOne(u => u.ArticleAuthor)
                 .WithOne(aa => aa.AppUser)

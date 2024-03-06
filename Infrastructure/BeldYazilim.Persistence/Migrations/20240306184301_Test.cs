@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BeldYazilim.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Idendidty : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,9 +32,9 @@ namespace BeldYazilim.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppUserID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     District = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -116,7 +116,6 @@ namespace BeldYazilim.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArticleID = table.Column<int>(type: "int", nullable: false),
                     AppUserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -288,7 +287,7 @@ namespace BeldYazilim.Persistence.Migrations
                     ClickCount = table.Column<int>(type: "int", nullable: false),
                     BigImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: true),
-                    ArticleAuthorID = table.Column<int>(type: "int", nullable: false)
+                    ArticleAuthorID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
