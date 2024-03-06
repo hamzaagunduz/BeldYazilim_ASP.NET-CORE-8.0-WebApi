@@ -4,6 +4,7 @@ using BeldYazilim.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeldYazilim.Persistence.Migrations
 {
     [DbContext(typeof(BeldYazilimContext))]
-    partial class BeldYazilimContextModelSnapshot : ModelSnapshot
+    [Migration("20240304212053_Idendidty")]
+    partial class Idendidty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,6 +69,9 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("AppUserID")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -109,10 +115,6 @@ namespace BeldYazilim.Persistence.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -161,7 +163,7 @@ namespace BeldYazilim.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleID"));
 
-                    b.Property<int?>("ArticleAuthorID")
+                    b.Property<int>("ArticleAuthorID")
                         .HasColumnType("int");
 
                     b.Property<string>("BigImageUrl")
@@ -640,7 +642,8 @@ namespace BeldYazilim.Persistence.Migrations
                     b.HasOne("BeldYazilim.Domain.Entities.ArticleAuthor", "ArticleAuthor")
                         .WithMany("Articles")
                         .HasForeignKey("ArticleAuthorID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ArticleAuthor");
                 });

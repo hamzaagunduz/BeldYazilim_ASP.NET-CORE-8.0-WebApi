@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Domain.Entities
 {
-    public class AppUser 
+    public class AppUser: IdentityUser<int>
     {
-        public int AppUserID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Password { get; set; }
         public string District { get; set; }
-        public string? About { get; set; }
-        
+        public string? About { get; set; }      
         public DateTime RegistrationDate { get; set; }
         public string City { get; set; }
         public string ImageUrl { get; set; }

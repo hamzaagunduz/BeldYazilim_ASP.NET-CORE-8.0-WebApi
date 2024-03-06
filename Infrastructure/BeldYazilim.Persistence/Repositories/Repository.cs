@@ -40,6 +40,8 @@ namespace BeldYazilim.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
+
+
         public async Task UpdateAsync(T entity)
         {
             _context.Set<T>().Update(entity);

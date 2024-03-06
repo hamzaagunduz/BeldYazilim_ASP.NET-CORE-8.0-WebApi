@@ -1,5 +1,6 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
 using BeldYazilim.Application.Features.Mediator.Queries.AppUserQueries;
+using BeldYazilim.Persistence.Context;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,14 @@ namespace BeldYazilim.WebApi.Controllers
     public class AppUserController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AppUserController(IMediator mediator)
+        private readonly BeldYazilimContext _context;
+
+
+        public AppUserController(IMediator mediator, BeldYazilimContext context) 
         {
             _mediator = mediator;
+
+            _context = context;
         }
 
         [HttpGet]
@@ -31,8 +37,10 @@ namespace BeldYazilim.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAppUser(CreateAppUserCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("AppUser başarıyla eklendi");
+          
+                await _mediator.Send(command);
+                return Ok("AppUser başarıyla eklendi");
+    
         }
         [HttpDelete]
         public async Task<IActionResult> RemoveAppUser(int id)

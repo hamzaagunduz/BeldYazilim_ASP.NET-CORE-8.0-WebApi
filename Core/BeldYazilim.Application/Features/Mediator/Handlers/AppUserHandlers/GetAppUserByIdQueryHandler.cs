@@ -25,7 +25,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             var values = await _repository.GetByIdAsync(request.Id);
             return new GetAppUserByIdQueryResult
             {
-                AppUserID=values.AppUserID,
+                AppUserID=values.Id,
                 City=values.City,
                 Name = values.Name,
                 Surname = values.Surname,
