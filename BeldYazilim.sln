@@ -5,17 +5,19 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{68AEAB27-FE00-4505-8ACB-70817EBEDCAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeldYazilim.Domain", "Core\BeldYazilim.Domain\BeldYazilim.Domain.csproj", "{62E8268D-2FBD-4960-B09F-94B404E4B0B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Domain", "Core\BeldYazilim.Domain\BeldYazilim.Domain.csproj", "{62E8268D-2FBD-4960-B09F-94B404E4B0B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AFF2ECDA-07D5-41F2-895D-73FA4E9556B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeldYazilim.Persistence", "Infrastructure\BeldYazilim.Persistence\BeldYazilim.Persistence.csproj", "{30F7E367-CA5B-45A9-A8F9-D88065A79666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Persistence", "Infrastructure\BeldYazilim.Persistence\BeldYazilim.Persistence.csproj", "{30F7E367-CA5B-45A9-A8F9-D88065A79666}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{2563B60C-A73A-446F-BFA3-7E6E192210A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeldYazilim.WebApi", "Presentation\BeldYazilim.WebApi\BeldYazilim.WebApi.csproj", "{9792D503-F34C-4F80-A6CA-187599570586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.WebApi", "Presentation\BeldYazilim.WebApi\BeldYazilim.WebApi.csproj", "{9792D503-F34C-4F80-A6CA-187599570586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeldYazilim.Application", "Core\BeldYazilim.Application\BeldYazilim.Application.csproj", "{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Application", "Core\BeldYazilim.Application\BeldYazilim.Application.csproj", "{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{0BD638F4-704E-41D7-A916-F12A8012C0B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
