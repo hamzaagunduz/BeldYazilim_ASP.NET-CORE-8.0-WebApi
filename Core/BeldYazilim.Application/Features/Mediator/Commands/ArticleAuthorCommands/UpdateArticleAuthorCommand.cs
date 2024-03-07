@@ -12,7 +12,7 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleAuthorComman
         public int ArticleAuthorID { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
-        public int AppUserID { get; set; }
+
 
     }
 }

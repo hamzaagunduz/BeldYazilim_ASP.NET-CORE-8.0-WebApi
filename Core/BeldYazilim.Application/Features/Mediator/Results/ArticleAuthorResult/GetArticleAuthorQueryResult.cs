@@ -11,7 +11,6 @@ namespace BeldYazilim.Application.Features.Mediator.Results.ArticleAuthorResult
         public int ArticleAuthorID { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
-        public int ArticleID { get; set; }
         public int AppUserID { get; set; }
     }
 }

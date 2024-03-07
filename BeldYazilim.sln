@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Application", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{0BD638F4-704E-41D7-A916-F12A8012C0B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeldYazilim.WebUI", "FrontEnd\BeldYazilim.WebUI\BeldYazilim.WebUI.csproj", "{F5A9A00F-738A-4B57-8667-2553280006C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5A9A00F-738A-4B57-8667-2553280006C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5A9A00F-738A-4B57-8667-2553280006C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5A9A00F-738A-4B57-8667-2553280006C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5A9A00F-738A-4B57-8667-2553280006C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{30F7E367-CA5B-45A9-A8F9-D88065A79666} = {AFF2ECDA-07D5-41F2-895D-73FA4E9556B6}
 		{9792D503-F34C-4F80-A6CA-187599570586} = {2563B60C-A73A-446F-BFA3-7E6E192210A6}
 		{DDE4C8E2-6C1D-4870-BFAB-3FF5D971C893} = {68AEAB27-FE00-4505-8ACB-70817EBEDCAE}
+		{F5A9A00F-738A-4B57-8667-2553280006C0} = {0BD638F4-704E-41D7-A916-F12A8012C0B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {917C5EC0-DC88-428A-88E1-2B512689E962}
