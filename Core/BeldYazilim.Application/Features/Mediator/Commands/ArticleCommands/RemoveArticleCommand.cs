@@ -9,5 +9,11 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands
 {
     public class RemoveArticleCommand:IRequest
     {
+        public RemoveArticleCommand(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; set; }
     }
 }

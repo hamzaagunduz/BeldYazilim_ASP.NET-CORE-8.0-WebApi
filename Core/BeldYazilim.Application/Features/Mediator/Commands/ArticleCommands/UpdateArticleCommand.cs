@@ -16,6 +16,6 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands
         public int ClickCount { get; set; }
         public string BigImageUrl { get; set; }
         public int? Rating { get; set; }
-        public int? ArticleAuthorID { get; set; }
+        //public int? ArticleAuthorID { get; set; }
     }
 }
