@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeldYazilim.Domain.Entities
+namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands
 {
-    public class Article
+    public class UpdateArticleCommand:IRequest
     {
         public int ArticleID { get; set; }
         public string Title { get; set; }
@@ -16,12 +17,5 @@ namespace BeldYazilim.Domain.Entities
         public string BigImageUrl { get; set; }
         public int? Rating { get; set; }
         public int? ArticleAuthorID { get; set; }
-        public ArticleAuthor ArticleAuthor { get; set; }
-        public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
-
-        public List<ArticleComment> ArticleComments { get; set; }
-
-        public List<ArticleImage> Images { get; set; }
-
     }
 }
