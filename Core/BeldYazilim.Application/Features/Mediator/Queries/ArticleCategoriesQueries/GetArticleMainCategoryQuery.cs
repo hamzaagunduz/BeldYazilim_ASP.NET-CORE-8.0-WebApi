@@ -10,11 +10,6 @@ namespace BeldYazilim.Application.Features.Mediator.Queries.ArticleCategoriesQue
 {
     public class GetArticleMainCategoryQuery : IRequest<List<GetArticleMainCategoryQueryResult>>
     {
-        public GetArticleMainCategoryQuery(int id)
-        {
-            Id = id;
-        }
 
-        public int Id { get; set; }
     }
 }
