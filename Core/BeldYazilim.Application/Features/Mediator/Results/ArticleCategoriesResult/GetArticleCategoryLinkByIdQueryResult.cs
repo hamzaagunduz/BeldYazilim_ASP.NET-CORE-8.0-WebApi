@@ -9,7 +9,6 @@ namespace BeldYazilim.Application.Features.Mediator.Results.ArticleCategories
     public class GetArticleCategoryLinkByIdQueryResult
     {
         public int ArticleCategoryLinkID { get; set; }
-
         public int ArticleID { get; set; }
         public int MainCategoryID { get; set; }
         public int SubcategoryID { get; set; }

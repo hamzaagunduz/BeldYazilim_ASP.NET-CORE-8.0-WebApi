@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Application.Features.Mediator.Queries.ArticleCategoriesQueries
 {
-    public class GetArticleSubCategoryByIdQuery:IRequest<GetArticleSubcategoryByIdQueryResult>
+    public class GetArticleSubCategoryByIdQuery:IRequest<GetArticleSubCategoryByIdQueryResult>
     {
         public GetArticleSubCategoryByIdQuery(int id)
         {

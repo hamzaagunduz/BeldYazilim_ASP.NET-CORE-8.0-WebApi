@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Application.Features.Mediator.Results.ArticleCategories
 {
-    public class GetArticleSubcategoryByIdQueryResult
+    public class GetArticleSubCategoryByIdQueryResult
     {
         public int SubCategoryID { get; set; }
         public string Name { get; set; }
