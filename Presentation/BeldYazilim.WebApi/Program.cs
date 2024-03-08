@@ -13,7 +13,7 @@ builder.Services.AddScoped<BeldYazilimContext>();
 
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
 
-
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
