@@ -4,11 +4,28 @@ using BeldYazilim.Domain.Entities;
 using BeldYazilim.Persistence.Context;
 using BeldYazilim.Persistence.Repositories;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = "https://localhost",
+        ValidIssuer = "https://localhost",
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("beldyazilimbeldyazilim01")),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
+
+
 builder.Services.AddScoped<BeldYazilimContext>();
 
 //builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
