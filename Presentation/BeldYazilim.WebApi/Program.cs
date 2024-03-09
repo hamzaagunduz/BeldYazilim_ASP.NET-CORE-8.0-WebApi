@@ -11,7 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<BeldYazilimContext>();
 
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
+//builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BeldYazilimContext>();
+
+builder.Services.AddIdentity<AppUser, AppRole>(options =>
+{
+	//options.User.RequireUniqueEmail = false;
+
+	options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+})
+.AddEntityFrameworkStores<BeldYazilimContext>();
+
+
+
+
 
 builder.Services.AddHttpClient();
 

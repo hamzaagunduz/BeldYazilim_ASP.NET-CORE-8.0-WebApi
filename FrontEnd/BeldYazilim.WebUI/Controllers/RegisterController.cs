@@ -1,8 +1,11 @@
 ﻿using BeldYazilim.Dto.AppUserDtos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BeldYazilim.WebUI.Controllers
 {
@@ -28,17 +31,18 @@ namespace BeldYazilim.WebUI.Controllers
 			var jsonData = JsonConvert.SerializeObject(createAppUserDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 			var responseMessage = await client.PostAsync("https://localhost:7298/api/AppUser", stringContent);
+
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				return RedirectToAction("Index", "Confirm");
 			}
-			return Content(responseMessage.ToString());
+
+
+
+			return View();
 		}
 
-		//public IActionResult Index(CreateAppUserDto a)
-		//{
-		//	return View();
-		//}
+
 
 	}
 }

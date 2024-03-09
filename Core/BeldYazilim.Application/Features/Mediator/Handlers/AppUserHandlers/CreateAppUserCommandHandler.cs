@@ -35,34 +35,40 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
                 var newUser = new AppUser
                 {
                     Name = request.Name,
-                    Surname = request.Surname,
-                    District = request.District,
-                    City = request.City,
-                    About = request.About,
+					UserName = request.UserName,
+					Surname = request.Surname,
                     RegistrationDate = DateTime.Now,
-                    ImageUrl = request.ImageUrl,
-                    ConfirmCode = request.ConfirmCode,
-                    Password = request.Password,
-                };
+					Email = request.Email,
+					Password =request.Password,
+					ConfirmCode = 1,
+				};
 
-                await _repository.CreateAsync(newUser);
+			IdentityResult result=await _userManager.CreateAsync(newUser,request.Password);
 
+			
 
-                await _repositoryArticleAuthor.CreateAsync(new ArticleAuthor
-                {
-                    AppUserID = newUser.Id,
-                    Name = request.Name,
-                    Role="Test"
-                });
+			var newArticleAuthor = new ArticleAuthor
+				{
+					AppUserID = newUser.Id,
+					Name = "desiredName",
+					Role = "Test"
+				};
 
+				await _repositoryArticleAuthor.CreateAsync(newArticleAuthor);
 
-
-        }
-
-
-
+			
 
 
 
-    }
+
+
+
+		}
+
+
+
+
+
+
+	}
 }
