@@ -54,5 +54,14 @@ namespace BeldYazilim.WebApi.Controllers
             await _mediator.Send(command);
             return Ok("AppUser başarıyla güncellendi");
         }
-    }
+		[HttpPost("AppUserLogin")]
+		public async Task<IActionResult> AppUserLogin(LoginAppUserCommand command)
+		{
+
+			await _mediator.Send(command);
+			return Ok("Login Olundu");
+
+		}
+
+	}
 }
