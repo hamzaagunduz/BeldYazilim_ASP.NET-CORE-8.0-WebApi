@@ -1,11 +1,13 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.ArticleAuthorCommands;
 using BeldYazilim.Application.Features.Mediator.Queries.ArticleAuthorQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeldYazilim.WebApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class ArticleAuthorsController : ControllerBase

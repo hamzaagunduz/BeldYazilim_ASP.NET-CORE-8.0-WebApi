@@ -27,7 +27,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             {
                 AppUserID=values.Id,
                 City=values.City,
-                Name = values.Name,
+                Name = values.FirstName,
                 Surname = values.Surname,
                 District = values.District,
                 About = values.About,

@@ -1,5 +1,6 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
 using BeldYazilim.Application.Features.Mediator.Queries.AppUserQueries;
+using BeldYazilim.Application.Tools;
 using BeldYazilim.Persistence.Context;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -54,5 +55,28 @@ namespace BeldYazilim.WebApi.Controllers
             await _mediator.Send(command);
             return Ok("AppUser başarıyla güncellendi");
         }
+        //[HttpPost("AppUserLogin")]
+        //public async Task<IActionResult> AppUserLogin(LoginAppUserCommand command)
+        //{
+
+        //	await _mediator.Send(command);
+        //	return Ok("Login Olundu");
+
+        //}
+        [HttpPost("LoginToken")]
+        public async Task<IActionResult> LoginToken(GetCheckAppUserQuery query)
+        {
+            var values = await _mediator.Send(query);
+            if (values.IsExist)
+            {
+                return Created("", JwtTokenGenerator.GenerateToken(values));
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre hatalıdır");
+            }
+        }
+
+
     }
 }

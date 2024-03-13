@@ -1,6 +1,7 @@
 ﻿using BeldYazilim.Dto.AppUserDtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
@@ -27,7 +28,9 @@ namespace BeldYazilim.WebUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Index(CreateAppUserDto createAppUserDto)
 		{
-			var client = _httpClientFactory.CreateClient();
+            
+            var client = _httpClientFactory.CreateClient();
+			
 			var jsonData = JsonConvert.SerializeObject(createAppUserDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 			var responseMessage = await client.PostAsync("https://localhost:7298/api/AppUser", stringContent);
@@ -37,9 +40,10 @@ namespace BeldYazilim.WebUI.Controllers
 				return RedirectToAction("Index", "Confirm");
 			}
 
+            var content = await responseMessage.Content.ReadAsStringAsync();
 
 
-			return View();
+            return Content(content);
 		}
 
 

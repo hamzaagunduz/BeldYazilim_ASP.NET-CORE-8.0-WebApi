@@ -10,7 +10,7 @@ namespace BeldYazilim.Dto.AppUserDtos
     public class CreateAppUserDto
     {
 
-            public string Name { get; set; }
+            public string FirstName { get; set; }
             public string UserName { get; set; }
             public string Surname { get; set; }
             public string Password { get; set; }
