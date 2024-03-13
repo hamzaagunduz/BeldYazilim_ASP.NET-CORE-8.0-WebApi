@@ -27,7 +27,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
         public async Task Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.AppUserID);
-            values.Name = request.Name;
+            values.FirstName = request.FirstName;
             values.Surname= request.Surname;
             values.District = request.District;
             values.About=request.About;

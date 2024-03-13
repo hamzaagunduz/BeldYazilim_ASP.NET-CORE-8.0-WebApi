@@ -12,7 +12,7 @@ namespace BeldYazilim.Domain.Entities
 {
     public class AppUser: IdentityUser<int>
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         public string Surname { get; set; }
         public string Password { get; set; } 
         public string? District { get; set; }

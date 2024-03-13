@@ -34,7 +34,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             {
                 values.IsExist = true;
                 values.UserName = user.UserName;
-                //values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.AppRoleId == user.AppRoleId)).AppRoleName;
+                //values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.Id == user.Id)).Name;
                 values.Id = user.Id;
             }
             return values;
