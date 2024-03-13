@@ -2,5 +2,17 @@
 @{
     Layout = null;
 }
-<h2>@Model.UserName</h2>
-<h2>@Model.UserId</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <p><strong>Username:</strong> @Model.UserName</p>
+    <p><strong>First Name:</strong> @Model.FirstName</p>
+    <p><strong>Surname:</strong> @Model.Surname</p>
+    <p><strong>District:</strong> @Model.District</p>
+</body>
+</html>

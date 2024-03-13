@@ -51,9 +51,6 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 
 			IdentityResult result=await _userManager.CreateAsync(newUser,request.Password);
 
-            //var roleResult = await _userManager.AddToRoleAsync(newUser, AppRole.GetRoleName(RolesType.Admin));
-
-            //var roleResult = await _userManager.AddToRoleAsync(newUser, "Admin");
             var adminRole = await _roleManager.FindByNameAsync("Admin");
 
             if (adminRole == null)
