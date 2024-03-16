@@ -45,10 +45,50 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7298/api/Article", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminArticle", "Admin");
             }
             return View(createArticleDto);
         }
+
+        public async Task<IActionResult> RemoveArticle(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7298/api/Article/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AdminArticle", "Admin");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateArticle(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var resposenMessage = await client.GetAsync($"https://localhost:7298/api/Article/{id}");
+            if (resposenMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await resposenMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<UpdateArticleDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateArticle(UpdateArticleDto updateArticleDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateArticleDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7298/api/Article/", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AdminArticle", "Admin");
+            }
+            return View();
+        }
+
 
     }
 }

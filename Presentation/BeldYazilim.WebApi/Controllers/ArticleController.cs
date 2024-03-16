@@ -41,7 +41,7 @@ namespace BeldYazilim.WebApi.Controllers
             return Ok("Article başarıyla eklendi");
 
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveArticle(int id)
         {
             await _mediator.Send(new RemoveArticleCommand(id));

@@ -1,0 +1,69 @@
+﻿@model UpdateArticleDto
+
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Araç Güncelleme Sayfası</h4>
+                        <p class="card-subtitle mb-4">Araç ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak güncelleme işlemini tamamlayabilirsiniz.</p>
+                        <form method="post">
+                            <input type="hidden" asp-for="articleID" />
+                           @*  <div class="form-group">
+                                <label for="exampleInputBrand">Marka</label>
+                                @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new { @class = "form-control" })
+                            </div> *@
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Model</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputCoverContent">Kapak Fotoğrafı</label>
+                                <input type="text" class="form-control" id="exampleInputCoverContent" asp-for="content" placeholder="İçerik">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputCoverImage">Popülerlik</label>
+                                <input type="number" class="form-control" id="exampleInputCoverImage" asp-for="rating" placeholder="Popülerlik">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputClickCount">Tıklanma Sayısı</label>
+                                <input type="number" class="form-control" id="exampleInputClickCount" asp-for="clickCount" placeholder="Tıklanma Sayısı">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputCreationTime">Oluşturulma Tarihi</label>
+                                <input type="date" class="form-control" id="exampleInputCreationTime" asp-for="creationTime" placeholder="Tarih">
+                            </div>
+
+
+                            
+                            <div class="form-group">
+                                <label for="exampleInputBigImageUrl">Büyük Kapak Fotoğrafı</label>
+                                <input type="text" class="form-control" id="exampleInputBigImageUrl" asp-for="bigImageUrl" placeholder="Araç Detayında Gözükecek Kapak Fotoğraf Linki">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Aracı Kaydet</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>
+<!-- end page title -->
+
