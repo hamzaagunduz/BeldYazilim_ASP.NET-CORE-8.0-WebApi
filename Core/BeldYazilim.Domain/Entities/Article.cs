@@ -16,11 +16,13 @@ namespace BeldYazilim.Domain.Entities
         public string BigImageUrl { get; set; }
         public int? Rating { get; set; }
         public int? ArticleAuthorID { get; set; }
+
         public ArticleAuthor ArticleAuthor { get; set; }
-        //public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
+
+        public int ArticleMainCategoryID { get; set; }
+        public ArticleMainCategory ArticleMainCategory { get; set; }
 
         public List<ArticleComment> ArticleComments { get; set; }
-        public List<Subcategory> SubCategories { get; set; }
 
         public List<ArticleImage> Images { get; set; }
 

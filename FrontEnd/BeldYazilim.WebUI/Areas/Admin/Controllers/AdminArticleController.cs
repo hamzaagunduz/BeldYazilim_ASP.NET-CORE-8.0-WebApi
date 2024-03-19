@@ -35,19 +35,18 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
         {
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7298/api/ArticleCategory/GetSubCategory");
+            var responseMessage = await client.GetAsync("https://localhost:7298/api/ArticleMainCategoryCategories");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultMainCategoryDto>>(jsonData);
-            List<SelectListItem> subCategoryValues = (from x in values
+            List<SelectListItem> categoryValues = (from x in values
                                                 select new SelectListItem
                                                 {
                                                     Text = x.name,
-                                                    Value = x.subCategoryID.ToString(),
-                                                    
+                                                    Value = x.mainCategoryID.ToString()
                                                 }).ToList();
+            ViewBag.CategoryValues = categoryValues;
 
 
-            ViewBag.SubCategoryValues = subCategoryValues;
             return View();
         }
 
@@ -59,14 +58,11 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
             var responseMessage = await client.PostAsync("https://localhost:7298/api/Article", stringContent);
-            var responseMessage2 = await client.GetAsync("https://localhost:7298/api/ArticleCategory/GetSubCategory");
-            var jsonData2 = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultMainCategoryDto>>(jsonData2);
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                return Content(values.ToString());
-                //return RedirectToAction("AdminArticle", "Admin");
+
+                return RedirectToAction("AdminArticle", "Admin");
             }
             return View(createArticleDto);
         }

@@ -17,11 +17,11 @@
                         <form method="post">
 
                             <div class="form-group">
-                                <label for="exampleInputsubCategory">Kategori</label>
+                                <label for="exampleInputMainCategory">Kategori</label>
 
                                 <div class="form-group">
                                     <label for="exampleInputBrand">Marka</label>
-                                    @Html.DropDownListFor(x => x.SubCategoryID, (List<SelectListItem>)ViewBag.SubCategoryValues, new { @class = "form-control" })
+                                    @Html.DropDownListFor(x => x.MainCategoryID, (List<SelectListItem>)ViewBag.CategoryValues, new { @class = "form-control" })
                                 </div>
 
 

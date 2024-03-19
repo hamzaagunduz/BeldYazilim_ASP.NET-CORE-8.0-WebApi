@@ -14,7 +14,7 @@ namespace BeldYazilim.Persistence.Context
 
 
         }
-        public DbSet<Subcategory> Subcategories { get; set; }
+        public DbSet<ArticleMainCategory> ArticleMainCategory { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleAuthor> ArticleAuthors { get; set; }
         public DbSet<ArticleComment> ArticleComments { get; set; }

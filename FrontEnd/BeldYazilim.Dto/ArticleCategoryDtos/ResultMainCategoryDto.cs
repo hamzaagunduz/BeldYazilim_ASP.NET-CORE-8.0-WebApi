@@ -9,7 +9,6 @@ namespace BeldYazilim.Dto.ArticleCategoryDtos
     public class ResultMainCategoryDto
     {
 
-            public int subCategoryID { get; set; }
             public int mainCategoryID { get; set; }
             public string name { get; set; }
 

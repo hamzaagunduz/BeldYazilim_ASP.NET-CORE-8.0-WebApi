@@ -34,7 +34,8 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleCommandHandl
                 ClickCount = x.ClickCount,
                 BigImageUrl = x.BigImageUrl,
                 Rating = x.Rating,
-                ArticleAuthorID = x.ArticleAuthorID
+                ArticleAuthorID = x.ArticleAuthorID,
+                MainCategoryId=x.ArticleMainCategoryID
 
             }).ToList();
         }

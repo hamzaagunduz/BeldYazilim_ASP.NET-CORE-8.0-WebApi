@@ -27,6 +27,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleCommandHandl
             values.ClickCount = request.ClickCount;
             values.BigImageUrl = request.BigImageUrl;
             values.Rating = request.Rating;
+            values.ArticleMainCategoryID = request.MainCategoryId;
             //values.ArticleAuthorID = request.ArticleAuthorID;
             await _repository.UpdateAsync(values);
         }
