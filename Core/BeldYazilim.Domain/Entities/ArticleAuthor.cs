@@ -13,7 +13,6 @@ namespace BeldYazilim.Domain.Entities
         public string Role { get; set; }
         
         public List<Article> Articles { get; set; }
-        // Birebir ilişki
         public int AppUserID { get; set; }
         public AppUser AppUser { get; set; }
 

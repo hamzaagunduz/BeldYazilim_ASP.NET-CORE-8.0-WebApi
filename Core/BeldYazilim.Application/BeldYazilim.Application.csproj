@@ -19,8 +19,4 @@
     <ProjectReference Include="..\BeldYazilim.Domain\BeldYazilim.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\IArticleCategoryRepository\" />
-  </ItemGroup>
-
 </Project>

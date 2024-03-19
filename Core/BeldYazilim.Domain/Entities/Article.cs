@@ -17,9 +17,10 @@ namespace BeldYazilim.Domain.Entities
         public int? Rating { get; set; }
         public int? ArticleAuthorID { get; set; }
         public ArticleAuthor ArticleAuthor { get; set; }
-        public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
+        //public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
 
         public List<ArticleComment> ArticleComments { get; set; }
+        public List<Subcategory> SubCategories { get; set; }
 
         public List<ArticleImage> Images { get; set; }
 

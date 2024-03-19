@@ -14,6 +14,9 @@ namespace BeldYazilim.Dto.ArticleDtos
             public int clickCount { get; set; }
             public string bigImageUrl { get; set; }
             public int rating { get; set; }
+            public int SubCategoryID { get; set; }
+
+            public int MainCategoryID = 1;
 
 
     }

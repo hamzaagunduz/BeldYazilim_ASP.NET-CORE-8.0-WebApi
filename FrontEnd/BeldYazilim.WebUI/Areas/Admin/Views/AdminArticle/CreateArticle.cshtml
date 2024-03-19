@@ -17,6 +17,21 @@
                         <form method="post">
 
                             <div class="form-group">
+                                <label for="exampleInputsubCategory">Kategori</label>
+
+                                <div class="form-group">
+                                    <label for="exampleInputBrand">Marka</label>
+                                    @Html.DropDownListFor(x => x.SubCategoryID, (List<SelectListItem>)ViewBag.SubCategoryValues, new { @class = "form-control" })
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <label for="exampleInputModel">Başlık</label>
                                 <input type="text" class="form-control" id="exampleInputModel" asp-for="title" placeholder="Model Girişi Yapınız">
                             </div>
@@ -26,19 +41,7 @@
                                 <input type="text" class="form-control" id="exampleInputLuggage" asp-for="content" placeholder="İçerik Linki">
                             </div>
                             
-                        @*     <div class="form-group">
-                                <label for="exampleInputLuggage">Tarih</label>
-                                <input type="date" class="form-control" id="exampleInputLuggage" asp-for="creationTime" placeholder="İçerik Linki">
-                            </div> *@
 
-                      @*       <div class="form-group">
-                                <label for="exampleInputLuggage">Tarih</label>
-                                <input type="number" class="form-control" id="exampleInputLuggage" asp-for="clickCount" placeholder="İçerik Linki">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputLuggage">rating</label>
-                                <input type="number" class="form-control" id="exampleInputLuggage" asp-for="rating" placeholder="İçerik Linki">
-                            </div> *@
 
                             <div class="form-group">
                                 <label for="exampleInputCoverImage">Kapak Fotoğrafı</label>

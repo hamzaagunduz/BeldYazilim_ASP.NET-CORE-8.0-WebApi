@@ -47,7 +47,6 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-    
 
 
 

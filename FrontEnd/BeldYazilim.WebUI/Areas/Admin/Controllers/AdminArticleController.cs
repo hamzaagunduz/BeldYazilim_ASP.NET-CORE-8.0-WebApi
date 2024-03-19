@@ -1,4 +1,5 @@
-﻿using BeldYazilim.Dto.ArticleDtos;
+﻿using BeldYazilim.Dto.ArticleCategoryDtos;
+using BeldYazilim.Dto.ArticleDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -33,6 +34,20 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateArticle()
         {
 
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:7298/api/ArticleCategory/GetSubCategory");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultMainCategoryDto>>(jsonData);
+            List<SelectListItem> subCategoryValues = (from x in values
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.name,
+                                                    Value = x.subCategoryID.ToString(),
+                                                    
+                                                }).ToList();
+
+
+            ViewBag.SubCategoryValues = subCategoryValues;
             return View();
         }
 
@@ -42,13 +57,24 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createArticleDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
             var responseMessage = await client.PostAsync("https://localhost:7298/api/Article", stringContent);
+            var responseMessage2 = await client.GetAsync("https://localhost:7298/api/ArticleCategory/GetSubCategory");
+            var jsonData2 = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultMainCategoryDto>>(jsonData2);
+
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("AdminArticle", "Admin");
+                return Content(values.ToString());
+                //return RedirectToAction("AdminArticle", "Admin");
             }
             return View(createArticleDto);
         }
+
+
+
+
+
 
         public async Task<IActionResult> RemoveArticle(int id)
         {
@@ -69,7 +95,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             if (resposenMessage.IsSuccessStatusCode)
             {
                 var jsonData = await resposenMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateArticleDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateArticleDto>(jsonData); 
                 return View(values);
             }
             return View();

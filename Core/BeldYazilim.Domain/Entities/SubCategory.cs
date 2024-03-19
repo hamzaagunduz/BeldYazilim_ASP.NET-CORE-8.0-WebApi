@@ -12,10 +12,10 @@ namespace BeldYazilim.Domain.Entities
         public string? ImageUrl { get; set; }
         public string Name { get; set; }
 
-        public List<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
 
-        public int MainCategoryID { get; set; }
-        public MainCategory MainCategory { get; set; }
+
+        public int ArticleID { get; set; }
+        public Article ArticleCategory { get; set; }
 
     }
 }

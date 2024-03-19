@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BeldYazilim.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Test : Migration
+    public partial class CategoryUpdate2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,14 +32,14 @@ namespace BeldYazilim.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    District = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConfirmCode = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -59,19 +59,6 @@ namespace BeldYazilim.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MainCategories",
-                columns: table => new
-                {
-                    MainCategoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MainCategories", x => x.MainCategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -255,27 +242,6 @@ namespace BeldYazilim.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Subcategories",
-                columns: table => new
-                {
-                    SubCategoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MainCategoryID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Subcategories", x => x.SubCategoryID);
-                    table.ForeignKey(
-                        name: "FK_Subcategories_MainCategories_MainCategoryID",
-                        column: x => x.MainCategoryID,
-                        principalTable: "MainCategories",
-                        principalColumn: "MainCategoryID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Articles",
                 columns: table => new
                 {
@@ -321,37 +287,6 @@ namespace BeldYazilim.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArticleCategoryLinks",
-                columns: table => new
-                {
-                    ArticleCategoryLinkID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArticleID = table.Column<int>(type: "int", nullable: false),
-                    MainCategoryID = table.Column<int>(type: "int", nullable: false),
-                    SubcategoryID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArticleCategoryLinks", x => x.ArticleCategoryLinkID);
-                    table.ForeignKey(
-                        name: "FK_ArticleCategoryLinks_Articles_ArticleID",
-                        column: x => x.ArticleID,
-                        principalTable: "Articles",
-                        principalColumn: "ArticleID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ArticleCategoryLinks_MainCategories_MainCategoryID",
-                        column: x => x.MainCategoryID,
-                        principalTable: "MainCategories",
-                        principalColumn: "MainCategoryID");
-                    table.ForeignKey(
-                        name: "FK_ArticleCategoryLinks_Subcategories_SubcategoryID",
-                        column: x => x.SubcategoryID,
-                        principalTable: "Subcategories",
-                        principalColumn: "SubCategoryID");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ArticleComments",
                 columns: table => new
                 {
@@ -392,6 +327,27 @@ namespace BeldYazilim.Persistence.Migrations
                     table.PrimaryKey("PK_ArticleImages", x => x.ArticleImageID);
                     table.ForeignKey(
                         name: "FK_ArticleImages_Articles_ArticleID",
+                        column: x => x.ArticleID,
+                        principalTable: "Articles",
+                        principalColumn: "ArticleID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subcategories",
+                columns: table => new
+                {
+                    SubCategoryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArticleID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subcategories", x => x.SubCategoryID);
+                    table.ForeignKey(
+                        name: "FK_Subcategories_Articles_ArticleID",
                         column: x => x.ArticleID,
                         principalTable: "Articles",
                         principalColumn: "ArticleID",
@@ -501,21 +457,6 @@ namespace BeldYazilim.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArticleCategoryLinks_ArticleID",
-                table: "ArticleCategoryLinks",
-                column: "ArticleID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArticleCategoryLinks_MainCategoryID",
-                table: "ArticleCategoryLinks",
-                column: "MainCategoryID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArticleCategoryLinks_SubcategoryID",
-                table: "ArticleCategoryLinks",
-                column: "SubcategoryID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ArticleComments_AppUserID",
                 table: "ArticleComments",
                 column: "AppUserID");
@@ -623,17 +564,14 @@ namespace BeldYazilim.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subcategories_MainCategoryID",
+                name: "IX_Subcategories_ArticleID",
                 table: "Subcategories",
-                column: "MainCategoryID");
+                column: "ArticleID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ArticleCategoryLinks");
-
             migrationBuilder.DropTable(
                 name: "ArticleComments");
 
@@ -668,9 +606,6 @@ namespace BeldYazilim.Persistence.Migrations
                 name: "Subcategories");
 
             migrationBuilder.DropTable(
-                name: "Articles");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -683,13 +618,13 @@ namespace BeldYazilim.Persistence.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "MainCategories");
-
-            migrationBuilder.DropTable(
-                name: "ArticleAuthors");
+                name: "Articles");
 
             migrationBuilder.DropTable(
                 name: "ProductShops");
+
+            migrationBuilder.DropTable(
+                name: "ArticleAuthors");
 
             migrationBuilder.DropTable(
                 name: "ProductSellers");
