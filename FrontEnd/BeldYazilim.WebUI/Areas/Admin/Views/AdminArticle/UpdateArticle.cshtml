@@ -20,18 +20,23 @@
                                 @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new { @class = "form-control" })
                             </div> *@
                             <div class="form-group">
-                                <label for="exampleInputTitle">Model</label>
+                                <label for="exampleInputTitle">Başlığınız</label>
                                 <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputCoverContent">Kapak Fotoğrafı</label>
+                                <label for="exampleInputCoverContent">İçeriğiniz</label>
                                 <input type="text" class="form-control" id="exampleInputCoverContent" asp-for="content" placeholder="İçerik">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputCoverImage">Popülerlik</label>
-                                <input type="number" class="form-control" id="exampleInputCoverImage" asp-for="rating" placeholder="Popülerlik">
+                                <label for="exampleInputRating">Popülerlik</label>
+                                <input type="number" class="form-control" id="exampleInputRating" asp-for="rating" placeholder="Popülerlik">
+                            </div>   
+
+                            <div class="form-group">
+                                <label for="exampleInputCategory">Kategori</label>
+                                <input type="number" class="form-control" id="exampleInputCategory" asp-for="mainCategoryId" placeholder="Popülerlik">
                             </div>
 
                             <div class="form-group">
