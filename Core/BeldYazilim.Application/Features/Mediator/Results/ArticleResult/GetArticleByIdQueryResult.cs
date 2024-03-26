@@ -12,6 +12,7 @@ namespace BeldYazilim.Application.Features.Mediator.Results.ArticleResult
         public string Title { get; set; }
         public string Content { get; set; }
         public int MainCategoryId { get; set; }
+        public int ArticleMainCategoryID { get; set; }
 
         public DateTime CreationTime { get; set; }
         public int ClickCount { get; set; }

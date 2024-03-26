@@ -16,7 +16,7 @@ namespace BeldYazilim.Dto.ArticleDtos
             public int rating { get; set; }
             public int SubCategoryID { get; set; }
 
-            public int MainCategoryID = 1;
+            public int mainCategoryID { get; set; }
 
 
     }

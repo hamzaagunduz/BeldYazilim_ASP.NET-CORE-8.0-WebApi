@@ -11,5 +11,6 @@ namespace BeldYazilim.Application.Interfaces.ArticleInterfaces
     public interface IArticleRepository
     {
         public List<Article> GetAllArticlesWithAuthors();
+        public List<Article> GetAllArticlesWithAuthorsAndCategory();
     }
 }

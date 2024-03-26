@@ -8,17 +8,12 @@ namespace BeldYazilim.Dto.ArticleDtos
 {
     public class ResultArticleDtos
     {
-
-
-            public int articleID { get; set; }
-            public string title { get; set; }
-            public string content { get; set; }
-            public int MainCategoryID { get; set; }
-            public DateTime creationTime { get; set; }
-            public int clickCount { get; set; }
-            public string bigImageUrl { get; set; }
-            public int rating { get; set; }
-            public object articleAuthorID { get; set; }
+        public int ArticleID { get; set; }
+        public string Title { get; set; }
+        public string CategoryName { get; set; }
+        public string AuthorName { get; set; }
+        public DateTime CreationTime { get; set; }
+        public int ClickCount { get; set; }
 
     }
 }

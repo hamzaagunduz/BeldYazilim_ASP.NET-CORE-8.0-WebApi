@@ -21,11 +21,13 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7298/api/Article");
+            var responseMessage = await client.GetAsync("https://localhost:7298/api/Article/ArticleListWithAuthorsAndCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultArticleDtos>>(jsonData);
+
+
                 return View(values);
             }
             return View();
@@ -42,7 +44,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
                                                 select new SelectListItem
                                                 {
                                                     Text = x.name,
-                                                    Value = x.mainCategoryID.ToString()
+                                                    Value = x.articleMainCategoryID.ToString()
                                                 }).ToList();
             ViewBag.CategoryValues = categoryValues;
 
@@ -64,7 +66,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 
                 return RedirectToAction("AdminArticle", "Admin");
             }
-            return View(createArticleDto);
+            return Content(createArticleDto.mainCategoryID.ToString());
         }
 
 

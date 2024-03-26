@@ -20,5 +20,11 @@ namespace BeldYazilim.Persistence.Repositories.ArticleRepositories
             var values = _context.Articles.Include(x => x.ArticleAuthor).ToList();
             return values;
         }
+
+        public List<Article> GetAllArticlesWithAuthorsAndCategory()
+        {
+            var values = _context.Articles.Include(x => x.ArticleAuthor).Include(y => y.ArticleMainCategory).ToList();
+            return values;
+        }
     }
 }

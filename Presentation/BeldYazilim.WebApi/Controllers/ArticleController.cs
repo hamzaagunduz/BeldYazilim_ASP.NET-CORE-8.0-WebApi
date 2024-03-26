@@ -34,6 +34,12 @@ namespace BeldYazilim.WebApi.Controllers
             var values = await _mediator.Send(new GetAllArticleWithAuthorQuery());
             return Ok(values);
         }
+        [HttpGet("ArticleListWithAuthorsAndCategory")]
+        public async Task<IActionResult> ArticleListWithAuthorsAndCategory()
+        {
+            var values = await _mediator.Send(new GetAllArticleWithAuthorAndCategoryQuery());
+            return Ok(values);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)

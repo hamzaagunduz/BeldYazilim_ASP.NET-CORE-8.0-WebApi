@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Dto.ArticleCategoryDtos
 {
-    public class ResultMainCategoryDto
+    public class CreateMainCategoryDto
     {
 
-            public int articleMainCategoryID { get; set; }
             public string name { get; set; }
+
 
     }
 }
