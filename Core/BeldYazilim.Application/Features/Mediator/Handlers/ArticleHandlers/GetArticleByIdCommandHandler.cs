@@ -33,7 +33,8 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleCommandHandl
                 ClickCount = values.ClickCount,
                 BigImageUrl = values.BigImageUrl,
                 Rating = values.Rating,
-                ArticleAuthorID = values.ArticleAuthorID
+                ArticleAuthorID = values.ArticleAuthorID,
+                MainCategoryId=values.ArticleMainCategoryID
             };
         }
     }

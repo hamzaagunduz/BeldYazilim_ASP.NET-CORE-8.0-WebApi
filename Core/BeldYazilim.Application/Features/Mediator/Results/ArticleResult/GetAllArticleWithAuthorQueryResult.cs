@@ -4,27 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeldYazilim.Domain.Entities
+namespace BeldYazilim.Application.Features.Mediator.Results.ArticleResult
 {
-    public class Article
+    public class GetAllArticleWithAuthorQueryResult
     {
         public int ArticleID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public int MainCategoryId { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+
         public DateTime CreationTime { get; set; }
         public int ClickCount { get; set; }
         public string BigImageUrl { get; set; }
         public int? Rating { get; set; }
         public int? ArticleAuthorID { get; set; }
-
-        public ArticleAuthor ArticleAuthor { get; set; }
-
-        public int ArticleMainCategoryID { get; set; }
-        public ArticleMainCategory ArticleMainCategory { get; set; }
-
-        public List<ArticleComment> ArticleComments { get; set; }
-
-        public List<ArticleImage> Images { get; set; }
-
     }
 }

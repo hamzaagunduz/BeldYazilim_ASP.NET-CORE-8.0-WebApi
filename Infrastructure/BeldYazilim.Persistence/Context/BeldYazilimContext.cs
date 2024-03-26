@@ -14,11 +14,9 @@ namespace BeldYazilim.Persistence.Context
 
 
         }
-        public DbSet<MainCategory> MainCategories { get; set; }
-        public DbSet<Subcategory> Subcategories { get; set; }
+        public DbSet<ArticleMainCategory> ArticleMainCategory { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleAuthor> ArticleAuthors { get; set; }
-        public DbSet<ArticleCategoryLink> ArticleCategoryLinks { get; set; }
         public DbSet<ArticleComment> ArticleComments { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
 
@@ -43,26 +41,6 @@ namespace BeldYazilim.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ArticleCategoryLink>()
-                .HasKey(acl => acl.ArticleCategoryLinkID);
-
-            modelBuilder.Entity<ArticleCategoryLink>()
-                .HasOne(acl => acl.Article)
-                .WithMany(a => a.ArticleCategoryLinks)
-                .HasForeignKey(acl => acl.ArticleID)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<ArticleCategoryLink>()
-                .HasOne(acl => acl.MainCategory)
-                .WithMany(mc => mc.ArticleCategoryLinks)
-                .HasForeignKey(acl => acl.MainCategoryID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<ArticleCategoryLink>()
-                .HasOne(acl => acl.Subcategory)
-                .WithMany(sc => sc.ArticleCategoryLinks)
-                .HasForeignKey(acl => acl.SubcategoryID)
-                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Article>()
                 .HasOne(a => a.ArticleAuthor)

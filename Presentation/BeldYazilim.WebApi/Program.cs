@@ -1,9 +1,11 @@
 using BeldYazilim.Application.Interfaces;
+using BeldYazilim.Application.Interfaces.ArticleInterfaces;
 using BeldYazilim.Application.Services;
 using BeldYazilim.Application.Tools;
 using BeldYazilim.Domain.Entities;
 using BeldYazilim.Persistence.Context;
 using BeldYazilim.Persistence.Repositories;
+using BeldYazilim.Persistence.Repositories.ArticleRepositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -46,8 +48,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(options =>
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
-    
+builder.Services.AddScoped(typeof(IArticleRepository), typeof(ArticleRepository));
 
 
 

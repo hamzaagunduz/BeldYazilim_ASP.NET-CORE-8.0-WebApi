@@ -27,6 +27,20 @@ namespace BeldYazilim.WebApi.Controllers
             var values = await _mediator.Send(new GetArticleQuery());
             return Ok(values);
         }
+
+        [HttpGet("ArticleListWithAuthors")]
+        public async Task<IActionResult> ArticleListWithAuthors()
+        {
+            var values = await _mediator.Send(new GetAllArticleWithAuthorQuery());
+            return Ok(values);
+        }
+        [HttpGet("ArticleListWithAuthorsAndCategory")]
+        public async Task<IActionResult> ArticleListWithAuthorsAndCategory()
+        {
+            var values = await _mediator.Send(new GetAllArticleWithAuthorAndCategoryQuery());
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)
         {
@@ -41,7 +55,7 @@ namespace BeldYazilim.WebApi.Controllers
             return Ok("Article başarıyla eklendi");
 
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveArticle(int id)
         {
             await _mediator.Send(new RemoveArticleCommand(id));

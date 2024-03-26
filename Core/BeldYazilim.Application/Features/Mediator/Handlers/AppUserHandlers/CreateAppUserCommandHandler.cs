@@ -61,13 +61,16 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 
             var addToRoleResult = await _userManager.AddToRoleAsync(newUser, adminRole.Name);
 
+            var userRoles = await _userManager.GetRolesAsync(newUser);
+            var rolesString = string.Join(", ", userRoles);
+
 
             var newArticleAuthor = new ArticleAuthor
-				{
-					AppUserID = newUser.Id,
-					Name = "desiredName",
-					Role = "Test"
-				};
+            {
+                AppUserID = newUser.Id,
+                Name = newUser.FirstName,
+                Role = rolesString
+            };
 
 			await _repositoryArticleAuthor.CreateAsync(newArticleAuthor);
 
