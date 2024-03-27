@@ -13,12 +13,9 @@
                     <div class="card-body">
                         <h4 class="card-title">Araç Güncelleme Sayfası</h4>
                         <p class="card-subtitle mb-4">Araç ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak güncelleme işlemini tamamlayabilirsiniz.</p>
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <input type="hidden" asp-for="articleID" />
-                           @*  <div class="form-group">
-                                <label for="exampleInputBrand">Marka</label>
-                                @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new { @class = "form-control" })
-                            </div> *@
+     
                             <div class="form-group">
                                 <label for="exampleInputTitle">Başlığınız</label>
                                 <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık">
@@ -50,11 +47,17 @@
                             </div>
 
 
-                            
-                            <div class="form-group">
-                                <label for="exampleInputBigImageUrl">Büyük Kapak Fotoğrafı</label>
-                                <input type="text" class="form-control" id="exampleInputBigImageUrl" asp-for="bigImageUrl" placeholder="Araç Detayında Gözükecek Kapak Fotoğraf Linki">
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="bigImageUrl" for="defaultFormControlInput" class="form-label d-block">Mevcut Resim</label>
+                                <img style="height:25em; width:25em;" class="mb-3" src="/images/@Model.bigImageUrl" />
                             </div>
+
+                            <div class="form-group">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
+                            </div>
+
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Aracı Kaydet</button>
                         </form>
 

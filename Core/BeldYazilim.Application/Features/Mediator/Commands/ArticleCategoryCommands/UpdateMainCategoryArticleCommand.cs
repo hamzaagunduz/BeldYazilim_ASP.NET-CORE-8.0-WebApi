@@ -9,8 +9,8 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleCategoryComm
 {
     public class UpdateMainCategoryArticleCommand:IRequest
     {
-        public int MainCategoryID { get; set; }
-        public string Name { get; set; }
+        public int articleMainCategoryID { get; set; }
+        public string name { get; set; }
 
     }
 }

@@ -1,3 +1,4 @@
+using BeldYazilim.Application.Helpers;
 using BeldYazilim.Application.Interfaces;
 using BeldYazilim.Application.Interfaces.ArticleInterfaces;
 using BeldYazilim.Application.Services;
@@ -8,6 +9,7 @@ using BeldYazilim.Persistence.Repositories;
 using BeldYazilim.Persistence.Repositories.ArticleRepositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -49,11 +51,11 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IArticleRepository), typeof(ArticleRepository));
+builder.Services.AddScoped(typeof(IImageHelper), typeof(ImageHelper));
 
 
 
 builder.Services.AddApplicationService(builder.Configuration);
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

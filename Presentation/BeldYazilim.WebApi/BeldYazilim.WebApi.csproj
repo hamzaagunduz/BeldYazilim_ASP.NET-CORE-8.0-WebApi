@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FrontEnd\BeldYazilim.WebUI\BeldYazilim.WebUI.csproj" />
     <ProjectReference Include="..\..\Infrastructure\BeldYazilim.Persistence\BeldYazilim.Persistence.csproj" />
   </ItemGroup>
 

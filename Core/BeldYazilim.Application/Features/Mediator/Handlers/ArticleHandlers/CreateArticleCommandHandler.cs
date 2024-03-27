@@ -1,4 +1,5 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands;
+using BeldYazilim.Application.Helpers;
 using BeldYazilim.Application.Interfaces;
 using BeldYazilim.Domain.Entities;
 using MediatR;
@@ -15,24 +16,26 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
     {
         private readonly IRepository<Article> _repository;
         private readonly UserManager<AppUser> _userManager;
-
-        public CreateArticleCommandHandler(IRepository<Article> repository, UserManager<AppUser> userManager)
+        private readonly IImageHelper imageHelper;
+        public CreateArticleCommandHandler(IRepository<Article> repository, UserManager<AppUser> userManager, IImageHelper imageHelper)
         {
             _repository = repository;
             _userManager = userManager;
+            this.imageHelper = imageHelper;
         }
 
         public async Task<Unit> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
         {
+            var imageUpload = await imageHelper.Upload(request.Title, request.Photo);
             var article = new Article
             {
                 Title = request.Title,
                 Content = request.Content,
-                CreationTime = request.CreationTime,
-                ClickCount = request.ClickCount,
-                BigImageUrl = request.BigImageUrl,
-                Rating = request.Rating,
-                ArticleMainCategoryID=request.MainCategoryId,
+                CreationTime = DateTime.Now,
+                ClickCount = 0,
+                BigImageUrl = imageUpload.FullName,
+                Rating = 1,
+                ArticleMainCategoryID =request.MainCategoryId,
                 ArticleAuthorID = 1
             };
 
