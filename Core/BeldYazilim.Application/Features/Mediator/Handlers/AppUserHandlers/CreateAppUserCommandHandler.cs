@@ -50,16 +50,16 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 				};
 
 			IdentityResult result=await _userManager.CreateAsync(newUser,request.Password);
+            
+            var AuthorRole = await _roleManager.FindByNameAsync("Author");
 
-            var adminRole = await _roleManager.FindByNameAsync("Admin");
-
-            if (adminRole == null)
+            if (AuthorRole == null)
             {
-                adminRole = new AppRole { Name = "Admin" };
-                await _roleManager.CreateAsync(adminRole);
+                AuthorRole = new AppRole { Name = "Author" };
+                await _roleManager.CreateAsync(AuthorRole);
             }
 
-            var addToRoleResult = await _userManager.AddToRoleAsync(newUser, adminRole.Name);
+            var addToRoleResult = await _userManager.AddToRoleAsync(newUser, AuthorRole.Name);
 
             var userRoles = await _userManager.GetRolesAsync(newUser);
             var rolesString = string.Join(", ", userRoles);

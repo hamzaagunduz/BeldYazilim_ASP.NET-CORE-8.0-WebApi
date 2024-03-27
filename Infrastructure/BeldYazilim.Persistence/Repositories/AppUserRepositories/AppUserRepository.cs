@@ -3,6 +3,8 @@ using BeldYazilim.Domain.Entities;
 using BeldYazilim.Persistence.Context;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -17,9 +19,11 @@ namespace BeldYazilim.Persistence.Repositories.AppUserRepositories
         {
             _context = context;
         }
-        public Task<List<AppUser>> GetByFilterAsync(Expression<Func<AppUser, bool>> filter)
+
+        public List<AppUser> GetAllUsersWithRole()
         {
-            throw new NotImplementedException();
+            var values = _context.AppUsers.Include(x => x.ArticleAuthor).ToList();
+            return values;
         }
     }
 }

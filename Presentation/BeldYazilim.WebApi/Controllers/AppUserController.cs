@@ -29,6 +29,15 @@ namespace BeldYazilim.WebApi.Controllers
             var values = await _mediator.Send(new GetAppUserQuery());
             return Ok(values);
         }
+
+
+        [HttpGet("GetAllUsersWithRole")]
+        public async Task<IActionResult> GetAllUsersWithRole()
+        {
+            var values = await _mediator.Send(new GetAllUsersWithRoleQuery());
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppUser(int id)
         {
@@ -43,7 +52,7 @@ namespace BeldYazilim.WebApi.Controllers
                 return Ok("AppUser başarıyla eklendi");
     
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAppUser(int id)
         {
             await _mediator.Send(new RemoveAppUserCommand(id));

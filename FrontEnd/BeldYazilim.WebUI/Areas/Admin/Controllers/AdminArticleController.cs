@@ -78,26 +78,6 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             return Content(responseMessage.Content.ToString());
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateArticle(CreateArticleDto createArticleDto)
-        //{
-        //    var client = _httpClientFactory.CreateClient();
-        //    var jsonData = JsonConvert.SerializeObject(createArticleDto);
-        //    StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-        //    var responseMessage = await client.PostAsync("https://localhost:7298/api/Article", stringContent);
-
-        //    if (responseMessage.IsSuccessStatusCode)
-        //    {
-
-        //        return RedirectToAction("AdminArticle", "Admin");
-        //    }
-        //    return Content(createArticleDto.mainCategoryID.ToString());
-        //}
-
-
-
-
         public async Task<IActionResult> RemoveArticle(int id)
         {
             var client = _httpClientFactory.CreateClient();

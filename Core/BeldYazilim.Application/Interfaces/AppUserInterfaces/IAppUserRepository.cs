@@ -10,6 +10,6 @@ namespace BeldYazilim.Application.Interfaces.AppUserInterfaces
 {
     public interface IAppUserRepository
     {
-        Task<List<AppUser>> GetByFilterAsync(Expression<Func<AppUser, bool>> filter);
+        public List<AppUser> GetAllUsersWithRole();
     }
 }

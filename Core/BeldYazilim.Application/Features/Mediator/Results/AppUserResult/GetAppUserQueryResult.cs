@@ -12,6 +12,7 @@ namespace BeldYazilim.Application.Features.Mediator.Results.AppUserResult
         public string Name { get; set; }
         public string Surname { get; set; }
         public string District { get; set; }
+        public string Email { get; set; }
         public string? About { get; set; }
 
         public DateTime RegistrationDate { get; set; }
