@@ -36,7 +36,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
                 BigImageUrl = imageUpload.FullName,
                 Rating = 1,
                 ArticleMainCategoryID =request.MainCategoryId,
-                ArticleAuthorID = 1
+                ArticleAuthorID = 8
             };
 
             await _repository.CreateAsync(article);

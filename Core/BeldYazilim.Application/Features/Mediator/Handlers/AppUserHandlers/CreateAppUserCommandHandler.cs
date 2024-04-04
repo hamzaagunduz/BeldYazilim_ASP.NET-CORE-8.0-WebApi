@@ -34,36 +34,86 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
         }
 
 
+        //      public async Task Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
+        //      {
+
+        //              var newUser = new AppUser
+        //              {
+        //                  FirstName = request.FirstName,
+        //			UserName = request.UserName,
+        //			Surname = request.Surname,
+        //                  RegistrationDate = DateTime.Now,
+        //			Email = request.Email,
+        //			Password =request.Password,
+        //			ConfirmCode = 1,
+
+        //		};
+
+        //	IdentityResult result=await _userManager.CreateAsync(newUser,request.Password);
+
+        //          var AuthorRole = await _roleManager.FindByNameAsync("Author");
+
+        //          if (AuthorRole == null)
+        //          {
+        //              AuthorRole = new AppRole { Name = "Author" };
+        //              await _roleManager.CreateAsync(AuthorRole);
+        //          }
+
+        //          var addToRoleResult = await _userManager.AddToRoleAsync(newUser, AuthorRole.Name);
+
+        //          var userRoles = await _userManager.GetRolesAsync(newUser);
+        //          var rolesString = string.Join(", ", userRoles);
+
+
+        //          var newArticleAuthor = new ArticleAuthor
+        //          {
+        //              AppUserID = newUser.Id,
+        //              Name = newUser.FirstName,
+        //              Role = rolesString
+        //          };
+
+        //	await _repositoryArticleAuthor.CreateAsync(newArticleAuthor);
+
+
+
+
+
+
+
+
+        //}
+
         public async Task Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
         {
-            
-                var newUser = new AppUser
-                {
-                    FirstName = request.FirstName,
-					UserName = request.UserName,
-					Surname = request.Surname,
-                    RegistrationDate = DateTime.Now,
-					Email = request.Email,
-					Password =request.Password,
-					ConfirmCode = 1,
-                    
-				};
-
-			IdentityResult result=await _userManager.CreateAsync(newUser,request.Password);
-            
-            var AuthorRole = await _roleManager.FindByNameAsync("Author");
-
-            if (AuthorRole == null)
+            var newUser = new AppUser
             {
-                AuthorRole = new AppRole { Name = "Author" };
-                await _roleManager.CreateAsync(AuthorRole);
+                FirstName = request.FirstName,
+                UserName = request.UserName,
+                Surname = request.Surname,
+                RegistrationDate = DateTime.Now,
+                Email = request.Email,
+                Password = request.Password,
+                ConfirmCode = 1,
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(newUser, request.Password);
+
+            RolesType initialRole = RolesType.Author; // Yeni kullanıcıya atanacak varsayılan rol
+
+            var initialRoleName = Enum.GetName(typeof(RolesType), initialRole);
+
+            var role = await _roleManager.FindByNameAsync(initialRoleName);
+
+            if (role == null)
+            {
+                role = new AppRole { Name = initialRoleName };
+                await _roleManager.CreateAsync(role);
             }
 
-            var addToRoleResult = await _userManager.AddToRoleAsync(newUser, AuthorRole.Name);
+            var addToRoleResult = await _userManager.AddToRoleAsync(newUser, initialRoleName);
 
             var userRoles = await _userManager.GetRolesAsync(newUser);
             var rolesString = string.Join(", ", userRoles);
-
 
             var newArticleAuthor = new ArticleAuthor
             {
@@ -72,21 +122,11 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
                 Role = rolesString
             };
 
-			await _repositoryArticleAuthor.CreateAsync(newArticleAuthor);
-
-			
-
+            await _repositoryArticleAuthor.CreateAsync(newArticleAuthor);
+        }
 
 
 
 
-
-		}
-
-
-
-
-
-
-	}
+    }
 }

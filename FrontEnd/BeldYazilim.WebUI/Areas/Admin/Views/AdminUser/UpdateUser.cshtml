@@ -1,0 +1,80 @@
+﻿@model UpdateAppUserDtos
+
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kullanıcı Bilgilerini Güncelle</h4>
+                        <form method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="appUserID" />
+
+                            <div class="form-group">
+                                <label for="inputFirstName">Adı</label>
+                                <input type="text" class="form-control" id="inputFirstName" asp-for="firstName" placeholder="Adı">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="inputSurname">Soyadı</label>
+                                <input type="text" class="form-control" id="inputSurname" asp-for="surname" placeholder="Soyadı">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputMainCategory">Kategori</label>
+                                @Html.DropDownListFor(x => x.roleId, (List<SelectListItem>)ViewBag.RoleValues, new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputdistrict">Hakkında</label>
+                                <input type="text" class="form-control" id="inputdistrict" asp-for="about" placeholder="Hakkında">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="inputdistrict">İlçe</label>
+                                <input type="text" class="form-control" id="inputdistrict" asp-for="district" placeholder="İlçe">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputdistrict">İl</label>
+                                <input type="text" class="form-control" id="inputcity" asp-for="city" placeholder="Şehir">
+                            </div>
+
+                            @*                             <div class="form-group">
+                            <label for="inputPassword">Şifre</label>
+                            <input type="tex" class="form-control" id="inputPassword" asp-for="password" placeholder="Soyadı">
+                            </div> *@
+
+
+
+
+@* 
+                            <div class="form-group">
+                                <label for="inputConfirmCode">Onay Kodu</label>
+                                <input type="number" class="form-control" id="inputConfirmCode" asp-for="confirmCode" placeholder="Onay Kodu">
+                            </div>  *@
+
+
+
+
+                            <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+</div>
+
+<!-- end page title -->
