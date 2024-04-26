@@ -32,6 +32,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("IzinVerilenKaynak",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7269") // CKEditor'ýn çalýþtýðý adres
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddScoped<BeldYazilimContext>();
 
@@ -75,6 +85,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("IzinVerilenKaynak");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

@@ -1,18 +1,18 @@
-﻿@model CheckUserDto
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
+﻿@model List<GetAllArticleDto> // Model sınıfınızın namespace'ini buraya ekleyin
+
 <html>
 <head>
-    <title>User Profile</title>
+    <title>Makale İçerikleri</title>
+
 </head>
 <body>
-    <h1>User Profile</h1>
-
-    <p><strong>Username:</strong> @Model.UserName</p>
-    <p><strong>First Name:</strong> @Model.FirstName</p>
-    <p><strong>Surname:</strong> @Model.Surname</p>
-    <p><strong>District:</strong> @Model.District</p>
+    <h1>Makale İçerikleri</h1>
+    @foreach (var article in Model)
+    {
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+            <h2>@article.title</h2>
+            <div>@Html.Raw(article.content)</div>
+        </div>
+    }
 </body>
 </html>

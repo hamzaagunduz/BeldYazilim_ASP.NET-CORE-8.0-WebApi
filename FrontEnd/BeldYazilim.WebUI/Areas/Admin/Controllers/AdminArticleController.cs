@@ -13,6 +13,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
     public class AdminArticleController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _imageUploadDirectory = "C:\\Users\\Hamza\\Desktop\\BeldYazilim\\FrontEnd\\BeldYazilim.WebUI\\wwwroot\\images";
 
         public AdminArticleController(IHttpClientFactory httpClientFactory)
         {
@@ -42,11 +43,11 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultMainCategoryDto>>(jsonData);
             List<SelectListItem> categoryValues = (from x in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.name,
-                                                    Value = x.articleMainCategoryID.ToString()
-                                                }).ToList();
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.name,
+                                                       Value = x.articleMainCategoryID.ToString()
+                                                   }).ToList();
             ViewBag.CategoryValues = categoryValues;
 
 
@@ -97,7 +98,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             if (resposenMessage.IsSuccessStatusCode)
             {
                 var jsonData = await resposenMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateArticleDto>(jsonData); 
+                var values = JsonConvert.DeserializeObject<UpdateArticleDto>(jsonData);
                 return View(values);
             }
             return View();
@@ -128,20 +129,54 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpPost("Admin/UploadCKEditorImage")]
+        public JsonResult UploadCKEditorImage()
+        {
+            var files = Request.Form.Files;
+            if (files.Count == 0)
+            {
+                var rError = new
+                {
+                    uploaded = false,
+                    url = string.Empty
+                };
+                return Json(rError);
+            }
 
-        //[HttpPost]
-        //public async Task<IActionResult> UpdateArticle(UpdateArticleDto updateArticleDto)
-        //{
-        //    var client = _httpClientFactory.CreateClient();
-        //    var jsonData = JsonConvert.SerializeObject(updateArticleDto);
-        //    StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        //    var responseMessage = await client.PutAsync("https://localhost:7298/api/Article/", stringContent);
-        //    if (responseMessage.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("AdminArticle", "Admin");
-        //    }
-        //    return View();
-        //}
+            var formFile = files[0];
+            var upFileName = formFile.FileName;
+
+            var fileName = Path.GetFileNameWithoutExtension(upFileName) +
+                DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(upFileName);
+
+            var saveDir = @".\wwwroot\upload\";
+            var savePath = saveDir + fileName;
+            var previewPath = "/upload/" + fileName;
+
+            bool result = true;
+            try
+            {
+                if (!Directory.Exists(saveDir))
+                {
+                    Directory.CreateDirectory(saveDir);
+                }
+                using (FileStream fs = System.IO.File.Create(savePath))
+                {
+                    formFile.CopyTo(fs);
+                    fs.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            var rUpload = new
+            {
+                uploaded = result,
+                url = result ? previewPath : string.Empty
+            };
+            return Json(rUpload);
+        }
 
 
     }

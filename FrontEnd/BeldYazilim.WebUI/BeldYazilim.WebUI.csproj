@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\ckeditor\**" />
+    <Content Remove="wwwroot\ckeditor\**" />
+    <EmbeddedResource Remove="wwwroot\ckeditor\**" />
+    <None Remove="wwwroot\ckeditor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\gentela-gh-pages\vendors\parsleyjs\bower_components\bootstrap\bower.json" />
     <Content Include="wwwroot\gentela-gh-pages\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="wwwroot\gentela-gh-pages\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -237,6 +244,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
   </ItemGroup>
 

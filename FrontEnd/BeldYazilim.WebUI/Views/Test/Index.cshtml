@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – Classic editor</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <h1>Classic editor</h1>
+    <div id="editor">
+        <p>This is some sample content.</p>
+    </div>
+    
+    <script type="text/javascript">
+        docReady(function () {
+            var myEditor = null;
+            // DOM is loaded and ready for manipulation here
+            ClassicEditor
+                .create(document.querySelector("#Content"), {
+                    height: 400,
+                    Toolbar: { //Set the toolbar
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'underline',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'imageUpload',
+                            'blockQuote',
+                            'insertTable',
+                            //'mediaEmbed',
+                            'undo',
+                            'redo'
+                        ]
+                    },
+                    extraPlugins: [MyCustomUploadAdapterPlugin]
+                })
+                .then(editor => {
+                    myEditor = editor;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+        function docReady(fn) {
+            // see if DOM is already available
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                // call on next available tick
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+
+        function MyCustomUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                // Configure the URL to the upload script in your back-end here!
+                return new MyUploadAdapter(loader);
+            };
+        }
+
+        class MyUploadAdapter {
+            constructor(loader) {
+                // The file loader instance to use during the upload.
+                this.loader = loader;
+            }
+
+            // Starts the upload process.
+            upload() {
+                return this.loader.file
+                    .then(file => new Promise((resolve, reject) => {
+                        this._initRequest();
+                        this._initListeners(resolve, reject, file);
+                        this._sendRequest(file);
+                    }));
+            }
+
+            // Aborts the upload process.
+            abort() {
+                if (this.xhr) {
+                    this.xhr.abort();
+                }
+            }
+
+            // Initializes the XMLHttpRequest object using the URL passed to the constructor.
+            _initRequest() {
+                const xhr = this.xhr = new XMLHttpRequest();
+
+                // Note that your request may look different. It is up to you and your editor
+                // integration to choose the right communication channel. This example uses
+                // a POST request with JSON as a data structure but your configuration
+                // could be different.
+                xhr.open('POST', '/Home/UploadCKEditorImage', true);
+                // xhr.open('POST', 'https://localhost:7298/api/Article/UploadCKEditorImage', true);
+
+                xhr.responseType = 'json';
+            }
+
+            // Initializes XMLHttpRequest listeners.
+            _initListeners(resolve, reject, file) {
+                const xhr = this.xhr;
+                const loader = this.loader;
+                const genericErrorText = `Couldn't upload file: ${file.name}.`;
+
+                xhr.addEventListener('error', () => reject(genericErrorText));
+                xhr.addEventListener('abort', () => reject());
+                xhr.addEventListener('load', () => {
+                    const response = xhr.response;
+
+                    if (!response || response.error) {
+                        return reject(response && response.error ? response.error.message : genericErrorText);
+                    }
+
+                    resolve({
+                        default: response.url
+                    });
+                });
+
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', evt => {
+                        if (evt.lengthComputable) {
+                            loader.uploadTotal = evt.total;
+                            loader.uploaded = evt.loaded;
+                        }
+                    });
+                }
+            }
+
+            _sendRequest(file) {
+                const data = new FormData();
+                data.append('upload', file);
+                this.xhr.send(data);
+            }
+        }
+    </script>
+    <form>
+        <textarea id="Content" name="Content" rows="4"
+                  class="form-control" placeholder="Please enter the announcement content"></textarea>
+    </form>
+</body>
+</html>

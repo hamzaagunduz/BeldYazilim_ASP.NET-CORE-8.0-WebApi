@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
 
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     opt.LoginPath = "/Login/Index/";
@@ -33,8 +34,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",
@@ -49,5 +53,6 @@ app.UseEndpoints(endpoints =>
     );
     endpoints.MapDefaultControllerRoute();
 });
+
 
 app.Run();

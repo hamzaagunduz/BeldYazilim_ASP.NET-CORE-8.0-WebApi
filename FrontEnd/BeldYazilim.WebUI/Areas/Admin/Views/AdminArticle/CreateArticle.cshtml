@@ -33,21 +33,19 @@
                                 <input type="text" class="form-control" id="exampleInputModel" asp-for="Title" placeholder="Başlığınızı Giriniz">
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputLuggage">İçerik</label>
-                                <input type="text" class="form-control" id="exampleInputLuggage" asp-for="Content" placeholder="İçeriğinizi Giriniz">
-                            </div>
+
+
 
                             <div class="form-group">
-                                <label for="photo">Photo</label>
+                                <label for="photo">Kapak Fotoğrafı</label>
                                 <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
                             </div>
 
 
-                           @*  <div class="form-group">
-                                <label for="Photo" class="form-label">Resim seçiniz</label>
-                                <input type="file" id="Photo" name="Photo" accept="image/*" class="form-control mb-3" aria-describedby="defaultFormControlHelp" />
-                            </div> *@
+                            <div class="form-group">
+                                <label for="editorid">İçerik</label>
+                                <textarea class="form-control" rows="50" id="Content" asp-for="Content" placeholder="İçeriğinizi Giriniz"></textarea>
+                            </div>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Makaleyi Kaydet</button>
                         </form>
@@ -64,4 +62,6 @@
     <!-- end col -->
 
 </div>
+
+
 <!-- end page title -->
