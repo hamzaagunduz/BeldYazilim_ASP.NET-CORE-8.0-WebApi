@@ -44,6 +44,7 @@
                         '|',
                         'bold',
                         'italic',
+                        'code',
                         'underline',
                         'link',
                         'bulletedList',
@@ -53,17 +54,20 @@
                         'insertTable',
                         //'mediaEmbed',
                         'undo',
-                        'redo'
+                        'redo',
+                        
                     ]
                 },
                 extraPlugins: [MyCustomUploadAdapterPlugin]
             })
             .then(editor => {
                 myEditor = editor;
+
             })
             .catch(error => {
                 console.error(error);
             });
+
     });
 
     function docReady(fn) {

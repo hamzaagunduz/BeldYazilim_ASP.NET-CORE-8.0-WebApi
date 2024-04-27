@@ -22,12 +22,12 @@ namespace BeldYazilim.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7298/api/Article");
+            var responseMessage = await client.GetAsync("https://localhost:7298/api/Article/55");
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<GetAllArticleDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<GetAllArticleDto>(jsonData);
 
                 return View(values);
             }

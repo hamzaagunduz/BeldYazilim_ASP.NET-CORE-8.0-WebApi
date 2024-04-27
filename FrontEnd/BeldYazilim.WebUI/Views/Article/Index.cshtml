@@ -1,18 +1,29 @@
-﻿@model List<GetAllArticleDto> // Model sınıfınızın namespace'ini buraya ekleyin
+﻿<div id="editor" style="max-height: 300px; overflow-y: auto;">
+    <div style="max-height: 50%; overflow-y: auto;">
+        @Html.Raw(Model.content)
+    </div>
+</div>
 
-<html>
-<head>
-    <title>Makale İçerikleri</title>
 
-</head>
-<body>
-    <h1>Makale İçerikleri</h1>
-    @foreach (var article in Model)
-    {
-        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
-            <h2>@article.title</h2>
-            <div>@Html.Raw(article.content)</div>
-        </div>
-    }
-</body>
-</html>
+@section scripts {
+	<script src="~/ckeditor5-build-classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    // Boş toolbar, düzenleme yeteneklerini devre dışı bırakır
+                    toolbar: []
+                })
+                .then(editor => {
+                    // readOnly modunu etkinleştir
+                    editor.enableReadOnlyMode('my-feature-id');
+
+                    // readOnly modunu konsola yazdır
+                    console.log("readOnly modu:", editor.isReadOnly);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+}
