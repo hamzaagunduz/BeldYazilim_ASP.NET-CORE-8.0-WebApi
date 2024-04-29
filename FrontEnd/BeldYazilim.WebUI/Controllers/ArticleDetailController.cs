@@ -10,32 +10,21 @@ using System.Security.Claims;
 namespace BeldYazilim.WebUI.Controllers
 {
     
-    public class ArticleController : Controller
+    public class ArticleDetailController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ArticleController(IHttpClientFactory httpClientFactory)
+        public ArticleDetailController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7298/api/Article/55");
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<GetAllArticleDto>(jsonData);
-
-                return View(values);
-            }
-            else
-            {
-                // Handle unsuccessful response
-                return View();
-            }
+            
+            ViewBag.blogid = id;
+            return View();
         }
 
 
