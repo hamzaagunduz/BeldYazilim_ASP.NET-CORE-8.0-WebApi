@@ -17,13 +17,12 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 {
     public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand>
     {
-        private readonly IRepository<AppUser> _repository;
+        private readonly IRepository<ArticleAuthor> _repositoryArticleAuthor;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
-
-        public UpdateAppUserCommandHandler(IRepository<AppUser> repository, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+        public UpdateAppUserCommandHandler(IRepository<ArticleAuthor> repository, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
-            _repository = repository;
+            _repositoryArticleAuthor = repository;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -60,6 +59,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
         public async Task Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.AppUserID.ToString());
+            var articleAuthor = await _repositoryArticleAuthor.GetByIdAsync(request.AppUserID);
 
             // Kullanıcının mevcut rollerini kaldır
             var currentRoles = await _userManager.GetRolesAsync(user);
@@ -73,12 +73,15 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             {
                 var roleName = Enum.GetName(typeof(RolesType), request.RoleId);
                 await _userManager.AddToRoleAsync(user, roleName);
+                articleAuthor.Role=roleName;
             }
             else
             {
                 // Eğer belirtilen rol geçerli değilse varsayılan bir rol atayabiliriz
                 var defaultRole = RolesType.Author; // Varsayılan rol
                 var roleName = Enum.GetName(typeof(RolesType), defaultRole);
+                articleAuthor.Role = roleName;
+
                 await _userManager.AddToRoleAsync(user, roleName);
             }
 
@@ -88,11 +91,20 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             user.District = request.District;
             user.About = request.About;
             user.City = request.City;
+            user.ImageUrl = request.imageUrl;
+
+            articleAuthor.Name = request.FirstName;
+            //articleAuthor.Role=rol
             //user.ConfirmCode = request.ConfirmCode;
             //user.Password = request.Password;
 
             // Kullanıcıyı güncelle
+            await _repositoryArticleAuthor.UpdateAsync(articleAuthor);
+
             await _userManager.UpdateAsync(user);
+           
+
+
         }
 
     }

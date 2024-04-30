@@ -11,5 +11,6 @@ namespace BeldYazilim.Application.Interfaces.AppUserInterfaces
     public interface IAppUserRepository
     {
         public List<AppUser> GetAllUsersWithRole();
+        public AppUser GetUsersWithRoleById(int id);
     }
 }

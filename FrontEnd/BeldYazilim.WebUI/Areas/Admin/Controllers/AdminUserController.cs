@@ -66,7 +66,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             {
                 return RedirectToAction("AdminUser", "Admin");
             }
-            return Content(updateAppUserDtos.firstName.ToString());
+            return Content(responseMessage.StatusCode.ToString());
         }
 
         public async Task<List<SelectListItem>> GetRoles()

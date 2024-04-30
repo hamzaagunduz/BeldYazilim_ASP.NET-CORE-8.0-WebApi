@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 {
@@ -94,6 +95,8 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
                 Email = request.Email,
                 Password = request.Password,
                 ConfirmCode = 1,
+                ImageUrl= "article-images/TWst_804.png",
+                About="Merhaba"
             };
 
             IdentityResult result = await _userManager.CreateAsync(newUser, request.Password);

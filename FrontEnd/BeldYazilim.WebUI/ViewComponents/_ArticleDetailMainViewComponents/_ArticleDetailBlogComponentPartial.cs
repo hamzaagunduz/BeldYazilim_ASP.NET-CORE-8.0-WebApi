@@ -1,4 +1,5 @@
 ﻿using BeldYazilim.Dto.ArticleDtos;
+using BeldYazilim.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -21,9 +22,14 @@ namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<GetAllArticleDto>(jsonData);
+                var getAllArticleDto = JsonConvert.DeserializeObject<GetAllArticleDto>(jsonData);
 
-                return View(values);
+                var model = new ArticleDetailModel
+                {
+                    getAllArticleDto = getAllArticleDto
+                };
+
+                return View(model);
             }
             else
             {

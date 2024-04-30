@@ -1,4 +1,4 @@
-﻿@model GetAllArticleDto
+﻿@model ArticleDetailModel
 
 @{
     ViewData["Title"] = "Index";
@@ -19,13 +19,13 @@
 
 
 
-                @await Component.InvokeAsync("_ArticleDetailCommentComponentPartial") 
+                @await Component.InvokeAsync("_ArticleDetailCommentComponentPartial", new { id = ViewBag.blogid} )
 
-                </div>
+            </div>
 
                 <!-- END main-content -->
-            @await Component.InvokeAsync("_ArticleDetailSideBarComponentPartial") 
-                <!-- END sidebar -->
+            @await Component.InvokeAsync("_ArticleDetailSideBarComponentPartial", new { id = ViewBag.blogid })
+            <!-- END sidebar -->
 
             </div>
         </div>

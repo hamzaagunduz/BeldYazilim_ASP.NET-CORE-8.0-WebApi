@@ -1,4 +1,5 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
+using BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers;
 using BeldYazilim.Application.Features.Mediator.Queries.AppUserQueries;
 using BeldYazilim.Application.Tools;
 using BeldYazilim.Persistence.Context;
@@ -42,6 +43,12 @@ namespace BeldYazilim.WebApi.Controllers
         public async Task<IActionResult> GetAppUser(int id)
         {
             var value = await _mediator.Send(new GetAppUserByIdQuery(id));
+            return Ok(value);
+        }
+        [HttpGet("user-with-role-byArticleId/{id}")] // İkinci endpoint
+        public async Task<IActionResult> GetUsersWithRoleByIdQuery(int id)
+        {
+            var value = await _mediator.Send(new GetUsersWithRoleByIdQuery(id));
             return Ok(value);
         }
         [HttpPost]

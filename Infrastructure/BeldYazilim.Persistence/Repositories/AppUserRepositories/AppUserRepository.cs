@@ -25,5 +25,15 @@ namespace BeldYazilim.Persistence.Repositories.AppUserRepositories
             var values = _context.AppUsers.Include(x => x.ArticleAuthor).ToList();
             return values;
         }
+
+        public AppUser GetUsersWithRoleById(int id)
+        {
+            var article = _context.Articles
+                            .Include(a => a.ArticleAuthor)
+                            .ThenInclude(aa => aa.AppUser)
+                            .FirstOrDefault(a => a.ArticleID == id);
+
+            return article?.ArticleAuthor?.AppUser;
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor
         public int AppUserID { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
+        public string? imageUrl { get; set; }
         public int RoleId { get; set; }
         public string? District { get; set; }
         public string? About { get; set; }
