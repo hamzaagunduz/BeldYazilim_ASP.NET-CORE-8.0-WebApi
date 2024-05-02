@@ -17,7 +17,7 @@ namespace BeldYazilim.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -290,6 +290,24 @@ namespace BeldYazilim.Persistence.Migrations
                     b.ToTable("ArticleMainCategory");
                 });
 
+            modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleTag", b =>
+                {
+                    b.Property<int>("ArticleID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleTagID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticleID", "TagID");
+
+                    b.HasIndex("TagID");
+
+                    b.ToTable("ArticleTags");
+                });
+
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Basket", b =>
                 {
                     b.Property<int>("BasketID")
@@ -478,6 +496,23 @@ namespace BeldYazilim.Persistence.Migrations
                     b.ToTable("ProductShops");
                 });
 
+            modelBuilder.Entity("BeldYazilim.Domain.Entities.Tag", b =>
+                {
+                    b.Property<int>("TagID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TagID");
+
+                    b.ToTable("Tag");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -636,6 +671,25 @@ namespace BeldYazilim.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("BeldYazilim.Domain.Entities.ArticleTag", b =>
+                {
+                    b.HasOne("BeldYazilim.Domain.Entities.Article", "Article")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("ArticleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeldYazilim.Domain.Entities.Tag", "Tag")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("TagID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("BeldYazilim.Domain.Entities.Basket", b =>
@@ -800,6 +854,8 @@ namespace BeldYazilim.Persistence.Migrations
                 {
                     b.Navigation("ArticleComments");
 
+                    b.Navigation("ArticleTags");
+
                     b.Navigation("Images");
                 });
 
@@ -841,6 +897,11 @@ namespace BeldYazilim.Persistence.Migrations
             modelBuilder.Entity("BeldYazilim.Domain.Entities.ProductShop", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("BeldYazilim.Domain.Entities.Tag", b =>
+                {
+                    b.Navigation("ArticleTags");
                 });
 #pragma warning restore 612, 618
         }

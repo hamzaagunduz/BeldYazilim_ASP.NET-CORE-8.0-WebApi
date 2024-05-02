@@ -1,153 +1,194 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
 
 }
+ *@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CKEditor 5 – Classic editor</title>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-</head>
-<body>
-    <h1>Classic editor</h1>
-    <div id="editor">
-        <p>This is some sample content.</p>
-    </div>
-    
-    <script type="text/javascript">
-        docReady(function () {
-            var myEditor = null;
-            // DOM is loaded and ready for manipulation here
-            ClassicEditor
-                .create(document.querySelector("#Content"), {
-                    height: 400,
-                    Toolbar: { //Set the toolbar
-                        items: [
-                            'heading',
-                            '|',
-                            'bold',
-                            'italic',
-                            'underline',
-                            'link',
-                            'bulletedList',
-                            'numberedList',
-                            'imageUpload',
-                            'blockQuote',
-                            'insertTable',
-                            //'mediaEmbed',
-                            'undo',
-                            'redo'
-                        ]
-                    },
-                    extraPlugins: [MyCustomUploadAdapterPlugin]
-                })
-                .then(editor => {
-                    myEditor = editor;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-
-        function docReady(fn) {
-            // see if DOM is already available
-            if (document.readyState === "complete" || document.readyState === "interactive") {
-                // call on next available tick
-                setTimeout(fn, 1);
-            } else {
-                document.addEventListener("DOMContentLoaded", fn);
-            }
-        }
-
-        function MyCustomUploadAdapterPlugin(editor) {
-            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                // Configure the URL to the upload script in your back-end here!
-                return new MyUploadAdapter(loader);
-            };
-        }
-
-        class MyUploadAdapter {
-            constructor(loader) {
-                // The file loader instance to use during the upload.
-                this.loader = loader;
-            }
-
-            // Starts the upload process.
-            upload() {
-                return this.loader.file
-                    .then(file => new Promise((resolve, reject) => {
-                        this._initRequest();
-                        this._initListeners(resolve, reject, file);
-                        this._sendRequest(file);
-                    }));
-            }
-
-            // Aborts the upload process.
-            abort() {
-                if (this.xhr) {
-                    this.xhr.abort();
-                }
-            }
-
-            // Initializes the XMLHttpRequest object using the URL passed to the constructor.
-            _initRequest() {
-                const xhr = this.xhr = new XMLHttpRequest();
-
-                // Note that your request may look different. It is up to you and your editor
-                // integration to choose the right communication channel. This example uses
-                // a POST request with JSON as a data structure but your configuration
-                // could be different.
-                xhr.open('POST', '/Home/UploadCKEditorImage', true);
-                // xhr.open('POST', 'https://localhost:7298/api/Article/UploadCKEditorImage', true);
-
-                xhr.responseType = 'json';
-            }
-
-            // Initializes XMLHttpRequest listeners.
-            _initListeners(resolve, reject, file) {
-                const xhr = this.xhr;
-                const loader = this.loader;
-                const genericErrorText = `Couldn't upload file: ${file.name}.`;
-
-                xhr.addEventListener('error', () => reject(genericErrorText));
-                xhr.addEventListener('abort', () => reject());
-                xhr.addEventListener('load', () => {
-                    const response = xhr.response;
-
-                    if (!response || response.error) {
-                        return reject(response && response.error ? response.error.message : genericErrorText);
-                    }
-
-                    resolve({
-                        default: response.url
-                    });
-                });
-
-                if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', evt => {
-                        if (evt.lengthComputable) {
-                            loader.uploadTotal = evt.total;
-                            loader.uploaded = evt.loaded;
-                        }
-                    });
-                }
-            }
-
-            _sendRequest(file) {
-                const data = new FormData();
-                data.append('upload', file);
-                this.xhr.send(data);
-            }
-        }
-    </script>
-    <form>
-        <textarea id="Content" name="Content" rows="4"
-                  class="form-control" placeholder="Please enter the announcement content"></textarea>
+<div class="container">
+    <h3>jQuery UI Autocomplete with Bootstrap Styling</h3>
+    <form id="tagForm" autocomplete="off">
+        <div class="form-group" style="width:300px;">
+            <label for="tags">Tags</label>
+            <input type="text" class="form-control" id="tags">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button> <!-- Submit Butonu -->
     </form>
-</body>
-</html>
+</div>
+<div id="autocompleteContainer"></div>
+
+
+
+
+<script>
+    var selectedTags = [];
+    position: { collision: "flip" }
+
+    // AJAX isteği ile tagları alın
+    $.ajax({
+        url: "https://localhost:7298/api/Tag",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            console.log("API'den gelen veriler:");
+            console.log(data);
+
+            var availableTags = data.map(function (tag) {
+                return tag.name;
+            });
+
+            console.log(availableTags);
+
+            $("#tags").autocomplete({
+                position: { my: "right top", at: "right bottom" }
+
+                source: availableTags,
+                select: function (event, ui) {
+                    selectedTags.push(ui.item);
+                    console.log("Seçilen etiketler:");
+                    console.log(selectedTags);
+
+                    $("#selectedTagsContainer").empty();
+                    selectedTags.forEach(function (tag) {
+                        var tagDiv = $("<div>").addClass("selected-tag").text(tag.name);
+                        var removeIcon = $("<span>").addClass("remove-icon").text("x").click(function () {
+                            var index = selectedTags.indexOf(tag);
+                            if (index > -1) {
+                                selectedTags.splice(index, 1);
+                                tagDiv.remove();
+                            }
+                        });
+                        tagDiv.append(removeIcon);
+                        $("#selectedTagsContainer").append(tagDiv);
+                    });
+                }
+            }).autocomplete("widget").appendTo(".form-group");
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error: ", errorThrown);
+        }
+    });
+
+
+
+        // Form submit olayı dinleyicisi
+    $("#form").submit(function (event) {
+        event.preventDefault();
+
+        // Seçilen tag'lerin ID'lerini alın
+        var tagIDs = selectedTags.map(function (tag) {
+            return tag.value;
+        });
+        console.log("IDler");
+        console.log(tagIDs);
+
+        // API'ye tag'leri göndermek için bir POST isteği yapın
+        $.ajax({
+            url: "https://localhost:7298/api/Tag",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ articleID: 57, tagID: tagIDs }),
+            success: function (response) {
+                console.log("Tagler başarıyla gönderildi:", response);
+                // Tag'ler başarıyla gönderildiğinde, makale oluşturma işlemi için bir POST isteği yapın
+                $.ajax({
+                    url: "https://localhost:7298/api/Article",
+                    type: "POST",
+                    data: $(this).serialize(), // Form verilerini alıyoruz
+                    success: function (response) {
+                        console.log("Makale başarıyla oluşturuldu:", response);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log("Makale oluşturulurken bir hata oluştu:", errorThrown);
+                    }
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Tagler gönderilirken bir hata oluştu:", errorThrown);
+            }
+        });
+    });
+    });;
+
+ </script>
+
+
+
+@* $(document).ready(function () {
+    var selectedTags = {};
+
+    // AJAX isteği ile tagları alın
+    $.ajax({
+        url: "https://localhost:7298/api/Tag",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            console.log("API'den gelen veriler:");
+            console.log(data);
+
+            // Etiketleri uygun formatta düzenle
+            var availableTags = data.map(function (tag) {
+                return {
+                    label: tag.name,
+                    value: tag.tagID
+                };
+            });
+
+            console.log(availableTags);
+
+            // Input alanına otomatik tamamlama eklemek
+            $("#tags").autocomplete({
+                source: availableTags,
+                select: function (event, ui) {
+                    // Seçilen etiketi diziye ekleyin
+                    if (!(ui.item.value in selectedTags)) {
+                        selectedTags[ui.item.value] = ui.item;
+                    }
+                    console.log("Seçilen etiketler:");
+                    console.log(selectedTags);
+
+                    // Seçilen etiketleri göstermek için div'e ekleme yapın
+                    updateSelectedTags();
+                }
+            });
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error: ", errorThrown);
+        }
+    });
+
+    // Seçilen etiketleri güncelleyen fonksiyon
+    function updateSelectedTags() {
+        $("#selectedTagsContainer").empty();
+        for (var tagID in selectedTags) {
+            var tag = selectedTags[tagID];
+            var tagDiv = $("<div>
+    ").addClass("selected-tag").text(tag.label); // "label" kullanıldı
+    var tagIDDiv = $("<div>
+        ").addClass("tag-id").text(tag.value); // ID değeri div'e eklendi
+        var removeIcon = $("<span>
+            ").addClass("remove-icon").text("x").click(function () {
+            // Etiketi listeden çıkarın ve div'den kaldırın
+            var tagID = $(this).siblings(".tag-id").text();
+            delete selectedTags[tagID];
+            $(this).parent().remove();
+            // Silinen etiketin ID'sini tagIDsContainer'dan da kaldır
+            $("#tagIDsContainer").find(".tag-id").filter(function () {
+            return $(this).text() === tagID;
+            }).remove();
+            });
+            tagDiv.append(removeIcon);
+            $("#selectedTagsContainer").append(tagDiv);
+
+            // ID div'lerini de ekleyin
+            $("#selectedTagsContainer").append(tagIDDiv);
+            }
+            }
+            });
+ *@

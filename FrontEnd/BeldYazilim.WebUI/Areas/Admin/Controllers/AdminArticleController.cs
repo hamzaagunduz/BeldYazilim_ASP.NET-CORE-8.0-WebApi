@@ -73,11 +73,16 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AdminArticle", "Admin");
+
+
             }
 
             // Hata durumunda, geri dönüş yapın veya uygun bir hata mesajı gösterin
             return Content(responseMessage.Content.ToString());
         }
+
+
+
 
         public async Task<IActionResult> RemoveArticle(int id)
         {
@@ -128,6 +133,20 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpPost("Admin/UploadCKEditorImage")]
         public JsonResult UploadCKEditorImage()

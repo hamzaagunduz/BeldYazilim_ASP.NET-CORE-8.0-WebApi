@@ -15,4 +15,36 @@
     <link href="~/Admin/vertical/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Admin/vertical/assets/css/theme.min.css" rel="stylesheet" type="text/css" />
 
+
+    <style>
+        .ui-autocomplete {
+            position: absolute;
+            z-index: 10000;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0;
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 50px; /* Öneri listesinin genişliğini 50 piksel olarak ayarla */
+        }
+
+
+            .ui-autocomplete li {
+                padding: 5px 20px;
+                cursor: pointer;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+                .ui-autocomplete li:last-child {
+                    border-bottom: none;
+                }
+
+                .ui-autocomplete li:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+    </style>
+
 </head>
