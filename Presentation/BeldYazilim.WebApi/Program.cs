@@ -2,6 +2,7 @@ using BeldYazilim.Application.Helpers;
 using BeldYazilim.Application.Interfaces;
 using BeldYazilim.Application.Interfaces.AppUserInterfaces;
 using BeldYazilim.Application.Interfaces.ArticleInterfaces;
+using BeldYazilim.Application.Interfaces.TagInterfaces;
 using BeldYazilim.Application.Services;
 using BeldYazilim.Application.Tools;
 using BeldYazilim.Domain.Entities;
@@ -9,6 +10,7 @@ using BeldYazilim.Persistence.Context;
 using BeldYazilim.Persistence.Repositories;
 using BeldYazilim.Persistence.Repositories.AppUserRepositories;
 using BeldYazilim.Persistence.Repositories.ArticleRepositories;
+using BeldYazilim.Persistence.Repositories.TagInterfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
@@ -65,6 +67,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IArticleRepository), typeof(ArticleRepository));
 builder.Services.AddScoped(typeof(IImageHelper), typeof(ImageHelper));
 builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
+builder.Services.AddScoped(typeof(ITagRepository), typeof(TagRepository));
 
 
 

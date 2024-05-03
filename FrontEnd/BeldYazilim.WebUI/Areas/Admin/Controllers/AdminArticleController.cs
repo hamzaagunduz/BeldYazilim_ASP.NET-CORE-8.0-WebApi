@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace BeldYazilim.WebUI.Areas.Admin.Controllers
@@ -72,8 +73,9 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("AdminArticle", "Admin");
+                UpdateArticleUsingLastArticle();
 
+                return RedirectToAction("AdminArticle", "Admin");
 
             }
 
@@ -81,7 +83,60 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             return Content(responseMessage.Content.ToString());
         }
 
+        public async Task<IActionResult> UpdateArticleUsingLastArticle()
+        {
+            // GetLastArticles endpoint'ine GET isteği yap
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetAsync("https://localhost:7298/api/Article/GetLastArticles");
 
+            if (response.IsSuccessStatusCode)
+            {
+                // Yanıt içeriğini oku ve JSON'dan ArticleDTO nesnesine dönüştür
+                var content = await response.Content.ReadAsStringAsync();
+                var lastArticle = JsonConvert.DeserializeObject<GetLast4ArticlesDto>(content);
+
+                // ArticleDTO içinden articleID değerini al
+                int articleId = lastArticle.articleID;
+
+                // Güncelleme isteği için DTO oluştur
+                var tagUpdateDto = new TagUpdateDto { newArticleId = articleId };
+
+                // Güncelleme isteği yap
+                var updateResponse = await UpdateTag(tagUpdateDto);
+
+                return updateResponse;
+            }
+            else
+            {
+                return StatusCode((int)response.StatusCode);
+            }
+        }
+
+
+        public async Task<IActionResult> UpdateTag(TagUpdateDto tagUpdateDto)
+        {
+            // TagUpdateDto nesnesini JSON formatına dönüştür
+            var json = JsonConvert.SerializeObject(tagUpdateDto);
+
+            // HTTP isteği için HttpClient örneği al
+            var httpClient = _httpClientFactory.CreateClient();
+
+            // İstek için gerekli ayarları yap
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Tag güncelleme isteğini yap
+            var response = await httpClient.PutAsync("https://localhost:7298/api/Tag", new StringContent(json, Encoding.UTF8, "application/json"));
+
+            // Yanıtı kontrol et ve uygun şekilde işle
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AdminArticle", "Admin");
+            }
+            else
+            {
+                return View();
+            }
+        }
 
 
         public async Task<IActionResult> RemoveArticle(int id)
@@ -94,6 +149,7 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
 
         [HttpGet]
         public async Task<IActionResult> UpdateArticle(int id)

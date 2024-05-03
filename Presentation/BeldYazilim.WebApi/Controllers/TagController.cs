@@ -1,4 +1,5 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
+using BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands;
 using BeldYazilim.Application.Features.Mediator.Commands.TagCommands;
 using BeldYazilim.Application.Features.Mediator.Queries.ArticleQueries;
 using BeldYazilim.Application.Features.Mediator.Queries.TagQueries;
@@ -33,6 +34,19 @@ namespace BeldYazilim.WebApi.Controllers
             await _mediator.Send(command);
             return Ok("TagCommand başarıyla eklendi");
 
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTagById(int id)
+        {
+            var values = await _mediator.Send(new GetTagByIdQuery(id));
+            return Ok(values);
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateArticle(UpdateArticleTagCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok("Article başarıyla güncellendi");
         }
     }
 }
