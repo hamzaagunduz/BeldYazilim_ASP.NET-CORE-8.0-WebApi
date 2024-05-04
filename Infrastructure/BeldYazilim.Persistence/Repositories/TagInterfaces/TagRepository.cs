@@ -43,7 +43,16 @@ namespace BeldYazilim.Persistence.Repositories.TagInterfaces
             await _context.SaveChangesAsync();
         }
 
+        public List<Tag> GetTagsForArticle(int articleId)
+        {
+            // Makaleye ait etiketleri almak için LINQ sorgusu
+            var tags = _context.ArticleTags
+                .Where(at => at.ArticleID == articleId)
+                .Select(at => at.Tag)
+                .ToList();
 
+            return tags;
+        }
 
     }
 }

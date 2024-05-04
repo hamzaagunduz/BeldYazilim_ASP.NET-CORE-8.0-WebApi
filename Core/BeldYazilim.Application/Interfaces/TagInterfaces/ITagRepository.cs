@@ -12,6 +12,7 @@ namespace BeldYazilim.Application.Interfaces.TagInterfaces
         public List<ArticleTag> GetTagsByArticleId(int articleId);
         Task UpdateArticleTags(int newArticleId);
 
+        public   List<Tag> GetTagsForArticle(int articleId);
 
     }
 }

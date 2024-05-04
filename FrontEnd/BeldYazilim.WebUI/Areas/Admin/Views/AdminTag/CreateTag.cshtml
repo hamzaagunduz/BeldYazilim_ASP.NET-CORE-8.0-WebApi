@@ -1,0 +1,41 @@
+﻿@model CreateTagDto
+
+@{
+    ViewData["Title"] = "CreateTag";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Tag Girişi</h4>
+                        <p class="card-subtitle mb-4">Tag ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+                        <form method="post">
+
+
+
+                            <div class="form-group">
+                                <label for="exampleInputModel">Yeni Tag</label>
+                                <input type="text" class="form-control" id="exampleInputModel" asp-for="name" placeholder="Başlığınızı Giriniz">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Tagı Kaydet</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>
+<!-- end page title -->
+

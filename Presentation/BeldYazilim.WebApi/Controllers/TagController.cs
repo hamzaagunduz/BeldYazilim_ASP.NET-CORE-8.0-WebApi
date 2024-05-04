@@ -1,6 +1,7 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
 using BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands;
 using BeldYazilim.Application.Features.Mediator.Commands.TagCommands;
+using BeldYazilim.Application.Features.Mediator.Queries.ArticleCategoryQueries;
 using BeldYazilim.Application.Features.Mediator.Queries.ArticleQueries;
 using BeldYazilim.Application.Features.Mediator.Queries.TagQueries;
 using BeldYazilim.Persistence.Context;
@@ -32,7 +33,16 @@ namespace BeldYazilim.WebApi.Controllers
         {
 
             await _mediator.Send(command);
-            return Ok("TagCommand başarıyla eklendi");
+            return Ok("Makaleye Tag başarıyla eklendi");
+
+        }
+
+        [HttpPost("CreateNewArticleTag")]
+        public async Task<IActionResult> CreateNewArticleTag(CreateNewTagCommand command)
+        {
+
+            await _mediator.Send(command);
+            return Ok("Yeni Tag başarıyla eklendi");
 
         }
 
@@ -41,12 +51,45 @@ namespace BeldYazilim.WebApi.Controllers
         {
             var values = await _mediator.Send(new GetTagByIdQuery(id));
             return Ok(values);
+        }      
+        
+        [HttpGet("GetTagByTagId/{id}")]
+        public async Task<IActionResult> GetTagByTagId(int id)
+        {
+            var values = await _mediator.Send(new GetTagByTagIdQuery(id));
+            return Ok(values);
+        }      
+        //
+
+
+        [HttpGet("TagNameUsingArticleId/{id}")]
+        public async Task<IActionResult> TagNameUsingArticleId(int id)
+        {
+            var values = await _mediator.Send(new GetTagNameByIdQuery(id));
+            return Ok(values);
         }
+
+
         [HttpPut]
         public async Task<IActionResult> UpdateArticle(UpdateArticleTagCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Article başarıyla güncellendi");
+            return Ok("ArticleTag başarıyla güncellendi");
         }
+
+        [HttpPut("UpdateTag")]
+        public async Task<IActionResult> UpdateTag(UpdateTagCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok("Tag başarıyla güncellendi");
+        }       
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveTag(int id)
+        {
+            await _mediator.Send(new RemoveTagCommand(id));
+            return Ok("Tag başarıyla silindi");
+        }
+
+
     }
 }
