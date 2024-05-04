@@ -1,78 +1,22 @@
-﻿<div class="col-md-12 col-lg-4 sidebar">
+﻿@model GetUserWithRoleByIdDtos
+<div class="col-md-12 col-lg-4 sidebar">
     <div class="sidebar-box search-form-wrap">
         <form action="#" class="sidebar-search-form">
             <span class="bi-search"></span>
             <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
         </form>
     </div>
-    <!-- END sidebar-box -->
-    <div class="sidebar-box">
-        <div class="bio text-center">
-            <img src="/images/@Model.getUserWithRoleByIdDtos.imageUrl" alt="Image Placeholder" class="img-fluid mb-3">
-            <div class="bio-body">
-                <h2>@Model.getUserWithRoleByIdDtos.firstName @Model.getUserWithRoleByIdDtos.surname</h2>
-                <p class="mb-4">@Model.getUserWithRoleByIdDtos.about</p>
-                <p><a href="#" class="btn btn-primary btn-sm rounded px-2 py-2">Read my bio</a></p>
-                <p class="social">
-                    <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- END sidebar-box -->
-    <div class="sidebar-box">
-        <h3 class="heading">Popular Posts</h3>
-        <div class="post-entry-sidebar">
-            <ul>
-                @foreach (var article in Model.getTop3RatedArticles)
-                {
-                    <li>
-                        <a href="#">
-                            <img src="/images/@article.bigImageUrl" alt="Image placeholder" class="me-4 rounded">
-                            <div class="text">
-                                <h4>@article.title</h4>
-                                <div class="post-meta">
-                                    <span class="mr-2">@article.creationTime.ToString("MMMM dd, yyyy")</span>
-                                    <span class="mr-2">@article.name</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-    <!-- END sidebar-box -->
-    <div class="sidebar-box">
-        <h3 class="heading">Categories</h3>
-        <ul class="categories">
-            @foreach (var category in Model.ResultMainCategoryDto)
-            {
-                <li><a href="#">@category.name <span>12</span></a></li>
-            }
-        </ul>
-    </div>
+
+    @await Component.InvokeAsync("_ArticleDetailAuthorComponentPartial", new { id = ViewBag.blogid })
 
     <!-- END sidebar-box -->
+    @await Component.InvokeAsync("_ArticlePopularPostComponentPartial")
 
-    <div class="sidebar-box">
-        <h3 class="heading">Tags</h3>
-        <ul class="tags">
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Lifestyle</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Freelancing</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Lifestyle</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Freelancing</a></li>
-        </ul>
-    </div>
+    
+
+    @await Component.InvokeAsync("_ArticleMainCategoriesComponentPartial")
+
+    <!-- END sidebar-box -->
+    @await Component.InvokeAsync("_ArticleDetailTagsComponentPartial")
+
 </div>

@@ -33,7 +33,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
                 ArticleAuthorID = value.ArticleAuthor.ArticleAuthorID,
                 Name = value.ArticleAuthor.AppUser.FirstName,
                 Role = value.ArticleAuthor.Role,
-                bigImageUrl=value.BigImageUrl,
+                bigImageUrl = value.BigImageUrl,
                 ImageUrl = value.ArticleAuthor.AppUser.ImageUrl,
             };
         }

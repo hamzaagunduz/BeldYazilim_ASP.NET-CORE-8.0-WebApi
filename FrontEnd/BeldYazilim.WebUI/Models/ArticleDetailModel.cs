@@ -12,5 +12,6 @@ namespace BeldYazilim.WebUI.Models
         public List<GetTop3RatedArticles> getTop3RatedArticles { get; set; }
         public List<ResultMainCategoryDto> ResultMainCategoryDto { get; set; }
         public List<GetLast4ArticlesDto> getLast4ArticlesDto { get; set; }
+        public List<GetAllTagDto> getAllTagDto { get; set; }
     }
 }

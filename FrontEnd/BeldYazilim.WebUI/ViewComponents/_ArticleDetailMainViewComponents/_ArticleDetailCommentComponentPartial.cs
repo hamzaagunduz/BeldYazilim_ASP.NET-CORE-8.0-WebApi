@@ -2,7 +2,7 @@
 
 namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
 {
-    public class _ArticleDetailCommentComponentPartial:ViewComponent
+    public class _ArticleDetailCommentComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

@@ -1,6 +1,7 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands;
 using BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers;
 using BeldYazilim.Application.Features.Mediator.Queries.ArticleQueries;
+using BeldYazilim.Application.Features.Mediator.Queries.TagQueries;
 using BeldYazilim.Persistence.Context;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
@@ -77,6 +78,7 @@ namespace BeldYazilim.WebApi.Controllers
             var value = await _mediator.Send(new GetArticleWithAuthorsByIdQuery(id));
             return Ok(value);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateArticle(CreateArticleCommand command)

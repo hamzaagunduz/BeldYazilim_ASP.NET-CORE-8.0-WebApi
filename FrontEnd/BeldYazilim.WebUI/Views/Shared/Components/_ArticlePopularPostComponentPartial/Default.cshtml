@@ -1,0 +1,23 @@
+﻿@model List<GetTop3RatedArticles>
+<div class="sidebar-box">
+    <h3 class="heading">Popular Posts</h3>
+    <div class="post-entry-sidebar">
+        <ul>
+            @foreach (var article in Model)
+            {
+                <li>
+                    <a href="#">
+                        <img src="/images/@article.bigImageUrl" alt="Image placeholder" class="me-4 rounded">
+                        <div class="text">
+                            <h4>@article.title</h4>
+                            <div class="post-meta">
+                                <span class="mr-2">@article.creationTime.ToString("MMMM dd, yyyy")</span>
+                                <span class="mr-2">@article.name</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

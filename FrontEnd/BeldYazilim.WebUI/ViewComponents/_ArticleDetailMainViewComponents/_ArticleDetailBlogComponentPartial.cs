@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
 {
-    public class _ArticleDetailBlogComponentPartial:ViewComponent
+    public class _ArticleDetailBlogComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public _ArticleDetailBlogComponentPartial(IHttpClientFactory httpClientFactory)
@@ -24,12 +24,8 @@ namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var getAllArticleDto = JsonConvert.DeserializeObject<GetAllArticleDto>(jsonData);
 
-                var model = new ArticleDetailModel
-                {
-                    getAllArticleDto = getAllArticleDto
-                };
 
-                return View(model);
+                return View(getAllArticleDto);
             }
             else
             {

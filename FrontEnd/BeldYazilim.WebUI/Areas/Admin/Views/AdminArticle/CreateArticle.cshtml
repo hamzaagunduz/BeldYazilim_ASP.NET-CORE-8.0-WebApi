@@ -70,3 +70,106 @@
 
 
 <!-- end page title -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var selectedTags = [];
+
+            // Form submit olayı dinleyicisi
+            $("form").submit(function (event) {
+
+                event.preventDefault();
+
+
+                // Seçilen tagların ID'lerini alın
+                var tagIDs = selectedTags.map(function (tag) {
+                    return tag.value; // "value" kullanıldı
+                });
+
+                console.log("IDler");
+                console.log(tagIDs);
+
+                // API'den en son makalenin ID'sini alın
+                $.ajax({
+                    url: "https://localhost:7298/api/Article/GetLastArticles",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        var lastArticleID = response.articleID;
+                        console.log("En son makale ID'si:", lastArticleID);
+                        // API'ye göndermek için bir POST isteği yapın
+                        $.ajax({
+                            url: "https://localhost:7298/api/Tag",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({ articleID: 55, tagID: tagIDs }),
+                            success: function (response) {
+                                console.log("Başarıyla gönderildi:", response);
+                                // Formu normal şekilde gönderin
+                                $("#form").unbind('submit').submit();
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log("Hata:", errorThrown);
+                            }
+                        });
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log("Hata:", errorThrown);
+                    }
+                });
+            });
+
+            // AJAX isteği ile tagları alın
+            $.ajax({
+                url: "https://localhost:7298/api/Tag",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log("API'den gelen veriler:");
+                    console.log(data);
+
+                    // Etiketleri uygun formatta düzenle
+                    var availableTags = data.map(function (tag) {
+                        return {
+                            label: tag.name,
+                            value: tag.tagID
+                        };
+                    });
+
+                    console.log(availableTags);
+
+                    // Input alanına otomatik tamamlama eklemek
+                    $("#tags").autocomplete({
+                        source: availableTags,
+                        select: function (event, ui) {
+                            // Seçilen etiketi diziye ekleyin
+                            selectedTags.push(ui.item);
+                            console.log("Seçilen etiketler:");
+                            console.log(selectedTags);
+
+                            // Seçilen etiketleri göstermek için div'e ekleme yapın
+                            $("#selectedTagsContainer").empty();
+                            selectedTags.forEach(function (tag) {
+                                var tagDiv = $("<div>").addClass("selected-tag").text(tag.label); // "label" kullanıldı
+                                var removeIcon = $("<span>").addClass("remove-icon").text("x").click(function () {
+                                    // Etiketi listeden çıkarın ve div'den kaldırın
+                                    var index = selectedTags.indexOf(tag);
+                                    if (index > -1) {
+                                        selectedTags.splice(index, 1);
+                                        tagDiv.remove();
+                                    }
+                                });
+                                tagDiv.append(removeIcon);
+                                $("#selectedTagsContainer").append(tagDiv);
+                            });
+                        }
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Error: ", errorThrown);
+                }
+            });
+        });
+
+    </script>
+}

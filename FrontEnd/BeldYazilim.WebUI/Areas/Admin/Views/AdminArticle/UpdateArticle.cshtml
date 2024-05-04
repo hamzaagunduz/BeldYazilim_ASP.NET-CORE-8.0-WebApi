@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Araç Güncelleme Sayfası</h4>
                         <p class="card-subtitle mb-4">Araç ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak güncelleme işlemini tamamlayabilirsiniz.</p>
-                        <form method="post" enctype="multipart/form-data">
+                        <form id="makalekayıt"method="post" enctype="multipart/form-data">
                             <input type="hidden" asp-for="articleID" />
      
                             <div class="form-group">
@@ -65,7 +65,7 @@
                                 <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Aracı Kaydet</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Makaleyi Düzenle</button>
                         </form>
 
                     </div> <!-- end card-body-->

@@ -1,42 +1,34 @@
-﻿using BeldYazilim.Dto.ArticleDtos;
-using BeldYazilim.WebUI.Models;
+﻿using BeldYazilim.Dto.AppUserDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Web.Mvc;
 
 namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
 {
-    public class _ArticleDetailTopComponentPartial : ViewComponent
+    public class _ArticleDetailAuthorComponentPartial:ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public _ArticleDetailTopComponentPartial(IHttpClientFactory httpClientFactory)
+        public _ArticleDetailAuthorComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             ViewBag.blogid = id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7298/api/Article/article-with-author/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7298/api/AppUser/user-with-role-byArticleId/{id}");
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var articleWithAuthorData = JsonConvert.DeserializeObject<GetArticleWithAuthorById>(jsonData);
+                var getUserWithRoleDto = JsonConvert.DeserializeObject<GetUserWithRoleByIdDtos>(jsonData);
 
-                var model = new ArticleDetailModel
-                {
-                    getArticleWithAuthorById = articleWithAuthorData
-                };
-
-                return View(model);
+                return View(getUserWithRoleDto);
             }
             else
             {
-                // Handle unsuccessful response
                 return View();
             }
         }
-
     }
 }

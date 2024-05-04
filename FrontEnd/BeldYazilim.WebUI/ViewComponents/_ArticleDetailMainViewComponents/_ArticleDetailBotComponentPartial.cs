@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
 {
-    public class _ArticleDetailBotComponentPartial:ViewComponent
+    public class _ArticleDetailBotComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public _ArticleDetailBotComponentPartial(IHttpClientFactory httpClientFactory)

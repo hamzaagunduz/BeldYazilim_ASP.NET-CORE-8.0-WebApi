@@ -16,5 +16,11 @@
     </div>
     @await Html.PartialAsync("AdminScriptPartial.cshtml")
 
+
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: false)
+    }
+
 </body>
 </html>
