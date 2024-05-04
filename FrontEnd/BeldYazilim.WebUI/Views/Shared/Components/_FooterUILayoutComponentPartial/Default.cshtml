@@ -1,41 +1,44 @@
-﻿<footer class="site-footer">
+﻿@model List<GetFooterAboutDto>
+<footer class="site-footer">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
                 <div class="widget">
                     <h3 class="mb-4">About</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    @foreach (var article in Model)
+            {
+                    <p>@article.content</p>
+            }
                 </div> <!-- /.widget -->
                 <div class="widget">
-                    <h3>Social</h3>
+                    <h3>Sosyal Medya</h3>
                     <ul class="list-unstyled social">
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                        <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                        <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                     </ul>
-                </div> <!-- /.widget -->
+                </div>
+                
+                <!-- /.widget -->
             </div> <!-- /.col-lg-4 -->
             <div class="col-lg-4 ps-lg-5">
                 <div class="widget">
-                    <h3 class="mb-4">Company</h3>
+                    <h3 class="mb-4">Şirket</h3>
                     <ul class="list-unstyled float-start links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Vision</a></li>
-                        <li><a href="#">Mission</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">Servislerimiz</a></li>
+                        <li><a href="#">Vizyonumuz</a></li>
+                        <li><a href="#">Misyonumuz</a></li>
+                        <li><a href="#">Belge</a></li>
+                        <li><a href="#">Güvenlik</a></li>
                     </ul>
                     <ul class="list-unstyled float-start links">
-                        <li><a href="#">Partners</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partner</a></li>
+                        <li><a href="#">İşler</a></li>
+                        <li><a href="#">Kariyer</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">Üret</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-4 -->
@@ -46,17 +49,14 @@
 
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <!--
-                    **==========
-                    NOTE:
-                    Please don't remove this copyright link unless you buy the license here https://untree.co/license/
-                    **==========
-                  -->
+
 
                 <p>
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>  Distributed by <a href="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
+                    Telif Hakkı ©2024. Tüm Hakları Saklıdır. — Tarafından tasarlandı: BeldYazılım
+
                 </p>
             </div>
         </div>
     </div> <!-- /.container -->
 </footer> 
+

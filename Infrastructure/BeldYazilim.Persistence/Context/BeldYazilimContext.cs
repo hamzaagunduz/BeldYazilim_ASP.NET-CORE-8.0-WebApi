@@ -27,6 +27,7 @@ namespace BeldYazilim.Persistence.Context
         public DbSet<ProductSeller> ProductSellers { get; set; }
 
         public DbSet<ProductShop> ProductShops { get; set; }
+        public DbSet<FooterAbout> FooterAbouts { get; set; }
 
 
         public DbSet<Product> Products { get; set; }
