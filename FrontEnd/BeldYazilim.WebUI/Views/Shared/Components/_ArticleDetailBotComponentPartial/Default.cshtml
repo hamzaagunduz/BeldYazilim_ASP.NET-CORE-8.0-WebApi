@@ -1,16 +1,17 @@
-﻿<section class="section posts-entry posts-entry-sm bg-light">
+﻿@model List<GetLast4ArticlesDto>
+<section class="section posts-entry posts-entry-sm bg-light">
     <div class="container">
         <div class="row mb-4">
             <div class="col-12 text-uppercase text-black">More Blog Posts</div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-            @foreach (var article in Model.getLast4ArticlesDto)
+            @foreach (var article in Model)
             {
                 <div class="col">
                     <div class="blog-entry">
                         <div class="image-container">
-                            <a href="~/blogy-1.0.0/single.html" class="img-link">
-                                <img src="/images/@article.bigImageUrl" alt="Image" class="img-fluid">
+                            <a href="/ArticleDetail/Index/@article.articleID" class="img-link">
+                                <img src="/images/@article.bigImageUrl" alt="Image" class="img-thumbnail">
                             </a>
                         </div>
                         <span class="date">@article.creationTime.ToString("MMM dd, yyyy")</span>

@@ -22,12 +22,9 @@ namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var last4Articles = JsonConvert.DeserializeObject<List<GetLast4ArticlesDto>>(jsonData);
-                var model = new ArticleDetailModel
-                {
-                    getLast4ArticlesDto = last4Articles
-                };
 
-                return View(model);
+
+                return View(last4Articles);
             }
             else
             {
