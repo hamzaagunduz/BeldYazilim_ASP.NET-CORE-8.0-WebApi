@@ -1,0 +1,39 @@
+﻿@model UpdateTagDto
+
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tag Güncelleme Sayfası</h4>
+                        <form method="post">
+                            <input type="hidden" asp-for="tagID" />
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="name" placeholder="Tag İsmi">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Tagı Kaydet</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>
+<!-- end page title -->

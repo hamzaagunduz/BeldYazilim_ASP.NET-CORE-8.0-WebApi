@@ -1,0 +1,25 @@
+﻿@model List<GetTop3RatedArticles>
+<div class="col-lg-4">
+    <div class="widget">
+        <h3 class="mb-4">Popüler Bloglar</h3>
+        <div class="post-entry-footer">
+            <ul>
+                @foreach (var article in Model)
+                {
+                    <li>
+                        <a href="#">
+                            <img src="/images/@article.bigImageUrl" alt="Image placeholder" class="me-4 rounded">
+                            <div class="text">
+                                <h4>@article.title</h4>
+                                <div class="post-meta">
+                                    <span class="mr-2">@article.creationTime.ToString("MMMM dd, yyyy")</span>
+                                    <span class="mr-2">@article.name</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div> <!-- /.widget -->
+</div> <!-- /.col-lg-4 -->

@@ -21,10 +21,13 @@ namespace BeldYazilim.Persistence.Context
         public DbSet<AppUser> AppUsers { get; set; }
 
         public DbSet<ArticleImage> ArticleImages { get; set; }
+        public DbSet<Tag> Tag { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; }
 
         public DbSet<ProductSeller> ProductSellers { get; set; }
 
         public DbSet<ProductShop> ProductShops { get; set; }
+        public DbSet<FooterAbout> FooterAbouts { get; set; }
 
 
         public DbSet<Product> Products { get; set; }
@@ -60,6 +63,8 @@ namespace BeldYazilim.Persistence.Context
                 .HasForeignKey(bi => bi.ProductID)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<ArticleTag>()
+    .HasKey(at => new { at.ArticleID, at.TagID });
 
 
         }

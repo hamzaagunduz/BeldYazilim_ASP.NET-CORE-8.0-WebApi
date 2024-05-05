@@ -34,7 +34,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
                 RegistrationDate = x.RegistrationDate,
                 ImageUrl = x.ImageUrl,
                 ConfirmCode = x.ConfirmCode,
-
+                Email=x.Email
 
             }).ToList();
         }

@@ -25,6 +25,6 @@ namespace BeldYazilim.Domain.Entities
         public List<ArticleComment> ArticleComments { get; set; }
 
         public List<ArticleImage> Images { get; set; }
-
+        public List<ArticleTag> ArticleTags { get; set; }
     }
 }

@@ -1,0 +1,9 @@
+﻿@model List<GetArticleTags>
+<div class="pt-5">
+    <p></a> Tags: 
+        @foreach(var articleTag in Model)
+        {
+            <a href="#">#@articleTag.name</a>@if(!articleTag.Equals(Model.Last())){<text>,</text>}
+        }
+    </p>
+</div>

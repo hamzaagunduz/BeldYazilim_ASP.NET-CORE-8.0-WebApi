@@ -1,0 +1,11 @@
+﻿@model List<ResultMainCategoryDto>
+
+<div class="sidebar-box">
+    <h3 class="heading">Categories</h3>
+    <ul class="categories">
+        @foreach (var category in @Model)
+        {
+            <li><a href="#">@category.name <span>12</span></a></li>
+        }
+    </ul>
+</div>

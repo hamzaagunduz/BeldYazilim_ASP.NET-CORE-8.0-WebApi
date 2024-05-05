@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeldYazilim.WebApi.Controllers
 {
-    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class ArticleAuthorsController : ControllerBase
@@ -30,12 +29,7 @@ namespace BeldYazilim.WebApi.Controllers
             var value = await _mediator.Send(new GetArticleAuthorByIdQuery(id));
             return Ok(value);
         }
-        //[HttpPost]
-        //public async Task<IActionResult> CreateArticleAuthor(CreateArticleAuthorCommand command)
-        //{
-        //    await _mediator.Send(command);
-        //    return Ok("ArticleAuthor başarıyla eklendi");
-        //}
+
         [HttpDelete]
         public async Task<IActionResult> RemoveArticleAuthor(int id)
         {

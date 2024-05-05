@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI transfer-effect documentation</title>
+
+	<style>
+	body {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif"
+	}
+	.gutter {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+
+<script>{
+		"title":
+			"Transfer Effect",
+		"excerpt":
+			"Transfers the outline of an element to another element",
+		"termSlugs": {
+			"category": [
+				"effects"
+			]
+		}
+	}</script><article id="transfer1" class="entry effect"><h2 class="section-title"><span>Transfer Effect</span></h2>
+<div class="entry-wrapper">
+<p class="desc"><strong>Description: </strong>Transfers the outline of an element to another element</p>
+<ul class="signatures"><li class="signature">
+<h4 class="name">transfer</h4>
+<ul>
+<li>
+<div><strong>className</strong></div>
+<div>Type: <a href="http://api.jquery.com/Types/#String">String</a>
+</div>
+<div>argumental class name the transfer element will receive.</div>
+</li>
+<li>
+<div><strong>to</strong></div>
+<div>Type: <a href="http://api.jquery.com/Types/#String">String</a>
+</div>
+<div>jQuery selector, the element to transfer to.</div>
+</li>
+</ul>
+</li></ul>
+<div class="longdesc" id="entry-longdesc">
+		<p>Very useful when trying to visualize interaction between two elements.</p>
+		<p>The transfer element itself has the class <code>ui-effects-transfer</code>, and needs to be styled by you, for example by adding a background or border.</p>
+	</div>
+<section class="entry-examples" id="entry-examples"><header><h2>Example:</h2></header><div class="entry-example" id="example-0">
+<p>Clicking on the green element transfers to the other.</p>
+<div class="syntaxhighlighter xml">
+	<table>
+		<tbody>
+			<tr>
+				
+				<td class="gutter">
+					
+						<div class="line n1">1</div>
+					
+						<div class="line n2">2</div>
+					
+						<div class="line n3">3</div>
+					
+						<div class="line n4">4</div>
+					
+						<div class="line n5">5</div>
+					
+						<div class="line n6">6</div>
+					
+						<div class="line n7">7</div>
+					
+						<div class="line n8">8</div>
+					
+						<div class="line n9">9</div>
+					
+						<div class="line n10">10</div>
+					
+						<div class="line n11">11</div>
+					
+						<div class="line n12">12</div>
+					
+						<div class="line n13">13</div>
+					
+						<div class="line n14">14</div>
+					
+						<div class="line n15">15</div>
+					
+						<div class="line n16">16</div>
+					
+						<div class="line n17">17</div>
+					
+						<div class="line n18">18</div>
+					
+						<div class="line n19">19</div>
+					
+						<div class="line n20">20</div>
+					
+						<div class="line n21">21</div>
+					
+						<div class="line n22">22</div>
+					
+						<div class="line n23">23</div>
+					
+						<div class="line n24">24</div>
+					
+						<div class="line n25">25</div>
+					
+						<div class="line n26">26</div>
+					
+						<div class="line n27">27</div>
+					
+						<div class="line n28">28</div>
+					
+						<div class="line n29">29</div>
+					
+						<div class="line n30">30</div>
+					
+						<div class="line n31">31</div>
+					
+						<div class="line n32">32</div>
+					
+						<div class="line n33">33</div>
+					
+						<div class="line n34">34</div>
+					
+						<div class="line n35">35</div>
+					
+						<div class="line n36">36</div>
+					
+						<div class="line n37">37</div>
+					
+						<div class="line n38">38</div>
+					
+						<div class="line n39">39</div>
+					
+						<div class="line n40">40</div>
+					
+						<div class="line n41">41</div>
+					
+						<div class="line n42">42</div>
+					
+						<div class="line n43">43</div>
+					
+				</td>
+				
+				<td class="code">
+					<pre><div class="container"><div class="line"><code><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>transfer demo<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css&quot;</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.green</span> {</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">background</span>: green;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">position</span>: relative;</code></div></div><div class="container"><div class="line"><code>  }</code></div></div><div class="container"><div class="line"><code>  <span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.red</span> {</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">background</span>: red;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">position</span>: relative;</code></div></div><div class="container"><div class="line"><code>  }</code></div></div><div class="container"><div class="line"><code>  <span class="hljs-selector-class">.ui-effects-transfer</span> {</code></div></div><div class="container"><div class="line"><code>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> dotted black;</code></div></div><div class="container"><div class="line"><code>  }</code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//code.jquery.com/jquery-1.10.2.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></div></div><div class="container"><div class="line"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></code></div></div><div class="container"><div class="line"><code> </code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;green&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></div></div><div class="container"><div class="line"><code> </code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></code></div></div><div class="container"><div class="line"><code>$( <span class="hljs-string">&quot;div&quot;</span> ).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</code></div></div><div class="container"><div class="line"><code>  <span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span> - $( <span class="hljs-string">&quot;div&quot;</span> ).index( <span class="hljs-built_in">this</span> );</code></div></div><div class="container"><div class="line"><code>  $( <span class="hljs-built_in">this</span> ).effect( <span class="hljs-string">&quot;transfer&quot;</span>, { <span class="hljs-attr">to</span>: $( <span class="hljs-string">&quot;div&quot;</span> ).eq( i ) }, <span class="hljs-number">1000</span> );</code></div></div><div class="container"><div class="line"><code>});</code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></div></div><div class="container"><div class="line"><code> </code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></div></div><div class="container"><div class="line"><code><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></div></div></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h4>Demo:</h4>
+<div class="demo code-demo" data-height="150"></div>
+</div></section>
+</div></article>
+
+
+</body>
+</html>
