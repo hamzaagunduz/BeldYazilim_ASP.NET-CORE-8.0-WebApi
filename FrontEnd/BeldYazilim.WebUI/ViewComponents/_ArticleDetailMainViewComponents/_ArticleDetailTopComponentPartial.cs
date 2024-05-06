@@ -24,8 +24,6 @@ namespace BeldYazilim.WebUI.ViewComponents._ArticleDetailMainViewComponents
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var articleWithAuthorData = JsonConvert.DeserializeObject<GetArticleWithAuthorById>(jsonData);
 
-
-
                 return View(articleWithAuthorData);
             }
             else

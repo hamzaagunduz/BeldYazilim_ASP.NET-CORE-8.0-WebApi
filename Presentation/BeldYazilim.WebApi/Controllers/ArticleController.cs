@@ -78,10 +78,29 @@ namespace BeldYazilim.WebApi.Controllers
             return Ok(value);
         }
 
-        [HttpGet("article-with-author/{id}")] // İkinci endpoint
+        [HttpGet("article-with-author/{id}")] 
         public async Task<IActionResult> GetArticleWithAuthorById(int id)
         {
             var value = await _mediator.Send(new GetArticleWithAuthorsByIdQuery(id));
+            return Ok(value);
+        }    
+        [HttpGet("GetLastFiveArticlesByCategory/{id}")] 
+        public async Task<IActionResult> GetLastFiveArticlesByCategory(int id)
+        {
+            var value = await _mediator.Send(new GetLastFiveArticlesByCategoryQuery(id));
+            return Ok(value);
+        }    
+        
+        [HttpGet("GetTopRatedCountArticles/{id}")] 
+        public async Task<IActionResult> GetTopRatedCountArticles(int id)
+        {
+            var value = await _mediator.Send(new GetTopRatedCountArticlesQuery(id));
+            return Ok(value);
+        }     
+        [HttpGet("GetRandomArticle/{id}")] 
+        public async Task<IActionResult> GetRandomArticle(int id)
+        {
+            var value = await _mediator.Send(new GetRandomArticleQuery(id));
             return Ok(value);
         }
 

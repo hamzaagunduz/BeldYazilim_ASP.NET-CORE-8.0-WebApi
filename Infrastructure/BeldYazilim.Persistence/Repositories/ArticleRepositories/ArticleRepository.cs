@@ -60,6 +60,50 @@ namespace BeldYazilim.Persistence.Repositories.ArticleRepositories
             return latestArticles;
         }
 
+        public List<Article> GetLastFiveArticlesByCategory(int categoryId)
+        {
+            return _context.Articles
+                .Where(a => a.ArticleMainCategoryID == categoryId)
+                .OrderByDescending(a => a.CreationTime)
+                .Take(5)
+                .ToList();
+        }
 
-    }
+		public List<Article> GetRandomArticles(int count)
+		{
+			Random random = new Random();
+			int totalArticleCount = _context.Articles.Count();
+
+			// Toplam makale sayısı belirtilen sayıdan az ise, tüm makaleleri getir
+			if (totalArticleCount <= count)
+			{
+				return _context.Articles.ToList();
+			}
+			else
+			{
+				// Tüm makalelerin ID'lerini al
+				var allArticleIds = _context.Articles.Select(a => a.ArticleID).ToList();
+
+				// Rastgele makale ID'leri seç
+				HashSet<int> selectedIds = new HashSet<int>();
+				while (selectedIds.Count < count)
+				{
+					int randomIdIndex = random.Next(allArticleIds.Count);
+					int randomId = allArticleIds[randomIdIndex];
+					if (!selectedIds.Contains(randomId))
+					{
+						selectedIds.Add(randomId);
+					}
+				}
+
+				// Seçilen ID'lere göre makaleleri getir
+				var selectedArticles = _context.Articles
+					.Where(a => selectedIds.Contains(a.ArticleID))
+					.ToList();
+
+				return selectedArticles;
+			}
+		}
+
+	}
 }

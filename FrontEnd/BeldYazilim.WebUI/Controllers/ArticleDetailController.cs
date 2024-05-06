@@ -12,5 +12,7 @@ namespace BeldYazilim.WebUI.Controllers
             return View();
         }
 
+
+
     }
 }

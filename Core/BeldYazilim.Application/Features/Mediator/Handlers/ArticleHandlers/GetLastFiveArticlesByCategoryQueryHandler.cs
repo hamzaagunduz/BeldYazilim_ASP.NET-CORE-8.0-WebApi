@@ -10,27 +10,28 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
 {
-    public class GetTopRatedArticlesQueryHandler : IRequestHandler<GetTopRatedCountArticlesQuery, List<GetTopRatedArticlesQueryResult>>
+    public class GetLastFiveArticlesByCategoryQueryHandler : IRequestHandler<GetLastFiveArticlesByCategoryQuery, List<GetLastFiveArticlesByCategoryQueryResult>>
     {
         private readonly IArticleRepository _repository;
 
-        public GetTopRatedArticlesQueryHandler(IArticleRepository repository)
+        public GetLastFiveArticlesByCategoryQueryHandler(IArticleRepository repository)
         {
             _repository = repository;
         }
-        public  Task<List<GetTopRatedArticlesQueryResult>> Handle(GetTopRatedCountArticlesQuery request, CancellationToken cancellationToken)
+        public Task<List<GetLastFiveArticlesByCategoryQueryResult>> Handle(GetLastFiveArticlesByCategoryQuery request, CancellationToken cancellationToken)
         {
-            var values =  _repository.GetTopRatedArticles(request.id);
+            var values = _repository.GetLastFiveArticlesByCategory(request.id);
 
-            return Task.FromResult(values.Select(x => new GetTopRatedArticlesQueryResult
+            return Task.FromResult(values.Select(x => new GetLastFiveArticlesByCategoryQueryResult
             {
                 ArticleID = x.ArticleID,
                 Title = x.Title,
+                Content = x.Content,
                 CreationTime = x.CreationTime,
                 ClickCount = x.ClickCount,
                 BigImageUrl = x.BigImageUrl,
                 Rating = x.Rating,
-                Name = x.ArticleAuthor.Name,
+                
             }).ToList());
         }
     }

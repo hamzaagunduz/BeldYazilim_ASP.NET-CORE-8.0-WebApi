@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Application.Features.Mediator.Queries.ArticleQueries
 {
-    public class GetTopRatedArticlesQuery:IRequest<List<GetTopRatedArticlesQueryResult>>
-    {
+	public class GetTopRatedCountArticlesQuery : IRequest<List<GetTopRatedArticlesQueryResult>>
+	{
+		public GetTopRatedCountArticlesQuery(int id)
+		{
+			this.id = id;
+		}
 
+		public int id { get; set; }
     }
 }
