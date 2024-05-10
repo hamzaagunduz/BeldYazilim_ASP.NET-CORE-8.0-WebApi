@@ -103,9 +103,15 @@ namespace BeldYazilim.WebApi.Controllers
             var value = await _mediator.Send(new GetRandomArticleQuery(id));
             return Ok(value);
         }
+		[HttpGet("GetArticlesByCategoryPaged/{categoryId}/{pageNumber}/{pageSize}")]
+		public async Task<IActionResult> GetArticlesByCategoryPaged(int categoryId, int pageNumber, int pageSize)
+		{
+			var value = await _mediator.Send(new GetArticlesByCategoryPagedQuery(categoryId, pageNumber, pageSize));
+			return Ok(value);
+		}
 
 
-        [HttpPost]
+		[HttpPost]
         public async Task<IActionResult> CreateArticle(CreateArticleCommand command)
         {
 

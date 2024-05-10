@@ -105,5 +105,16 @@ namespace BeldYazilim.Persistence.Repositories.ArticleRepositories
 			}
 		}
 
+
+		public List<Article> GetArticlesByCategoryPaged(int categoryId, int pageNumber, int pageSize)
+		{
+			return _context.Articles
+				.Where(a => a.ArticleMainCategoryID == categoryId)
+				.OrderByDescending(a => a.CreationTime)
+				.Skip((pageNumber - 1) * pageSize)
+				.Take(pageSize)
+				.ToList();
+		}
+
 	}
 }

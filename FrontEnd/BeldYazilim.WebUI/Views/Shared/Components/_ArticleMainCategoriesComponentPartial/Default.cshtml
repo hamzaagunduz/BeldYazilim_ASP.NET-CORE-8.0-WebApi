@@ -5,7 +5,7 @@
     <ul class="categories">
         @foreach (var category in @Model)
         {
-            <li><a href="#">@category.name <span>12</span></a></li>
+            <li><a href="@Url.Action("Index", "ArticleCategory", new { categoryId = category.articleMainCategoryID, pageNumber = 1, pageSize = 5 })">@category.name <span>12</span></a></li>
         }
     </ul>
 </div>

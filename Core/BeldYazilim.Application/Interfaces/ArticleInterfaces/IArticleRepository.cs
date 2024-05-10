@@ -17,6 +17,7 @@ namespace BeldYazilim.Application.Interfaces.ArticleInterfaces
         public List<Article> GetLatestArticles(int count);
         public List<Article> GetLastFiveArticlesByCategory(int categoryId);
         public List<Article> GetRandomArticles(int count);
+        public List<Article> GetArticlesByCategoryPaged(int categoryId, int pageNumber, int pageSize);
 
 
 	}
