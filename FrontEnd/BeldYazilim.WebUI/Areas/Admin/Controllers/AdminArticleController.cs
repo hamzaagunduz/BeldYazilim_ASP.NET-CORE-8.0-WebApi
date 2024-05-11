@@ -1,5 +1,6 @@
 ﻿using BeldYazilim.Dto.ArticleCategoryDtos;
 using BeldYazilim.Dto.ArticleDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -10,7 +11,7 @@ using System.Text;
 namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    //[Authorize(Roles = "Admin")]
     public class AdminArticleController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

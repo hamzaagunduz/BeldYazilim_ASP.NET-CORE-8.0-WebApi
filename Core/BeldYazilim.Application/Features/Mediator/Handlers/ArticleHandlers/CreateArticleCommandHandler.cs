@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
 {
-    public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand,Unit>
+    public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, Unit>
     {
         private readonly IRepository<Article> _repository;
         private readonly UserManager<AppUser> _userManager;
@@ -35,7 +35,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleHandlers
                 ClickCount = 0,
                 BigImageUrl = imageUpload.FullName,
                 Rating = 1,
-                ArticleMainCategoryID =request.MainCategoryId,
+                ArticleMainCategoryID = request.MainCategoryId,
                 ArticleAuthorID = 8
             };
 

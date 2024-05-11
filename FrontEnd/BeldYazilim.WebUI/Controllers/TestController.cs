@@ -1,62 +1,45 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BeldYazilim.Dto.AppUserDtos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace BeldYazilim.WebUI.Controllers
 {
+    [Authorize]
     public class TestController : Controller
     {
-        [HttpPost("Home/UploadCKEditorImage")]
-
-        public JsonResult UploadCKEditorImage()
-        {
-            var files = Request.Form.Files;
-            if (files.Count == 0)
-            {
-                var rError = new
-                {
-                    uploaded = false,
-                    url = string.Empty
-                };
-                return Json(rError);
-            }
-
-            var formFile = files[0];
-            var upFileName = formFile.FileName;
-
-            var fileName = Path.GetFileNameWithoutExtension(upFileName) +
-                DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(upFileName);
-
-            var saveDir = @".\wwwroot\upload\";
-            var savePath = saveDir + fileName;
-            var previewPath = "/upload/" + fileName;
-
-            bool result = true;
-            try
-            {
-                if (!Directory.Exists(saveDir))
-                {
-                    Directory.CreateDirectory(saveDir);
-                }
-                using (FileStream fs = System.IO.File.Create(savePath))
-                {
-                    formFile.CopyTo(fs);
-                    fs.Flush();
-                }
-            }
-            catch (Exception ex)
-            {
-                result = false;
-            }
-            var rUpload = new
-            {
-                uploaded = result,
-                url = result ? previewPath : string.Empty
-            };
-            return Json(rUpload);
-        }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            // Kullanıcının oturum açıp açmadığını kontrol edin
+            if (User.Identity.IsAuthenticated)
+            {
+
+                // Kullanıcının kimlik bilgilerini alın
+                var userName = User.Identity.Name;
+                var firstName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value;
+                var surname = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Surname)?.Value;
+                var district = User.Claims.FirstOrDefault(c => c.Type == "District")?.Value;
+
+                // Kullanıcı profili verilerini bir modelle görünüme ileterek döndürün
+                var userProfile = new CheckUserDto
+                {
+                    UserName = userName,
+                    FirstName = firstName,
+                    Surname = surname,
+                    District = district
+                };
+
+                return View(userProfile);
+            }
+            else
+            {
+                // Kullanıcı oturum açmamışsa uygun bir işlem yapın
+                // Örneğin, bir hata sayfasına yönlendirin veya oturum açma sayfasına geri yönlendirin
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

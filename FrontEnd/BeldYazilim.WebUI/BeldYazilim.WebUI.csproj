@@ -486,6 +486,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\BeldYazilim.Domain\BeldYazilim.Domain.csproj" />
     <ProjectReference Include="..\BeldYazilim.Dto\BeldYazilim.Dto.csproj" />
   </ItemGroup>
 

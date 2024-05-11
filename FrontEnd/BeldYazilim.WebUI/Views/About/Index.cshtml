@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('/images/article-images/bg.jpg');">
+	<div class="container">
+		<div class="row same-height justify-content-center">
+			<div class="col-md-6">
+				<div class="post-entry text-center">
+					<h1 class="mb-4">Hakkımızda</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@await Component.InvokeAsync("_AboutTopComponentPartial")
+@await Component.InvokeAsync("_AboutFeature1ComponentPartial")
+@await Component.InvokeAsync("_AboutTeamComponentPartial")
+
+
+
+
+
+
+@await Component.InvokeAsync("_AboutFeature2ComponentPartial")
+

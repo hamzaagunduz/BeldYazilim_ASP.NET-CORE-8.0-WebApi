@@ -37,6 +37,12 @@ namespace BeldYazilim.WebApi.Controllers
         {
             var values = await _mediator.Send(new GetAllUsersWithRoleQuery());
             return Ok(values);
+        }   
+        [HttpGet("GetUsersWithAdminRoleQuery")]
+        public async Task<IActionResult> GetUsersWithAdminRoleQuery()
+        {
+            var values = await _mediator.Send(new GetUsersWithAdminRoleQuery());
+            return Ok(values);
         }
 
         [HttpGet("{id}")]

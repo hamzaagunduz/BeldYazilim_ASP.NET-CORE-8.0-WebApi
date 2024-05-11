@@ -35,5 +35,16 @@ namespace BeldYazilim.Persistence.Repositories.AppUserRepositories
 
             return article?.ArticleAuthor?.AppUser;
         }
-    }
+
+		public  Task<List<AppUser>> GetUsersWithAdminRoleAsync()
+		{
+			var adminUsers =  _context.AppUsers
+				.Include(u => u.ArticleAuthor)
+				.Where(u => u.ArticleAuthor != null && u.ArticleAuthor.Role == "Admin")
+				.Take(6)
+				.ToListAsync();
+
+			return adminUsers;
+		}
+	}
 }

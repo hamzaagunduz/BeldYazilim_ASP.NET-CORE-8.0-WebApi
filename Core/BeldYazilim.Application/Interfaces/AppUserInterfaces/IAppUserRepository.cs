@@ -12,5 +12,8 @@ namespace BeldYazilim.Application.Interfaces.AppUserInterfaces
     {
         public List<AppUser> GetAllUsersWithRole();
         public AppUser GetUsersWithRoleById(int id);
-    }
+        public Task<List<AppUser>> GetUsersWithAdminRoleAsync();
+
+
+	}
 }

@@ -33,6 +33,8 @@ namespace BeldYazilim.Persistence.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Feature> Features { get; set; }
 
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }

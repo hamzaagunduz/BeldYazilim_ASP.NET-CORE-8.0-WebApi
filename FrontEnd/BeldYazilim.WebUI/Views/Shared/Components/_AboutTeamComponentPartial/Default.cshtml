@@ -1,0 +1,24 @@
+﻿@model List<AboutTeamDto>
+<div class="section">
+    <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-lg-5 mx-auto text-center" data-aos="fade-up">
+                <h2 class="heading text-primary">Takımımız</h2>
+                <p>Bloglarını Bizimle Birlikte Paylaşabileceğin Hızlı Platform </p>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var member in Model)
+            {
+                <div class="col-lg-4 mb-4 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <img src="/images/@member.imageUrl" alt="Image" class="img-fluid w-50 rounded-circle mb-3">
+                    <h5 class="text-black">@member.firstName @member.surname</h5>
+                    <p>@member.about</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
