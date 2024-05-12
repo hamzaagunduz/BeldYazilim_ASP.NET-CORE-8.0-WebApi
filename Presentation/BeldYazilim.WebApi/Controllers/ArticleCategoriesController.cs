@@ -1,11 +1,13 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.ArticleCategoryCommands;
 using BeldYazilim.Application.Features.Mediator.Queries.ArticleCategoryQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeldYazilim.WebApi.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ArticleMainCategoryCategoriesController : ControllerBase

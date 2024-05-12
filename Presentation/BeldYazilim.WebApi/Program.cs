@@ -12,6 +12,7 @@ using BeldYazilim.Persistence.Repositories.AppUserRepositories;
 using BeldYazilim.Persistence.Repositories.ArticleRepositories;
 using BeldYazilim.Persistence.Repositories.TagInterfaces;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -19,20 +20,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
-{
-    opt.RequireHttpsMetadata = false;
-    opt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidAudience = JwtTokenDefaults.ValidAudience,
-        ValidIssuer = JwtTokenDefaults.ValidIssuer,
-        ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
-    };
-});
 
 builder.Services.AddCors(options =>
 {
@@ -44,6 +33,42 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
+
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+//{
+//    opt.RequireHttpsMetadata = false;
+//    opt.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidAudience = JwtTokenDefaults.ValidAudience,
+//        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+//        ClockSkew = TimeSpan.Zero,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true
+//    };
+//});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        // if URL path starts with "/api" then use Bearer authentication instead
+        options.ForwardDefaultSelector = httpContext => httpContext.Request.Path.StartsWithSegments("/api") ? JwtBearerDefaults.AuthenticationScheme : null;
+    })
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
+    {
+        o.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidAudience = JwtTokenDefaults.ValidAudience,
+            ValidIssuer = JwtTokenDefaults.ValidIssuer,
+            ClockSkew = TimeSpan.Zero,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+        };
+    });
+
+
 
 builder.Services.AddScoped<BeldYazilimContext>();
 
@@ -61,7 +86,6 @@ builder.Services.AddIdentity<AppUser, AppRole>(options =>
 
 
 
-builder.Services.AddHttpClient();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IArticleRepository), typeof(ArticleRepository));

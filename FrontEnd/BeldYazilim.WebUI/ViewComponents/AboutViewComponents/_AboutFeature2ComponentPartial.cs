@@ -13,6 +13,7 @@ namespace BeldYazilim.WebUI.ViewComponents.AboutViewComponents
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
+
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.GetAsync("https://localhost:7298/api/Feature/1");
 

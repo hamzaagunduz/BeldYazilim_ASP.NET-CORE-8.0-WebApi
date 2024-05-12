@@ -6,7 +6,7 @@
             @foreach (var article in Model)
             {
                 <li>
-                    <a href="#">
+                    <a href="ArticleDetail/Index/@article.articleID">
                         <img src="/images/@article.bigImageUrl" alt="Image placeholder" class="me-4 rounded">
                         <div class="text">
                             <h4>@article.title</h4>

@@ -3,11 +3,14 @@ using BeldYazilim.Application.Features.Mediator.Commands.FeaturesCommand;
 using BeldYazilim.Application.Features.Mediator.Queries.AboutQueries;
 using BeldYazilim.Application.Features.Mediator.Queries.FeaturesQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeldYazilim.WebApi.Controllers
 {
+    //[Authorize(AuthenticationSchemes = "Bearer")]
+    //[Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class FeatureController : ControllerBase

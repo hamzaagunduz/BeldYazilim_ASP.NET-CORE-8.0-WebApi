@@ -1,13 +1,13 @@
-﻿using BeldYazilim.Application.Features.Mediator.Commands.FooterCommand;
-using BeldYazilim.Application.Features.Mediator.Commands.TagCommands;
-using BeldYazilim.Application.Features.Mediator.Queries.FooterQueries;
-using BeldYazilim.Application.Features.Mediator.Queries.TagQueries;
-using MediatR;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using BeldYazilim.Application.Features.Mediator.Commands.FooterCommand;
+using BeldYazilim.Application.Features.Mediator.Queries.FooterQueries;
 
 namespace BeldYazilim.WebApi.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class FooterController : ControllerBase
