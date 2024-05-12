@@ -48,9 +48,14 @@
                                 <input type="text" class="form-control" id="inputcity" asp-for="city" placeholder="Şehir">
                             </div>
 
+                            <div class="form-group col-md-6">
+                                <label asp-for="imageUrl" for="defaultFormControlInput" class="form-label d-block">Mevcut Resim</label>
+                                <img style="height:25em; width:25em;" class="mb-3" src="/images/@Model.imageUrl" />
+                            </div>
+
                             <div class="form-group">
-                                <label for="resims">resim</label>
-                                <input type="text" class="form-control" id="resims" asp-for="imageUrl" placeholder="Resim">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
                             </div>
 
                             @*                             <div class="form-group">

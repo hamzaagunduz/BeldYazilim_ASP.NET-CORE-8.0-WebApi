@@ -1,6 +1,7 @@
 ﻿using BeldYazilim.Application.Enums;
 using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
 using BeldYazilim.Application.Features.Mediator.Results.AppRoleResult;
+using BeldYazilim.Application.Helpers;
 using BeldYazilim.Application.Interfaces;
 using BeldYazilim.Domain.Entities;
 using MediatR;
@@ -20,42 +21,19 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
         private readonly IRepository<ArticleAuthor> _repositoryArticleAuthor;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
-        public UpdateAppUserCommandHandler(IRepository<ArticleAuthor> repository, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+        private readonly IImageHelper imageHelper;
+
+        public UpdateAppUserCommandHandler(IRepository<ArticleAuthor> repositoryArticleAuthor, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IImageHelper imageHelper)
         {
-            _repositoryArticleAuthor = repository;
+            _repositoryArticleAuthor = repositoryArticleAuthor;
             _userManager = userManager;
             _roleManager = roleManager;
+            this.imageHelper = imageHelper;
         }
 
-        //public async Task Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
-        //{
-        //    var user = await _userManager.FindByIdAsync(request.AppUserID.ToString());
-
-        //    var currentRoles = await _userManager.GetRolesAsync(user);
-        //    foreach (var role in currentRoles)
-        //    {
-        //        await _userManager.RemoveFromRoleAsync(user, role);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(request.RoleName))
-        //    {
-        //        await _userManager.AddToRoleAsync(user, request.RoleName);
-        //    }
 
 
-        //    user.FirstName = request.FirstName;
-        //    user.Surname= request.Surname;
-        //    user.District = request.District;
-        //    user.About=request.About;
-        //    user.RegistrationDate= request.RegistrationDate;
-        //    user.City= request.City;
-        //    user.ConfirmCode= request.ConfirmCode;
-        //    user.Password = request.Password;
-
-        //    await _userManager.UpdateAsync(user);
-
-
-        //}
+        
         public async Task Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.AppUserID.ToString());
@@ -84,6 +62,7 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
 
                 await _userManager.AddToRoleAsync(user, roleName);
             }
+            var imageUpload = await imageHelper.Upload(request.FirstName, request.Photo);
 
             // Kullanıcının diğer özelliklerini güncelle
             user.FirstName = request.FirstName;
@@ -91,12 +70,10 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             user.District = request.District;
             user.About = request.About;
             user.City = request.City;
-            user.ImageUrl = request.imageUrl;
+            user.ImageUrl = imageUpload.FullName;
 
             articleAuthor.Name = request.FirstName;
-            //articleAuthor.Role=rol
-            //user.ConfirmCode = request.ConfirmCode;
-            //user.Password = request.Password;
+
 
             // Kullanıcıyı güncelle
             await _repositoryArticleAuthor.UpdateAsync(articleAuthor);

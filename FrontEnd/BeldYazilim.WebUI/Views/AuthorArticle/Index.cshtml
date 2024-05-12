@@ -1,0 +1,60 @@
+﻿@model List<AuthorArticlesDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('/images/article-images/bg.jpg');">
+	<div class="container">
+		<div class="row same-height justify-content-center">
+			<div class="col-md-6">
+				<div class="post-entry text-center">
+					<h1 class="mb-4">Ben @Model.FirstOrDefault()?.name Bunlar Benim Makalelerim </h1>
+					<div class="post-meta align-items-center text-center">
+						<figure class="author-figure mb-0 me-3 d-inline-block"><img src="/images/@Model.FirstOrDefault()?.imageUrl" alt="Image" class="img-fluid"></figure>
+						<span class="d-inline-block mt-1">By @Model.FirstOrDefault()?.name</span>
+						<span>&nbsp;-&nbsp; @Model.FirstOrDefault()?.creationTime.ToShortDateString()</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="section">
+	<div class="container">
+
+		<div class="row mb-4">
+			<div class="col-sm-6">
+				<h2 class="posts-entry-title">Makalelerim</h2>
+			</div>
+			<div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+		</div>
+
+
+			<div class="row">
+			@foreach (var article in Model)
+			{
+				<div class="col-lg-4 mb-4">
+					<div class="post-entry-alt">
+						<a href="/ArticleDetail/Index/@article.articleID" class="img-link"><img src="/images/@article.bigImageUrl" alt="Image" class="img-fluid"></a>
+						<div class="excerpt">
+
+
+							<h2><a href="/ArticleDetail/Index/@article.articleID">@article.title</a></h2>
+							<div class="post-meta align-items-center text-left clearfix">
+								<span class="d-inline-block mt-1">By <a href="#">@article.name</a></span>
+								<span>&nbsp;-&nbsp; @article.creationTime.ToShortDateString()</span>
+							</div>
+
+							<p><a href="#" class="read-more">Devam Et</a></p>
+						</div>
+					</div>
+				</div>
+			}
+
+			</div>
+
+	</div>
+</section>

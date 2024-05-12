@@ -1,11 +1,14 @@
 ﻿using BeldYazilim.Dto.ArticleDtos;
 using BeldYazilim.Dto.FooterDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     [Area("Admin")]
     public class AdminFooterController : Controller
     {

@@ -1,11 +1,14 @@
 ﻿using BeldYazilim.Dto.ArticleCategoryDtos;
 using BeldYazilim.Dto.ArticleDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     [Area("Admin")]
 
     public class AdminTagController : Controller

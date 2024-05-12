@@ -116,5 +116,14 @@ namespace BeldYazilim.Persistence.Repositories.ArticleRepositories
 				.ToList();
 		}
 
-	}
+        public List<Article> GetArticlesByAuthor(int authorId)
+        {
+            return _context.Articles
+                .Include(article => article.ArticleAuthor) // ArticleAuthor ilişkisini dahil et
+                    .ThenInclude(author => author.AppUser) // AppUser ilişkisini dahil et
+                .Where(article => article.ArticleAuthorID == authorId)
+                .ToList();
+        }
+
+    }
 }

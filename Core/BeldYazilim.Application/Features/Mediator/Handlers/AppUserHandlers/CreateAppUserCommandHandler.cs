@@ -95,8 +95,8 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
                 Email = request.Email,
                 Password = request.Password,
                 ConfirmCode = 1,
-                ImageUrl= "article-images/TWst_804.png",
-                About="Merhaba"
+                ImageUrl= "article-images/Userpp.png",
+                About="Merhaba, aranıza yeni katıldım. Blog yazmak için sabırsızlanıyorum"
             };
 
             IdentityResult result = await _userManager.CreateAsync(newUser, request.Password);

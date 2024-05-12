@@ -55,13 +55,37 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateUser(UpdateAppUserDtos updateAppUserDtos)
+        //{
+        //    var client = _httpClientFactory.CreateClient();
+        //    var jsonData = JsonConvert.SerializeObject(updateAppUserDtos);
+        //    StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        //    var responseMessage = await client.PutAsync("https://localhost:7298/api/AppUser", stringContent);
+        //    if (responseMessage.IsSuccessStatusCode)
+        //    {
+        //        return RedirectToAction("AdminUser", "Admin");
+        //    }
+        //    return Content(responseMessage.StatusCode.ToString());
+        //}   
+        
         [HttpPost]
         public async Task<IActionResult> UpdateUser(UpdateAppUserDtos updateAppUserDtos)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateAppUserDtos);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7298/api/AppUser", stringContent);
+            var multipartContent = new MultipartFormDataContent();
+
+            multipartContent.Add(new StringContent(updateAppUserDtos.appUserID.ToString()), "appUserID");
+            multipartContent.Add(new StringContent(updateAppUserDtos.firstName), "firstName");
+            multipartContent.Add(new StringContent(updateAppUserDtos.surname), "surname");
+            multipartContent.Add(new StringContent(updateAppUserDtos.roleId.ToString()), "roleId");
+            multipartContent.Add(new StringContent(updateAppUserDtos.district), "district");
+            multipartContent.Add(new StringContent(updateAppUserDtos.about), "about");
+            multipartContent.Add(new StringContent(updateAppUserDtos.city), "city");
+
+
+            multipartContent.Add(new StreamContent(updateAppUserDtos.Photo.OpenReadStream()), "Photo", updateAppUserDtos.Photo.FileName);
+            var responseMessage = await client.PutAsync("https://localhost:7298/api/AppUser", multipartContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AdminUser", "Admin");

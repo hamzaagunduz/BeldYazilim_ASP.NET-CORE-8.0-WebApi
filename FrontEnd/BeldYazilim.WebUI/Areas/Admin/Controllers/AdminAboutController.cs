@@ -1,10 +1,13 @@
 ﻿using BeldYazilim.Dto.AboutDtos;
 using BeldYazilim.Dto.ArticleDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BeldYazilim.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     [Area("Admin")]
 
     public class AdminAboutController : Controller

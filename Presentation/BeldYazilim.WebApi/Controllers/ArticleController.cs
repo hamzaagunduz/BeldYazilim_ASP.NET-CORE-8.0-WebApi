@@ -89,6 +89,13 @@ namespace BeldYazilim.WebApi.Controllers
         {
             var value = await _mediator.Send(new GetLastFiveArticlesByCategoryQuery(id));
             return Ok(value);
+        }     
+        
+        [HttpGet("GetAuthorArticlesByIdQuery/{id}")] 
+        public async Task<IActionResult> GetAuthorArticlesByIdQuery(int id)
+        {
+            var value = await _mediator.Send(new GetAuthorArticlesByIdQuery(id));
+            return Ok(value);
         }    
         
         [HttpGet("GetTopRatedCountArticles/{id}")] 
