@@ -1,6 +1,8 @@
 ﻿using BeldYazilim.Dto.ArticleCategoryDtos;
 using BeldYazilim.Dto.ArticleDtos;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -62,9 +64,13 @@ namespace BeldYazilim.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             using var formData = new MultipartFormDataContent();
 
+            var userId = User.Identity.GetUserId();
+            createArticleDto.ArticleAuthorID = Int32.Parse(userId);
+
             // Diğer alanları ekleyin
             formData.Add(new StringContent(createArticleDto.Title), "Title");
             formData.Add(new StringContent(createArticleDto.Content), "Content");
+            formData.Add(new StringContent(createArticleDto.ArticleAuthorID.ToString()), "ArticleAuthorID");
             formData.Add(new StringContent(createArticleDto.MainCategoryId.ToString()), "MainCategoryID");
 
             // Fotoğrafı ekleyin

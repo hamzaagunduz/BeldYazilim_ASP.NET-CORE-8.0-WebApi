@@ -8,6 +8,7 @@ namespace BeldYazilim.Dto.ArticleDtos
         public string Title { get; set; }
         public string Content { get; set; }
         public int MainCategoryId { get; set; }
+        public int ArticleAuthorID { get; set; }
         public IFormFile Photo { get; set; }
 
     }

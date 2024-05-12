@@ -14,6 +14,8 @@ namespace BeldYazilim.Application.Features.Mediator.Commands.ArticleCommands
         public string Title { get; set; }
         public string Content { get; set; }
         public int MainCategoryId { get; set; }
+        public int ArticleAuthorID { get; set; }
+
         public IFormFile Photo { get; set; }
 
     }
