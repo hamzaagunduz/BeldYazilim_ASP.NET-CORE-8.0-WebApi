@@ -9,7 +9,7 @@ namespace BeldYazilim.Dto.ArticleCategoryDtos
     public class UpdateMainCategoryDto
     {
 
-            public int mainCategoryID { get; set; }
+            public int articleMainCategoryID { get; set; }
             public string name { get; set; }
 
 

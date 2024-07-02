@@ -36,16 +36,19 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers
             }
             else
             {
-                values.IsExist = true;
-                values.UserName = user.UserName;
-                values.Id = user.Id;
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var roleName = userRoles.First(); // Kullanıcının ilk rolünü alıyoruz, eğer birden fazla rolü varsa bunu uygun bir şekilde ele almalısınız.
-                var appRole = await _roleManager.FindByNameAsync(roleName);
-                if (appRole != null)
-                {
-                    values.Role = appRole.Name;
-                }
+                var passwordVerificationResult = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
+
+                if (passwordVerificationResult == PasswordVerificationResult.Success)
+                    values.IsExist = true;
+                    values.UserName = user.UserName;
+                    values.Id = user.Id;
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    var roleName = userRoles.First(); // Kullanıcının ilk rolünü alıyoruz, eğer birden fazla rolü varsa bunu uygun bir şekilde ele almalısınız.
+                    var appRole = await _roleManager.FindByNameAsync(roleName);
+                    if (appRole != null)
+                    {
+                        values.Role = appRole.Name;
+                    }
             }
             return values;
         }

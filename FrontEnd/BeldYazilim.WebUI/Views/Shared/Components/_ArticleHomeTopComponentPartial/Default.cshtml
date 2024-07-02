@@ -1,0 +1,51 @@
+﻿@model List<GetLast5ArticlesDto>
+
+<section class="section bg-light">
+	<div class="container">
+		<div class="row align-items-stretch retro-layout">
+			@{
+				var articles = Model;
+			}
+
+			<div class="col-md-4">
+				@for (int i = 0; i < 2 && i < articles.Count; i++)
+				{
+					<a href="/ArticleDetail/Index/@articles[i].articleID" class="h-entry mb-30 v-height gradient">
+						<div class="featured-img" style="background-image: url('/images/@Url.Content(articles[i].bigImageUrl)');"></div>
+						<div class="text">
+							<span class="date">@articles[i].creationTime.ToString("MMM. d, yyyy")</span>
+							<h2>@articles[i].title</h2>
+						</div>
+					</a>
+				}
+			</div>
+
+			<div class="col-md-4">
+				@if (articles.Count > 2)
+				{
+					<a href="/ArticleDetail/Index/@articles[2].articleID" class="h-entry img-5 h-100 gradient">
+						<div class="featured-img" style="background-image: url('/images/@Url.Content(articles[2].bigImageUrl)');"></div>
+						<div class="text">
+							<span class="date">@articles[2].creationTime.ToString("MMM. d, yyyy")</span>
+							<h2>@articles[2].title</h2>
+						</div>
+					</a>
+				}
+			</div>
+
+			<div class="col-md-4">
+				@for (int i = 3; i < articles.Count && i < 6; i++)
+				{
+					<a href="/ArticleDetail/Index/@articles[i].articleID" class="h-entry mb-30 v-height gradient">
+						<div class="featured-img" style="background-image: url('/images/@Url.Content(articles[i].bigImageUrl)');"></div>
+						<div class="text">
+							<span class="date">@articles[i].creationTime.ToString("MMM. d, yyyy")</span>
+							<h2>@articles[i].title</h2>
+						</div>
+					</a>
+				}
+			</div>
+		</div>
+	</div>
+</section>
+

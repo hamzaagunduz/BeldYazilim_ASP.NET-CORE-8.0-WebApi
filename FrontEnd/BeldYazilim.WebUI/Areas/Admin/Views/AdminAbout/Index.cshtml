@@ -1,0 +1,80 @@
+﻿@model GetAboutDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hakkımızda Güncelleme Sayfası</h4>
+                        <p class="card-subtitle mb-4">Hakkımızda ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak güncelleme işlemini tamamlayabilirsiniz.</p>
+                        <form id="makalaekayıt" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="aboutID" />
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık">
+                            </div>         
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">İçeriğiniz</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="content" placeholder="İçeriğiniz">
+                            </div>
+
+
+                            
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title2" placeholder="Başlık">
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="exampleInputTitle">İçeriğiniz</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="content2" placeholder="İçeriğiniz">
+                            </div>
+
+
+
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="imageUrl" for="defaultFormControlInput" class="form-label d-block">Mevcut Resim</label>
+                                <img style="height:25em; width:25em;" class="mb-3" src="/images/@Model.imageUrl" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="imageUrl2" for="defaultFormControlInput" class="form-label d-block">Mevcut Resim</label>
+                                <img style="height:25em; width:25em;" class="mb-3" src="/images/@Model.imageUrl2" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="photo2">Photo2</label>
+                                <input type="file" class="form-control" id="photo2" name="photo2" accept="image/*" />
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Hakkımdayı Düzenle</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>
+
+

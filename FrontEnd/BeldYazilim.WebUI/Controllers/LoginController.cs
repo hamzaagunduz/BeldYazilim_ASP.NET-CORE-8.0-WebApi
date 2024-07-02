@@ -2,6 +2,7 @@
 using BeldYazilim.WebUI.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -58,7 +59,9 @@ namespace BeldYazilim.WebUI.Controllers
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
 
-                        return RedirectToAction("Index", "Article");
+
+
+                        return RedirectToAction("AdminArticle", "Admin");
                     }
                 }
             }

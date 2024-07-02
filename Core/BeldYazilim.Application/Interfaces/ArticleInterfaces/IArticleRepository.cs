@@ -12,5 +12,14 @@ namespace BeldYazilim.Application.Interfaces.ArticleInterfaces
     {
         public List<Article> GetAllArticlesWithAuthors();
         public List<Article> GetAllArticlesWithAuthorsAndCategory();
+        public Article GetArticleWithAuthorsById(int articleId);
+        public List<Article> GetTopRatedArticles(int count);
+        public List<Article> GetLatestArticles(int count);
+        public List<Article> GetLastFiveArticlesByCategory(int categoryId);
+        public List<Article> GetRandomArticles(int count);
+        public List<Article> GetArticlesByCategoryPaged(int categoryId, int pageNumber, int pageSize);
+        public List<Article> GetArticlesByAuthor(int authorId);
+
+
     }
 }

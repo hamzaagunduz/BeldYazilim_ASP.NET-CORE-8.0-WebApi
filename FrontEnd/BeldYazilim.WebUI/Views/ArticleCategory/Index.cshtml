@@ -1,0 +1,98 @@
+﻿@model List<GetLastFiveArticlesByCategoryDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="section search-result-wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="heading">Kategori </div>
+			</div>
+		</div>
+		<div class="row posts-entry">
+			<div class="col-lg-8">
+				@foreach (var article in Model)
+				{
+					<div class="col-lg-8">
+						<div class="blog-entry d-flex blog-entry-search-item">
+							<a href="/ArticleDetail/Index/@article.articleID" class="img-link me-4">
+								<img src="/images/@(article.bigImageUrl)" alt="Image" class="img-fluid">
+							</a>
+							<div>
+								<span class="date">@article.creationTime.ToShortDateString() &bullet; <a href="#">Category: @article.mainCategoryId</a></span>
+								<h2><a href="/ArticleDetail/Index/@article.articleID">@article.title</a></h2>
+								<p>@article.creationTime</p>
+								<p><a href="/ArticleDetail/Index/@article.articleID" class="btn btn-sm btn-outline-primary">Read More</a></p>
+							</div>
+						</div>
+
+					</div>
+				}
+
+				<div class="row text-start pt-5 border-top">
+					<div class="col-md-12">
+						<div class="custom-pagination" id="pagination">
+							<!-- Sayfa numaraları buraya eklenecek -->
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-4 sidebar">
+
+				<div class="sidebar-box search-form-wrap mb-4">
+					<form action="#" class="sidebar-search-form">
+						<span class="bi-search"></span>
+						<input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+					</form>
+				</div>
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_ArticlePopularPostComponentPartial")
+
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_ArticleMainCategoriesComponentPartial")
+
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_ArticleDetailTagsComponentPartial")
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	// JavaScript kodunun içinde, C# modelinden articleMainCategoryID değerini alalım
+	var categoryId = @Html.Raw(Json.Serialize(Model.FirstOrDefault()?.articleMainCategoryID));
+	console.log(categoryId);
+
+	// Sayfa numaralarını alacak olan element
+	var pagination = document.getElementById("pagination");
+
+	// Sayfa numaralarını oluşturacak olan fonksiyon
+	function createPagination(totalPages) {
+		pagination.innerHTML = ""; // Önceki sayfa numaralarını temizle
+
+		for (var i = 1; i <= totalPages; i++) {
+			var link = document.createElement("a");
+			link.textContent = i;
+			link.href = "@Url.Action("Index", "ArticleCategory")" + "?categoryId=" + categoryId + "&pageNumber=" + i + "&pageSize=5"; // Sayfa numarasına göre URL oluştur
+			link.addEventListener("click", function (event) {
+				event.preventDefault(); // Sayfa yenilenmesini engelle
+				var pageNumber = parseInt(this.textContent); // Tıklanan sayfa numarasını al
+				// Yönlendirme için oluşturulan URL'yi kullanabilirsiniz
+				window.location.href = this.href;
+			});
+			pagination.appendChild(link);
+		}
+	}
+
+	// Örnek olarak 15 sayfa olduğunu varsayalım
+	createPagination(3);
+</script>
+
+

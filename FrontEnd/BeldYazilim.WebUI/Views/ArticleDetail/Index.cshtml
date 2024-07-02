@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+
+@await Component.InvokeAsync("_ArticleDetailTopComponentPartial", new { id = ViewBag.blogid })
+
+<section class="section">
+    <div class="container">
+
+        <div class="row blog-entries element-animate">
+
+            <div class="col-md-12 col-lg-8 main-content">
+                @await Component.InvokeAsync("_ArticleDetailBlogComponentPartial", new { id = ViewBag.blogid })
+
+
+
+                @* @await Component.InvokeAsync("_ArticleDetailCommentComponentPartial", new { id = ViewBag.blogid }) *@
+
+            </div>
+
+            <!-- END main-content -->
+            @await Component.InvokeAsync("_ArticleDetailSideBarComponentPartial", new { id = ViewBag.blogid })
+            <!-- END sidebar -->
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Start posts-entry -->
+@await Component.InvokeAsync("_ArticleDetailBotComponentPartial") 
+<!-- End posts-entry -->

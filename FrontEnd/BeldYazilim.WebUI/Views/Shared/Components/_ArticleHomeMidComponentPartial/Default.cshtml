@@ -1,0 +1,22 @@
+﻿@model List<GetTop3RatedArticles>
+<section class="section posts-entry posts-entry-sm bg-light">
+	<div class="container">
+		<div class="row">
+			@foreach (var articles in Model)
+        {
+			<div class="col-md-6 col-lg-3">
+				<div class="blog-entry">
+						<a href="/ArticleDetail/Index/@articles.articleID" class="img-link">
+							<img src="/images/@(articles.bigImageUrl)" alt="Image" class="img-fluid">
+					</a>
+						<span class="date">@articles.creationTime.ToString("MMM. d, yyyy")</span>
+
+						<h2><a href="/ArticleDetail/Index/@articles.articleID">@articles.title</a></h2>
+					<p>@articles.name</p>
+						<p><a href="/ArticleDetail/Index/@articles.articleID" class="read-more">Devam Et</a></p>
+				</div>
+			</div>
+	    }
+		</div>
+	</div>
+</section>

@@ -1,0 +1,64 @@
+﻿@model List<GetAllTagDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Makale Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Taglarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekleştirebilirsiniz.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>TagID</th>
+                                        <th>İsim</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <th scope="row">@count</th>
+                                            <td>@item.tagID</td>
+                                            <td>@item.name</td>
+
+                                            <td><a href="/Admin/AdminTag/RemoveTag/@item.tagID" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminTag/UpdateTag/@item.tagID" class="btn btn-outline-success">Güncelle</a></td>
+
+                                            @* <td><a href="/CarList/CarDetail/@item.articleID" class="btn btn-outline-secondary">Fiyat Bilgileri</a></td> *@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminTag/CreateTag/" class="btn btn-outline-primary">Yeni Tag Girişi</a>
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>
+

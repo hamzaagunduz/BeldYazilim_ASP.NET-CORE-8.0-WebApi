@@ -1,0 +1,22 @@
+﻿@model GetUserWithRoleByIdDtos
+<div class="col-md-12 col-lg-4 sidebar">
+    <div class="sidebar-box search-form-wrap">
+        <form action="#" class="sidebar-search-form">
+            <span class="bi-search"></span>
+            <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+        </form>
+    </div>
+
+    @await Component.InvokeAsync("_ArticleDetailAuthorComponentPartial", new { id = ViewBag.blogid })
+
+    <!-- END sidebar-box -->
+    @await Component.InvokeAsync("_ArticlePopularPostComponentPartial")
+
+    
+
+    @await Component.InvokeAsync("_ArticleMainCategoriesComponentPartial")
+
+    <!-- END sidebar-box -->
+    @await Component.InvokeAsync("_ArticleDetailTagsComponentPartial")
+
+</div>

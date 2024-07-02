@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,12 @@ namespace BeldYazilim.Dto.ArticleDtos
             public string title { get; set; }
             public string content { get; set; }
             public int mainCategoryId { get; set; }
-
             public DateTime creationTime { get; set; }
             public int clickCount { get; set; }
             public string bigImageUrl { get; set; }
             public int rating { get; set; }
+            public IFormFile Photo { get; set; }
+
 
     }
 }

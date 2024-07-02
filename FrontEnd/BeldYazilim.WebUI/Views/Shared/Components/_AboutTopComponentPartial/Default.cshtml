@@ -1,0 +1,25 @@
+﻿@model GetAboutDto
+<div class="section sec-halfs py-0">
+	<div class="container">
+		<div class="half-content d-lg-flex align-items-stretch">
+			<div class="img" style="background-image: url('/images/@Model.imageUrl')" data-aos="fade-in" data-aos-delay="100">
+			</div>
+			<div class="text">
+				<h2 class="heading text-primary mb-3">@Model.title</h2>
+				<p class="mb-4">@Model.content</p>
+				<p><a href="ArticleHome/Index" class="btn btn-outline-primary py-2">Daha Fazla</a></p>
+			</div>
+		</div>
+
+		<div class="half-content d-lg-flex align-items-stretch">
+			<div class="img order-md-2" style="background-image: url('/images/@Model.imageUrl2')" data-aos="fade-in">
+		</div>
+		<div class="text">
+			<h2 class="heading text-primary mb-3">@Model.title2</h2>
+			<p class="mb-4">@Model.content2</p>
+				<p><a href="ArticleHome/Index" class="btn btn-outline-primary py-2">Daha Fazla</a></p>
+		</div>
+	</div>
+</div>
+
+</div>

@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Domain", "Core\BeldYazilim.Domain\BeldYazilim.Domain.csproj", "{62E8268D-2FBD-4960-B09F-94B404E4B0B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AFF2ECDA-07D5-41F2-895D-73FA4E9556B6}"
+	ProjectSection(SolutionItems) = preProject
+		Core\BeldYazilim.Application\Features\Mediator\Handlers\ArticleHandlers\UpdateArticleCommandHandler.cs = Core\BeldYazilim.Application\Features\Mediator\Handlers\ArticleHandlers\UpdateArticleCommandHandler.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeldYazilim.Persistence", "Infrastructure\BeldYazilim.Persistence\BeldYazilim.Persistence.csproj", "{30F7E367-CA5B-45A9-A8F9-D88065A79666}"
 EndProject

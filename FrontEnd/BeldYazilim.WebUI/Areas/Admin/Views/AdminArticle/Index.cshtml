@@ -40,7 +40,7 @@
                                         <tr>
                                             <th scope="row">@count</th>
                                             <td>@item.ArticleID</td>
-                                            <td>@item.Title</td>
+                                            <td>@item.Title.Substring(0, Math.Min(40, @item.Title.Length))</td>
                                             <td>@item.CategoryName</td>
                                             <td>@item.AuthorName</td>
                                             <td>@item.ClickCount</td>

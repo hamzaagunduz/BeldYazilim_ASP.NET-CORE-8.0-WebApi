@@ -1,0 +1,62 @@
+﻿@model List<GetFooterAboutDto>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h3 class="mb-4">About</h3>
+                    @foreach (var article in Model)
+            {
+                    <p>@article.content</p>
+            }
+                </div> <!-- /.widget -->
+                <div class="widget">
+                    <h3>Sosyal Medya</h3>
+                    <ul class="list-unstyled social">
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+                
+                <!-- /.widget -->
+            </div> <!-- /.col-lg-4 -->
+            <div class="col-lg-4 ps-lg-5">
+                <div class="widget">
+                    <h3 class="mb-4">Şirket</h3>
+                    <ul class="list-unstyled float-start links">
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">Servislerimiz</a></li>
+                        <li><a href="#">Vizyonumuz</a></li>
+                        <li><a href="#">Misyonumuz</a></li>
+                        <li><a href="#">Belge</a></li>
+                        <li><a href="#">Güvenlik</a></li>
+                    </ul>
+                    <ul class="list-unstyled float-start links">
+                        <li><a href="#">Partner</a></li>
+                        <li><a href="#">İşler</a></li>
+                        <li><a href="#">Kariyer</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Üret</a></li>
+                    </ul>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col-lg-4 -->
+                @await Component.InvokeAsync("_FooterUILayoutPopularPostComponentPartial")
+
+
+        </div> <!-- /.row -->
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+
+
+                <p>
+                    Telif Hakkı ©2024. Tüm Hakları Saklıdır. — Tarafından tasarlandı: BeldYazılım
+
+                </p>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+</footer> 
+

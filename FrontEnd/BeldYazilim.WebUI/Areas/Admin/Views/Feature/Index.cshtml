@@ -1,0 +1,72 @@
+﻿@model FeatureDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Özellik Güncelleme Sayfası</h4>
+                        <p class="card-subtitle mb-4">Özellikler ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak güncelleme işlemini tamamlayabilirsiniz.</p>
+                        <form id="makalaekayıt" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="featureID" />
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık 1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Özellik</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="content" placeholder="Özellik 1">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title2" placeholder="Başlık 2">
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="exampleInputTitle">Özellik</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="content2" placeholder="Özellik 2">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="exampleInputTitle">Başlığınız</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="title3" placeholder="Başlık 3">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="exampleInputTitle">Özellik</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="content3" placeholder="Özellik 3">
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Özellikleri Düzenle</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>
+
+

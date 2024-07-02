@@ -21,8 +21,9 @@ namespace BeldYazilim.Application.Features.Mediator.Handlers.ArticleCategoryHand
 
         public async Task Handle(UpdateMainCategoryArticleCommand request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetByIdAsync(request.MainCategoryID);
-            values.Name = request.Name;
+            var values = await _repository.GetByIdAsync(request.articleMainCategoryID);
+            values.Name = request.name;
+            values.ArticleMainCategoryID=request.articleMainCategoryID;
             await _repository.UpdateAsync(values);
 
         }

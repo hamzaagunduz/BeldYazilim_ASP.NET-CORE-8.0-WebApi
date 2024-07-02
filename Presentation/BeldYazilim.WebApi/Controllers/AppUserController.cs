@@ -1,4 +1,5 @@
 ﻿using BeldYazilim.Application.Features.Mediator.Commands.AppUserAuthor;
+using BeldYazilim.Application.Features.Mediator.Handlers.AppUserHandlers;
 using BeldYazilim.Application.Features.Mediator.Queries.AppUserQueries;
 using BeldYazilim.Application.Tools;
 using BeldYazilim.Persistence.Context;
@@ -29,10 +30,31 @@ namespace BeldYazilim.WebApi.Controllers
             var values = await _mediator.Send(new GetAppUserQuery());
             return Ok(values);
         }
+
+
+        [HttpGet("GetAllUsersWithRole")]
+        public async Task<IActionResult> GetAllUsersWithRole()
+        {
+            var values = await _mediator.Send(new GetAllUsersWithRoleQuery());
+            return Ok(values);
+        }   
+        [HttpGet("GetUsersWithAdminRoleQuery")]
+        public async Task<IActionResult> GetUsersWithAdminRoleQuery()
+        {
+            var values = await _mediator.Send(new GetUsersWithAdminRoleQuery());
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppUser(int id)
         {
             var value = await _mediator.Send(new GetAppUserByIdQuery(id));
+            return Ok(value);
+        }
+        [HttpGet("user-with-role-byArticleId/{id}")] // İkinci endpoint
+        public async Task<IActionResult> GetUsersWithRoleByIdQuery(int id)
+        {
+            var value = await _mediator.Send(new GetUsersWithRoleByIdQuery(id));
             return Ok(value);
         }
         [HttpPost]
@@ -43,7 +65,7 @@ namespace BeldYazilim.WebApi.Controllers
                 return Ok("AppUser başarıyla eklendi");
     
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAppUser(int id)
         {
             await _mediator.Send(new RemoveAppUserCommand(id));

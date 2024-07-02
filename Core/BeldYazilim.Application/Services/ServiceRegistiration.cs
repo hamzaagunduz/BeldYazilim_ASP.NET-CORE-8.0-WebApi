@@ -17,6 +17,7 @@ namespace BeldYazilim.Application.Services
             services, IConfiguration configuration)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServicesRegistiration).Assembly));
+
        }
     }
 }

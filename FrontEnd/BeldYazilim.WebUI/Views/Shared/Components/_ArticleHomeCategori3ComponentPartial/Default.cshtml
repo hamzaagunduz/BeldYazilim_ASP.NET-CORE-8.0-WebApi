@@ -1,0 +1,36 @@
+﻿@model List<GetLastFiveArticlesByCategoryDto>
+
+<section class="section">
+	<div class="container">
+
+		<div class="row mb-4">
+			<div class="col-sm-6">
+				<h2 class="posts-entry-title">Rastgele İçerik</h2>
+			</div>
+			<div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">Hepsi</a></div>
+		</div>
+
+		<div class="row">
+						@foreach (var articles in Model)
+		 {
+			<div class="col-lg-4 mb-4">
+				<div class="post-entry-alt">
+						<a href="/ArticleDetail/Index/@articles.articleID" class="img-link"><img src="/images/@(articles.bigImageUrl)" alt="Image" class="img-fluid"></a>
+					<div class="excerpt">
+
+
+							<h2><a href="/ArticleDetail/Index/@articles.articleID">@articles.title</a></h2>
+						<div class="post-meta align-items-center text-left clearfix">
+								<span class="d-inline-block mt-1">Popülerlik:@articles.rating </span>
+								<span class="date">@articles.creationTime.ToString("MMM. d, yyyy")</span>
+							</div>
+
+						<p><a href="#" class="read-more">Devam Et</a></p>
+					</div>
+				</div>
+			</div>
+			}
+		</div>
+
+	</div>
+</section>

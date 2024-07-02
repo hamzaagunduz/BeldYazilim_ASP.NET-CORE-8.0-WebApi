@@ -1,0 +1,17 @@
+﻿@model GetUserWithRoleByIdDtos
+<div class="sidebar-box">
+    <div class="bio text-center">
+        <img src="/images/@Model.imageUrl" alt="Image Placeholder" class="img-fluid mb-3">
+        <div class="bio-body">
+            <h2>@Model.firstName @Model.surname</h2>
+            <p class="mb-4">@Model.about</p>
+            <p><a href="/AuthorArticle/Index/@Model.id" class="btn btn-primary btn-sm rounded px-2 py-2">Read my bio</a></p>
+            <p class="social">
+                <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+            </p>
+        </div>
+    </div>
+</div>

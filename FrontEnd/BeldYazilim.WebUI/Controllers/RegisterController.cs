@@ -37,7 +37,7 @@ namespace BeldYazilim.WebUI.Controllers
 
 			if (responseMessage.IsSuccessStatusCode)
 			{
-				return RedirectToAction("Index", "Confirm");
+				return RedirectToAction("Index", "Login");
 			}
 
             var content = await responseMessage.Content.ReadAsStringAsync();
