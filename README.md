@@ -59,16 +59,15 @@ Projenin nasıl çalıştığını görmek için aşağıdaki demo videosunu izl
 
 Projeyi klonlayıp çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 
-## Nasıl Kullanabilirsin
+## 1. Repoyu klonlayın
 ```bash
-1. Repoyu klonlayın
-git clone https://github.com/hamzaagunduz/BeldYazilim_ASP.NET-CORE-8.0-WebApi
+git clone https://github.com/kullanici/blog-platformu.git
 cd blog-platformu
 ## 2.Gerekli bağımlılıkları yükleyin
 dotnet restore
-3. Connection Stringi düzenleyin ardından Veritabanını oluşturun ve migrate edin
+## 3. Connection Stringi düzenleyin ardından Veritabanını oluşturun ve migrate edin
 dotnet ef database update
-4. Uygulamayı başlatın
+## 4. Uygulamayı başlatın
 dotnet run
 
 
